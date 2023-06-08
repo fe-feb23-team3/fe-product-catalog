@@ -19,8 +19,8 @@ export const Provider: React.FC<Props> = React.memo(
 export const App: React.FC = () => {
   return (
     <div className="starter">
+      <h1>Hello world!</h1>
       <Provider onClick={() => ({})}>
-        <TodoList />
       </Provider>
     </div>
   );
