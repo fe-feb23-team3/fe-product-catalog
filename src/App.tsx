@@ -1,27 +1,18 @@
 import React from 'react';
 import './App.scss';
-
-interface Props {
-  onClick: () => void;
-}
-
-export const Provider: React.FC<Props> = React.memo(
-  ({ onClick, children }) => (
-    <button
-      type="button"
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  ),
-);
+import image from './images/beaver_logo.jpg';
 
 export const App: React.FC = () => {
   return (
-    <div className="starter">
-      <h1>Hello world!</h1>
-      <Provider onClick={() => ({})}>
-      </Provider>
-    </div>
+    <>
+      <img
+        src={image}
+        alt="beaver"
+        className="logo"
+      />
+      <div className="cover">
+        <h1 className="title">There will be a project soon...</h1>
+      </div>
+    </>
   );
 };
