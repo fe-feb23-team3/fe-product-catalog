@@ -15,8 +15,19 @@ export const App: React.FC = () => {
         alt="beaver"
         className="logo"
       />
-      <div className="cover">
-        <h1 className="title">There will be a project soon...</h1>
+
+      {/* Example how to use grid */}
+      <div className="cover container grid">
+        <h1 className="
+          title
+          grid__item
+          grid__item--phone-1-2
+          grid__item--tablet-4-8
+          grid__item--desktop-15-20
+        "
+        >
+          There will be a project soon...
+        </h1>
       </div>
 
       <Routes>
