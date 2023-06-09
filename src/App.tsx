@@ -1,6 +1,9 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.scss';
-import image from './images/beaver_logo.jpg';
+import image from './components/images/beaver_logo.jpg';
+import { HomePage } from './components/HomePage';
+import { PhoneCatalog } from './components/PhoneCatalog';
 
 export const App: React.FC = () => {
   return (
@@ -13,6 +16,11 @@ export const App: React.FC = () => {
       <div className="cover">
         <h1 className="title">There will be a project soon...</h1>
       </div>
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/phones" element={<PhoneCatalog />} />
+      </Routes>
     </>
   );
 };
