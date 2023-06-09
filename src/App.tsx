@@ -8,15 +8,12 @@ import { PhoneCatalog } from './components/PhoneCatalog';
 export const App: React.FC = () => {
   return (
     <>
-      <img
-        src={image}
-        alt="beaver"
-        className="logo"
-      />
+      <img src={image} alt="beaver" className="logo" />
 
       {/* Example how to use grid */}
       <div className="cover container grid">
-        <h1 className="
+        <h1
+          className="
           title
           grid__item
           grid__item--phone-1-2
