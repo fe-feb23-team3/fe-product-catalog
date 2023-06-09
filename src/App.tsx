@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.scss';
-import image from './images/beaver_logo.jpg';
-import { HomePage } from './HomePage';
-import { PhoneCatalog } from './PhoneCatalog';
+import image from './components/images/beaver_logo.jpg';
+import { HomePage } from './components/HomePage';
+import { PhoneCatalog } from './components/PhoneCatalog';
 
 export const App: React.FC = () => {
   return (
