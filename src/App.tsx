@@ -4,10 +4,12 @@ import './App.scss';
 import image from './components/images/beaver_logo.jpg';
 import { HomePage } from './components/HomePage';
 import { PhoneCatalog } from './components/PhoneCatalog';
+import { Header } from './components/Header';
 
 export const App: React.FC = () => {
   return (
     <>
+      <Header />
       <img
         src={image}
         alt="beaver"
