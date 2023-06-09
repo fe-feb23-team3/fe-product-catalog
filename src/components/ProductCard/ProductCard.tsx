@@ -1,7 +1,7 @@
 import React from 'react';
 import phone_1 from '../images/phone_1.png';
 
-export const Card: React.FC = () => {
+export const ProductCard: React.FC = () => {
   return (
     <div className="card">
 
