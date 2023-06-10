@@ -1,13 +1,24 @@
 @import "./styles/utils/mixins";
 @import "./styles/utils/extends";
 @import "./styles/utils/vars";
+@import "./styles/utils/normalize";
+@import "./styles/fonts/mont.scss";
+@import "./styles/fonts/typography.scss";
 
 @import "./styles/blocks/container.scss";
 @import "./styles/blocks/grid.scss";
 
-
-body {
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   background-color: rgb(197, 141, 20);
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .logo {
@@ -21,5 +32,5 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: green;
 }

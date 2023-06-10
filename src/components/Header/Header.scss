@@ -1,5 +1,5 @@
-@import "../../utils/mixins";
-@import "../../utils/normalize";
+@import "../../styles/utils/mixins";
+@import "../../styles/utils/normalize";
 
 .header {
   box-sizing: border-box;
@@ -32,7 +32,6 @@
 }
 
 .nav {
-
   &-list {
     display: flex;
     justify-content: center;

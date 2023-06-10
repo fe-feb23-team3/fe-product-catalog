@@ -7,10 +7,10 @@ import cart from '../images/cart.svg';
 import favourites from '../images/favourites.svg';
 
 export const Header: React.FC = () => {
-  const isMobile = useMediaQuery({ minWidth: 320 });
+  const isMobile = useMediaQuery({ minWidth: 640 });
 
   return (
-    <div className="header">
+    <div id="top" className="header">
       <div className="header-container">
         <a href="/" className="header-logo">
           <img src={logo} alt="logo" />
