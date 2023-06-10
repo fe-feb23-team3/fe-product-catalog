@@ -4,22 +4,3 @@
 
 @import "./styles/blocks/container.scss";
 @import "./styles/blocks/grid.scss";
-
-
-body {
-  background-color: rgb(197, 141, 20);
-}
-
-.logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto;
-}
-
-.title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-}
