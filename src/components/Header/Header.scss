@@ -38,9 +38,12 @@
 
   &-item {
     display: flex;
-    margin-right: 64px;
 
     @include onTablet {
+      margin-right: 32px;
+    }
+
+    @include onDesktop {
       margin-right: 32px;
     }
 

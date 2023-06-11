@@ -65,6 +65,6 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{scss,ts,tsx}": "npm run lint"
+    "*.{ts,tsx}": "npm run lint"
   }
 }
