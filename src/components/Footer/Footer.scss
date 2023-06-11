@@ -1,0 +1,83 @@
+@import '../../App.scss';
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  align-items: left;
+  height: 260px;
+  padding: 32px 16px;
+  gap: 32px;
+  background-color: $white-color;
+  box-shadow: 0px -1px 0px #E2E6E9;
+  box-sizing: border-box;
+  font-weight: 600;
+  margin-top: auto;
+
+  :hover {
+    color: $primary-color;
+  }
+
+  &__logo {
+    width: 89px;
+
+    @include onTablet {
+      flex: 1;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    gap: 16px;
+    @include uppercased-text;
+
+    @include onTablet {
+      flex-direction: row;
+      align-items: center;
+      height: 100%;
+      flex: 1;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $icons-color;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    gap: 16px;
+    color: $secondary-color;
+    @include small-text;
+
+    @include onTablet {
+      flex-direction: row;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    
+
+    &--icon {
+      @include icon-wrapper-default;
+
+      &:hover {
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  @include onTablet {
+    flex-direction: row;
+    padding: 32px 32px;
+    height: 96px;
+    gap: 0;
+  }
+}
