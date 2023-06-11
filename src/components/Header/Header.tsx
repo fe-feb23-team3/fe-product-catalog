@@ -13,9 +13,9 @@ export const Header: React.FC = () => {
   return (
     <header className="header">
       <nav className="nav">
-        <a href="/" className="header-logo">
+        <NavLink to="/" className="header-logo">
           <img src={logo} alt="logo" />
-        </a>
+        </NavLink>
 
         {!isMobile && (
           <ul className="nav-list">
