@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import './Header.scss';
+import { NavLink } from 'react-router-dom';
 import logo from '../images/logo.svg';
 import cart from '../images/cart.svg';
 import burger from '../images/burger-menu.svg';
@@ -19,27 +20,27 @@ export const Header: React.FC = () => {
         {!isMobile && (
           <ul className="nav-list">
             <li className="nav-item">
-              <a href="/" className="nav-link nav-link--active">
+              <NavLink to="/" className="nav-link">
                 Home
-              </a>
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <a href="/phones" className="nav-link">
+              <NavLink to="/phones" className="nav-link">
                 Phones
-              </a>
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <a href="/tablets" className="nav-link">
+              <NavLink to="/tablets" className="nav-link">
                 Tablets
-              </a>
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <a href="/accessories" className="nav-link">
+              <NavLink to="/accessories" className="nav-link">
                 Accessories
-              </a>
+              </NavLink>
             </li>
           </ul>
         )}
@@ -47,19 +48,19 @@ export const Header: React.FC = () => {
 
       {!isMobile ? (
         <div className="icon-container">
-          <a href="/favourites" className="icon">
+          <NavLink to="/favourites" className="icon">
             <img src={favourites} alt="favourites" />
-          </a>
+          </NavLink>
 
-          <a href="/cart" className="icon">
+          <NavLink to="/cart" className="icon">
             <img src={cart} alt="cart" />
-          </a>
+          </NavLink>
         </div>
       ) : (
         <div className="icon-container">
-          <a href="/burger" className="icon">
+          <NavLink to="/burger" className="icon">
             <img src={burger} alt="burger" />
-          </a>
+          </NavLink>
         </div>
       )}
     </header>
