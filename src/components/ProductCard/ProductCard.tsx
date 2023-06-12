@@ -8,24 +8,14 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
   const {
-    name,
-    screen,
-    capacity,
-    ram,
-    fullPrice,
-    price,
-    image,
+    id, name, screen, capacity, ram, fullPrice, price, image,
   } = phone;
-
-  // const pathConverter = (path: string) => {
-  //   return '../../' + path;
-  // };
 
   return (
     <div className="card">
       {console.log(image)}
       <img
-        src={image}
+        src={`https://be-product-catalog.onrender.com/phones/${id}/image`}
         alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
         className="card__photo"
       />

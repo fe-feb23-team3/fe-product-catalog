@@ -1,4 +1,5 @@
 export interface PhoneData {
+  id: string;
   name: string;
   screen: string;
   capacity: string;
