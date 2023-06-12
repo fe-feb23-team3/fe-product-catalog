@@ -9,6 +9,7 @@ import { TabletsCatalog } from './components/TabletsCatalog';
 import { Accessories } from './components/Accessories';
 import { Favourites } from './components/Favourites';
 import { Cart } from './components/Cart';
+import { NotFoundPage } from './components/NotFoundPage';
 
 export const App: React.FC = () => {
   return (
@@ -42,6 +43,8 @@ export const App: React.FC = () => {
         <Route path="/cart">
           <Route index element={<Cart />} />
         </Route>
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
