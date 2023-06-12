@@ -1,5 +1,5 @@
 @mixin title-default {
-  font-family: "Mont", sans-serif;
+  font-family: 'Mont', sans-serif;
   font-weight: 800;
 }
 
@@ -58,7 +58,7 @@
 }
 
 @mixin uppercased-text {
-  font-family: "Mont", sans-serif;
+  font-family: 'Mont', sans-serif;
   font-weight: 700;
   font-size: 12px;
   line-height: 11px;
@@ -67,21 +67,21 @@
 }
 
 @mixin button-text {
-  font-family: "Mont", sans-serif;
+  font-family: 'Mont', sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
 }
 
 @mixin body-text {
-  font-family: "Mont", sans-serif;
+  font-family: 'Mont', sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
 }
 
 @mixin small-text {
-  font-family: "Mont", sans-serif;
+  font-family: 'Mont', sans-serif;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
