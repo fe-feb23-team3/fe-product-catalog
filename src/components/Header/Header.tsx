@@ -4,7 +4,7 @@ import './Header.scss';
 import { NavLink } from 'react-router-dom';
 import logo from '../images/logo.svg';
 import cart from '../images/cart.svg';
-import burger from '../images/burger-menu.svg';
+import menu from '../images/burger-menu.svg';
 import favourites from '../images/favourites.svg';
 
 export const Header: React.FC = () => {
@@ -58,8 +58,8 @@ export const Header: React.FC = () => {
         </div>
       ) : (
         <div className="icon-container">
-          <NavLink to="/burger" className="icon">
-            <img src={burger} alt="burger" />
+          <NavLink to="/menu" className="icon">
+            <img src={menu} alt="menu" />
           </NavLink>
         </div>
       )}
