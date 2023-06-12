@@ -13,7 +13,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
     capacity,
     ram,
     fullPrice,
-    // price,
+    price,
     image,
   } = phone;
 
@@ -36,8 +36,8 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
       </h2>
 
       <div className="card__price">
-        <span className="card__price-current">$799</span>
-        <span className="card__price-full">$899</span>
+        <span className="card__price-current">{`$${price}`}</span>
+        <span className="card__price-full">{`$${fullPrice}`}</span>
       </div>
 
       <div className="card__divider"></div>
