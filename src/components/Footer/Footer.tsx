@@ -1,15 +1,20 @@
 import React from 'react';
+import './Footer.scss';
+import { NavLink } from 'react-router-dom';
 import logo from '../images/logo.svg';
 import arrowDarkUp from '../images/arrow_dark_up.svg';
-import './Footer.scss';
 
 export const Footer: React.FC = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="footer">
       <div className="footer__container">
-        <a href="/" className="footer__logo">
+        <NavLink to="/" className="footer__logo">
           <img src={logo} alt="logo" />
-        </a>
+        </NavLink>
 
         <div className="footer__links">
           <a href="/" className="footer__link">
@@ -24,13 +29,23 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="footer__button">
-          <a href="#top" className="footer__link">
+          <button
+            type="button"
+            onClick={scrollToTop}
+            id="top"
+            className="footer__link"
+          >
             Back to top
-          </a>
+          </button>
 
-          <a href="#top" className="footer__button--icon">
+          <button
+            type="button"
+            onClick={scrollToTop}
+            id="top"
+            className="footer__button--icon"
+          >
             <img src={arrowDarkUp} alt="/" />
-          </a>
+          </button>
         </div>
       </div>
     </footer>

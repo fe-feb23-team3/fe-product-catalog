@@ -60,6 +60,8 @@
   &__link {
     text-decoration: none;
     color: $icons-color;
+    background: none;
+    border: none;
   }
 
   &__button {
@@ -81,6 +83,8 @@
 
     &--icon {
       @include icon-wrapper-default;
+      cursor: pointer;
+      background: none;
 
       &:hover {
         border-color: $primary-color;
