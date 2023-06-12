@@ -1,3 +1,5 @@
+@import "../../styles/utils/mixins";
+
 * {
   box-sizing: border-box;
 }
@@ -128,6 +130,7 @@ p {
       border-radius: 48px;
       width: 40px;
       height: 40px;
+      margin: 0;
       background-image: url(../images/favourites_icon.svg);
       background-repeat: no-repeat;
       background-position: center;

@@ -1,12 +1,11 @@
 import React from 'react';
-import phone_1 from '../images/phone_1.png';
 
 export const ProductCard: React.FC = () => {
   return (
     <div className="card">
 
       <img
-        src={phone_1}
+        src="/"
         alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
         className="card__photo"
       />
