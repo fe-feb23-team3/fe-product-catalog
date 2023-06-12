@@ -20,17 +20,29 @@ export const App: React.FC = () => {
           <div className="container grid">
           </div>
 
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/phones" element={<PhoneCatalog />} />
-            <Route path="/tablets" element={<TabletsCatalog />} />
-            <Route path="/accessories" element={<Accessories />} />
-            <Route path="/favourites" element={<Favourites />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </body>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+
+        <Route path="/phones">
+          <Route index element={<PhoneCatalog />} />
+        </Route>
+
+        <Route path="/tablets">
+          <Route index element={<TabletsCatalog />} />
+        </Route>
+
+        <Route path="/accessories">
+          <Route index element={<Accessories />} />
+        </Route>
+
+        <Route path="/favourites">
+          <Route index element={<Favourites />} />
+        </Route>
+
+        <Route path="/cart">
+          <Route index element={<Cart />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
