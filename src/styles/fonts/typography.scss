@@ -1,0 +1,88 @@
+@mixin title-default {
+  font-family: "Mont", sans-serif;
+  font-weight: 800;
+}
+
+@mixin desktop-tablet-h1 {
+  @include title-default;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.01em;
+}
+
+@mixin desktop-tablet-h2 {
+  @include title-default;
+  font-size: 32px;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+}
+
+@mixin desktop-tablet-h3 {
+  @include title-default;
+  font-size: 22px;
+  line-height: 31px;
+}
+
+@mixin desktop-tablet-h4 {
+  @include title-default;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+@mixin mobile-h1 {
+  @include title-default;
+  font-size: 32px;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+}
+
+@mixin mobile-h2 {
+  @include title-default;
+  font-size: 22px;
+  line-height: 31px;
+}
+
+@mixin mobile-h3 {
+  @include title-default;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+@mixin mobile-h4 {
+  @include title-default;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@mixin uppercased-text {
+  font-family: "Mont", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@mixin button-text {
+  font-family: "Mont", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+@mixin body-text {
+  font-family: "Mont", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+@mixin small-text {
+  font-family: "Mont", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+}
