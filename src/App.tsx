@@ -55,9 +55,7 @@ export const App: React.FC = () => {
           </Routes>
         </main>
 
-        {!isMobile && (
-          <Footer />
-        )}
+        {!isMobile && <Footer />}
       </div>
     </body>
   );
