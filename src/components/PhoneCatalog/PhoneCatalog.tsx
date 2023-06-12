@@ -26,7 +26,6 @@ export const PhoneCatalog: React.FC = () => {
           <ProductCard phone={phone} key={phone.name} />
         ))}
       </div>
-
     </>
   );
 };
