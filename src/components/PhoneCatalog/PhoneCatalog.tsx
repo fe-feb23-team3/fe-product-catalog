@@ -21,9 +21,12 @@ export const PhoneCatalog: React.FC = () => {
   return (
     <>
       <h1>Phone catalog</h1>
-      {phones.map((phone) => (
-        <ProductCard phone={phone} key={phone.name} />
-      ))}
+      <div className="catalog">
+        {phones.map((phone) => (
+          <ProductCard phone={phone} key={phone.name} />
+        ))}
+      </div>
+
     </>
   );
 };
