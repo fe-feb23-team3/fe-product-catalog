@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "./static/css/main.2dceded2.chunk.css",
-    "main.js": "./static/js/main.3291eb21.chunk.js",
-    "main.js.map": "./static/js/main.3291eb21.chunk.js.map",
+    "main.css": "./static/css/main.6b2f4c2b.chunk.css",
+    "main.js": "./static/js/main.a4cc7b4c.chunk.js",
+    "main.js.map": "./static/js/main.a4cc7b4c.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.8c9895b1.js",
     "runtime-main.js.map": "./static/js/runtime-main.8c9895b1.js.map",
-    "static/js/2.93fe0568.chunk.js": "./static/js/2.93fe0568.chunk.js",
-    "static/js/2.93fe0568.chunk.js.map": "./static/js/2.93fe0568.chunk.js.map",
+    "static/js/2.24f62492.chunk.js": "./static/js/2.24f62492.chunk.js",
+    "static/js/2.24f62492.chunk.js.map": "./static/js/2.24f62492.chunk.js.map",
     "index.html": "./index.html",
-    "static/css/main.2dceded2.chunk.css.map": "./static/css/main.2dceded2.chunk.css.map",
-    "static/js/2.93fe0568.chunk.js.LICENSE.txt": "./static/js/2.93fe0568.chunk.js.LICENSE.txt",
-    "static/media/Footer.scss": "./static/media/Mont-SemiBold.8979d71a.otf",
+    "static/css/main.6b2f4c2b.chunk.css.map": "./static/css/main.6b2f4c2b.chunk.css.map",
+    "static/js/2.24f62492.chunk.js.LICENSE.txt": "./static/js/2.24f62492.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "./static/media/favourites_icon.964c07a4.svg",
     "static/media/arrow_dark_up.15972dbf.svg": "./static/media/arrow_dark_up.15972dbf.svg",
     "static/media/burger-menu.73ddde2c.svg": "./static/media/burger-menu.73ddde2c.svg",
     "static/media/cart.df23e4fb.svg": "./static/media/cart.df23e4fb.svg",
@@ -19,8 +19,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.8c9895b1.js",
-    "static/js/2.93fe0568.chunk.js",
-    "static/css/main.2dceded2.chunk.css",
-    "static/js/main.3291eb21.chunk.js"
+    "static/js/2.24f62492.chunk.js",
+    "static/css/main.6b2f4c2b.chunk.css",
+    "static/js/main.a4cc7b4c.chunk.js"
   ]
 }
