@@ -58,7 +58,9 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
       </div>
 
       <div className="card__buttons">
-        <a href="/" className="card__buttons-addToCart">Add to cart</a>
+        <a href="/" className="card__buttons-addToCart">
+          Add to cart
+        </a>
         <div className="card__buttons-AddToFavourites"></div>
       </div>
     </div>

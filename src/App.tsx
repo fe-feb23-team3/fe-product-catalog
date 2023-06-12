@@ -18,8 +18,7 @@ export const App: React.FC = () => {
         <Header />
         <main className="main">
           {/* Example how to use grid */}
-          <div className="container grid">
-          </div>
+          <div className="container grid"></div>
 
           <Routes>
             <Route path="/" element={<HomePage />} />

@@ -2,7 +2,7 @@ const BASE_URL = 'https://be-product-catalog.onrender.com';
 
 // returns a promise resolved after a given delay
 function wait(delay: number) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, delay);
   });
 }
@@ -29,7 +29,7 @@ function request<T>(
   // we wait for testing purpose to see loaders
   return wait(300)
     .then(() => fetch(BASE_URL + url, options))
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error();
       }

@@ -1,14 +1,15 @@
-@import "./styles/utils/mixins";
-@import "./styles/utils/extends";
-@import "./styles/utils/vars";
-@import "./styles/fonts/mont.scss";
-@import "./styles/fonts/typography.scss";
+@import './styles/utils/mixins';
+@import './styles/utils/extends';
+@import './styles/utils/vars';
+@import './styles/fonts/mont.scss';
+@import './styles/fonts/typography.scss';
 
-@import "./styles/blocks/container.scss";
-@import "./styles/blocks/grid.scss";
-@import "./styles/blocks/icons.scss";
+@import './styles/blocks/container.scss';
+@import './styles/blocks/grid.scss';
+@import './styles/blocks/icons.scss';
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
