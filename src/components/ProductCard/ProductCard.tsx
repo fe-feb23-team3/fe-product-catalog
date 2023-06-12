@@ -12,7 +12,10 @@ export const ProductCard: React.FC = () => {
 
       <h2 className="card__title">Apple iPhone 14 Pro 128GB Silver (MQ023)</h2>
 
-      <p className="card__price">$999</p>
+      <div className="card__price">
+        <span className="card__price-current">$799</span>
+        <span className="card__price-full">$899</span>
+      </div>
 
       <div className="card__divider"></div>
 
