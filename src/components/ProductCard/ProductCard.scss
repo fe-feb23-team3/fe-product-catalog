@@ -1,4 +1,4 @@
-@import "../../styles/utils/mixins";
+@import '../../App.scss';
 
 * {
   box-sizing: border-box;
@@ -36,11 +36,11 @@ p {
   flex-direction: column;
   max-width: 288px;
   padding: 32px;
-  background: #fff;
+  background: $white-color;
   font-family: Mont, sans-serif;
   font-style: normal;
-  color: #0F0F11;
-  border: 1px solid #E2E6E9;
+  color: $primary-color;
+  border: 1px solid $elements-color;
   border-radius: 8px;
 
   @include onDesktop {
@@ -49,9 +49,19 @@ p {
 
   &__photo {
     align-self: center;
-    width: 223px;
+    width: 224px;
     height: 130px;
     margin-bottom: 24px;
+
+    @include onTablet {
+      width: 224px;
+      height: 196px;
+    }
+
+    @include onDesktop {
+      width: 208px;
+      height: 196px;
+    }
   }
 
   &__title {
@@ -62,15 +72,25 @@ p {
   }
 
   &__price {
-    font-weight: 800;
     font-size: 22px;
     line-height: 140%;
     margin-bottom: 8px;
+
+    &-current {
+      font-weight: 800;
+      margin-right: 8px;
+    }
+
+    &-full {
+      font-weight: 600;
+      color: $secondary-color;
+      text-decoration-line: line-through;
+    }
   }
 
   &__divider {
     width: 100%;
-    border: 1px solid #E2E6E9;
+    border: 1px solid $elements-color;
     margin-bottom: 16px;
   }
 
@@ -89,11 +109,11 @@ p {
     margin-bottom: 8px;
 
     &-title {
-      color: #89939A;
+      color: $secondary-color;
     }
 
     &-value {
-      color: #0F0F11;
+      color: $primary-color;
     }
   }
 
@@ -111,14 +131,18 @@ p {
       padding: 0px;
       height: 40px;
       width: 175px;
-      background: #F86800;
+      background: $accent-color;
       border-radius: 8px;
       font-weight: 700;
       font-size: 14px;
       line-height: 21px;
       text-align: center;
       text-decoration: none;
-      color: #FFFFFF;
+      color: $white-color;
+
+      @include onDesktop {
+        max-width: 160px;
+      }
 
       &:hover {
         box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
@@ -126,7 +150,7 @@ p {
     }
 
     &-AddToFavourites {
-      border: 1px solid #B4BDC4;
+      border: 1px solid $icons-color;
       border-radius: 48px;
       width: 40px;
       height: 40px;
@@ -136,7 +160,7 @@ p {
       background-position: center;
 
       &:hover {
-        border: 1px solid #0F0F11;
+        border: 1px solid $primary-color;
         cursor: pointer;
       }
     }
