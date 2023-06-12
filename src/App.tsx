@@ -4,6 +4,7 @@ import './App.scss';
 import { HomePage } from './components/HomePage';
 import { PhoneCatalog } from './components/PhoneCatalog';
 import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 import { TabletsCatalog } from './components/TabletsCatalog';
 import { Accessories } from './components/Accessories';
 import { Favourites } from './components/Favourites';
@@ -12,8 +13,13 @@ import { NotFoundPage } from './components/NotFoundPage';
 
 export const App: React.FC = () => {
   return (
-    <>
-      <Header />
+    <body className="body">
+      <div className="wrapper">
+        <Header />
+        <main className="main">
+          {/* Example how to use grid */}
+          <div className="container grid">
+          </div>
 
       <Routes>
         <Route path="/" element={<HomePage />} />

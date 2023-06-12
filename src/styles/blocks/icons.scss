@@ -1,0 +1,17 @@
+@mixin icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $green-color;
+    border-radius: 48px;
+    width: 32px;
+    height: 32px;
+}
+
+@mixin icon-wrapper-default {
+    @include icon-wrapper;
+    border: 1px solid $icons-color;
+    border-radius: 48px;
+    width: 32px;
+    height: 32px;
+}

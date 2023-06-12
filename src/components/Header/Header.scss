@@ -5,6 +5,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: $white-color;
+  opacity: 1;
 
   font-style: normal;
   font-weight: 700;
@@ -54,9 +56,9 @@
 
   &-link {
     position: relative;
-    text-transform: uppercase;
+    @include uppercased-text;
     text-decoration: none;
-    color: #89939a;
+    color: $secondary-color;
 
     @include onTablet {
       padding: 19px 0px;
@@ -67,11 +69,11 @@
     }
 
     &:hover {
-      color: #0f0f11;
+      color: $primary-color;
     }
 
     &--active {
-      color: #0f0f11;
+      color: $primary-color;
 
       &::after {
         display: block;
@@ -81,7 +83,7 @@
         width: 100%;
         bottom: 0;
         margin-bottom: 0;
-        background-color: #0f0f11;
+        background-color: $primary-color;
       }
     }
   }
