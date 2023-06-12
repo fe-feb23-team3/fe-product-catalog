@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import './App.scss';
 import { HomePage } from './components/HomePage';
 import { PhoneCatalog } from './components/PhoneCatalog';
@@ -10,8 +11,11 @@ import { Accessories } from './components/Accessories';
 import { Favourites } from './components/Favourites';
 import { Cart } from './components/Cart';
 import { NotFoundPage } from './components/NotFoundPage';
+import { Menu } from './components/Menu';
 
 export const App: React.FC = () => {
+  const isMobile = useMediaQuery({ maxWidth: 639 });
+
   return (
     <body className="body">
       <div className="wrapper">
@@ -43,10 +47,17 @@ export const App: React.FC = () => {
               <Route index element={<Cart />} />
             </Route>
 
+            <Route path="/menu">
+              <Route index element={<Menu />} />
+            </Route>
+
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
-        <Footer />
+
+        {!isMobile && (
+          <Footer />
+        )}
       </div>
     </body>
   );
