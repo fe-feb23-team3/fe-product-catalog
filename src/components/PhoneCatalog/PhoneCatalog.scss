@@ -1,0 +1,16 @@
+@import '../../App.scss';
+
+.catalog {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1, 288px;
+  gap: 16px;
+
+  @include onTablet {
+    grid-template-columns: repeat(2, 288px);
+  }
+
+  @include onDesktop {
+    grid-template-columns: repeat(4, 272px);
+  }
+}
