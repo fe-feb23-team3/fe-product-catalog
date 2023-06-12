@@ -22,37 +22,33 @@ export const App: React.FC = () => {
         <Header />
         <main className="main">
           {/* Example how to use grid */}
-          <div className="container grid"></div>
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
 
-          <Routes>
-            <Route path="/" element={<HomePage />} />
+              <Route path="/phones">
+                <Route index element={<PhoneCatalog />} />
+              </Route>
 
-            <Route path="/phones">
-              <Route index element={<PhoneCatalog />} />
-            </Route>
+              <Route path="/tablets">
+                <Route index element={<TabletsCatalog />} />
+              </Route>
 
-            <Route path="/tablets">
-              <Route index element={<TabletsCatalog />} />
-            </Route>
+              <Route path="/accessories">
+                <Route index element={<Accessories />} />
+              </Route>
 
-            <Route path="/accessories">
-              <Route index element={<Accessories />} />
-            </Route>
+              <Route path="/favourites">
+                <Route index element={<Favourites />} />
+              </Route>
 
-            <Route path="/favourites">
-              <Route index element={<Favourites />} />
-            </Route>
+              <Route path="/cart">
+                <Route index element={<Cart />} />
+              </Route>
 
-            <Route path="/cart">
-              <Route index element={<Cart />} />
-            </Route>
-
-            <Route path="/menu">
-              <Route index element={<Menu />} />
-            </Route>
-
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </div>
         </main>
 
         {!isMobile && <Footer />}

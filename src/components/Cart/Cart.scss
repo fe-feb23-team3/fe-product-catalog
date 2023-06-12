@@ -1,0 +1,54 @@
+.cart-Page {
+  background-color: #fafbfc;
+  padding: 25px 0 56px;
+
+  &__back {
+    display: flex;
+    gap: 4px;
+
+    color: #89939a;
+
+    font-weight: 700;
+    font-size: 12px;
+    text-decoration: none;
+
+    &::before {
+      content: '';
+      display: flex;
+
+      width: 16px;
+      height: 16px;
+
+      background-image: url('../images/Stroke.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    color: #0f0f11;
+
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.01em;
+
+    margin-bottom: 32px;
+  }
+
+  &__content {
+  }
+
+  &__listOfCards {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+
+    margin-bottom: 32px;
+  }
+
+  &__cardOfTotalPrice {
+  }
+}
