@@ -46,6 +46,10 @@ export const App: React.FC = () => {
                 <Route index element={<Cart />} />
               </Route>
 
+              <Route path="/menu">
+                <Route index element={<Menu />} />
+              </Route>
+
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>
