@@ -1,6 +1,11 @@
 @import '../../App.scss';
 .title {
   margin-top: 16px;
+
+  font-style: normal;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 140%;
 }
 
 .path {
@@ -37,22 +42,20 @@
   }
 }
 
-.section {
-  &__photo {
-    margin-top: 36px;
+.photo {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+
+  &-container {
     display: flex;
-    flex-direction: column;
-
-    &-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 16px;
-    }
+    justify-content: center;
+    margin-top: 16px;
   }
+}
 
-  &__controllers {
-    margin-top: 40px;
-  }
+.controllers {
+  margin-top: 40px;
 }
 
 .phone {
@@ -65,7 +68,7 @@
     border: 1px solid black;
     border-radius: 4px;
 
-    width: 62px;
+    width: 52px;
   }
 }
 
@@ -105,4 +108,222 @@
     border: 1px solid black;
     border-radius: 4px;
   }
+}
+
+.price {
+  margin-top: 32px;
+
+  &__new {
+    margin-right: 8px;
+
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+
+    color: #0f0f11;
+  }
+
+  &__old {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 28px;
+
+    color: #89939a;
+
+    text-decoration: line-through;
+  }
+}
+
+.add-to-cart {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-right: 8px;
+
+    width: 100%;
+    height: 48px;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    text-decoration: none;
+
+    outline: none;
+    border: 1px solid transparent;
+    color: $white-color;
+    background: $accent-color;
+
+    cursor: pointer;
+  }
+
+  &__favourites {
+    padding: 16px;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 40px;
+
+    border: 1px solid $icons-color;
+
+    &:hover {
+      border: 1px solid $primary-color;
+      cursor: pointer;
+    }
+  }
+}
+
+.characteristics {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 32px;
+
+  &__title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 23px;
+  }
+
+  &__description {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 23px;
+    text-align: right;
+  }
+}
+
+.about {
+  margin-top: 56px;
+
+  &__title {
+    padding-bottom: 16px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+
+    color: #0f0f11;
+
+    border-bottom: 1px solid #e2e6e9;
+  }
+
+  &__paragraph-title {
+    margin-top: 32px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+
+    color: #0f0f11;
+  }
+
+  &__text {
+    margin-top: 16px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+
+    color: #89939a;
+  }
+}
+
+.tech-specs {
+  margin-top: 56px;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 32px;
+  }
+
+  &__title {
+    padding-bottom: 16px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+
+    color: #0f0f11;
+  }
+
+  &__name {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 23px;
+  }
+
+  &__description {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 23px;
+    text-align: right;
+  }
+}
+
+.recomended {
+  margin-top: 56px;
+
+  &__title {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 140%;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.arrow {
+  &-icon {
+    padding: 8px;
+    margin-right: 16px;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 40px;
+
+    border: 1px solid $icons-color;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.empty__card {
+  width: 212px;
+  height: 439px;
+
+  margin: 24px 0px 56px 0px;
+
+  border: 1px solid black;
 }
