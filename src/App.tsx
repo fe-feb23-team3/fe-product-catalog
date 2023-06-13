@@ -15,15 +15,18 @@ import { Menu } from './components/Menu';
 export const App: React.FC = () => {
   const [itemsCart, setItemsCart] = useState<string[]>([]);
 
-  const handleAddToCart = useCallback(productId => {
-    if (itemsCart.includes(productId)) {
-      setItemsCart(itemsCart.filter(item => item !== productId));
+  const handleAddToCart = useCallback(
+    (productId) => {
+      if (itemsCart.includes(productId)) {
+        setItemsCart(itemsCart.filter((item) => item !== productId));
 
-      return;
-    }
+        return;
+      }
 
-    setItemsCart(currentId => [...currentId, productId]);
-  }, [itemsCart]);
+      setItemsCart((currentId) => [...currentId, productId]);
+    },
+    [itemsCart],
+  );
 
   return (
     <body className="body">

@@ -42,7 +42,6 @@
   }
 }
 
-
 .photo {
   margin-top: 36px;
   display: flex;
@@ -75,7 +74,7 @@
 
 .colors {
   padding-bottom: 24px;
-  border-bottom: 1px solid #E2E6E9;
+  border-bottom: 1px solid #e2e6e9;
 
   &__circle {
     margin-right: 8px;
@@ -95,7 +94,7 @@
 .capacity {
   margin-top: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #E2E6E9;
+  border-bottom: 1px solid #e2e6e9;
 
   &__container {
     display: flex;
@@ -122,7 +121,7 @@
     font-size: 32px;
     line-height: 41px;
 
-    color: #0F0F11;
+    color: #0f0f11;
   }
 
   &__old {
@@ -131,7 +130,7 @@
     font-size: 22px;
     line-height: 28px;
 
-    color: #89939A;
+    color: #89939a;
 
     text-decoration: line-through;
   }
@@ -146,7 +145,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     margin-right: 8px;
 
     width: 100%;
@@ -164,7 +163,7 @@
     border: 1px solid transparent;
     color: $white-color;
     background: $accent-color;
-    
+
     cursor: pointer;
   }
 
@@ -177,7 +176,7 @@
     border-radius: 40px;
 
     border: 1px solid $icons-color;
-    
+
     &:hover {
       border: 1px solid $primary-color;
       cursor: pointer;
@@ -219,9 +218,9 @@
     font-size: 20px;
     line-height: 26px;
 
-    color: #0F0F11;
+    color: #0f0f11;
 
-    border-bottom: 1px solid #E2E6E9;;
+    border-bottom: 1px solid #e2e6e9;
   }
 
   &__paragraph-title {
@@ -232,7 +231,7 @@
     font-size: 16px;
     line-height: 20px;
 
-    color: #0F0F11;
+    color: #0f0f11;
   }
 
   &__text {
@@ -243,7 +242,7 @@
     font-size: 14px;
     line-height: 21px;
 
-    color: #89939A;
+    color: #89939a;
   }
 }
 
@@ -254,7 +253,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     margin-top: 32px;
   }
 
@@ -266,7 +265,7 @@
     font-size: 20px;
     line-height: 26px;
 
-    color: #0F0F11;
+    color: #0f0f11;
   }
 
   &__name {
@@ -303,7 +302,6 @@
 }
 
 .arrow {
-
   &-icon {
     padding: 8px;
     margin-right: 16px;
