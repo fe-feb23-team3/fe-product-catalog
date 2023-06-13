@@ -7,7 +7,12 @@ import cart from '../images/cart.svg';
 import menu from '../images/burger-menu.svg';
 import favourites from '../images/favourites.svg';
 
-export const Header: React.FC = () => {
+interface Props {
+  itemsCart: string[];
+  itemsFavourites: string[];
+}
+
+export const Header: React.FC<Props> = ({ itemsCart, itemsFavourites }) => {
   const isMobile = useMediaQuery({ maxWidth: 639 });
 
   return (
@@ -50,10 +55,12 @@ export const Header: React.FC = () => {
         <div className="icon-container">
           <NavLink to="/favourites" className="icon">
             <img src={favourites} alt="favourites" />
+            {itemsFavourites.length}
           </NavLink>
 
           <NavLink to="/cart" className="icon">
             <img src={cart} alt="cart" />
+            {itemsCart.length}
           </NavLink>
         </div>
       ) : (

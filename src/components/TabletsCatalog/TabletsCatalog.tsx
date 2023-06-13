@@ -1,3 +1,4 @@
 import React from 'react';
+import { ItemCard } from '../ItemCard';
 
-export const TabletsCatalog: React.FC = () => <h1>Tablets catalog</h1>;
+export const TabletsCatalog: React.FC = () => <ItemCard />;

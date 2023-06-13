@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.scss';
 import { HomePage } from './components/HomePage';
@@ -12,10 +12,37 @@ import { Cart } from './components/Cart';
 import { NotFoundPage } from './components/NotFoundPage';
 
 export const App: React.FC = () => {
+  const [itemsCart, setItemsCart] = useState<string[]>([]);
+  const [itemsFavourites, setItemsFavourites] = useState<string[]>([]);
+
+  const handleAddToCart = useCallback(
+    (productId) => {
+      if (itemsCart.includes(productId)) {
+        setItemsCart(itemsCart.filter((item) => item !== productId));
+
+        return;
+      }
+
+      setItemsCart((currentId) => [...currentId, productId]);
+    },
+    [itemsCart],
+  );
+
+  const handleAddToFavourites = useCallback(productId => {
+    if (itemsFavourites.includes(productId)) {
+      setItemsFavourites(itemsFavourites.filter(item => item !== productId));
+
+        return;
+      }
+
+    setItemsFavourites(currentId => [...currentId, productId]);
+  }, [itemsFavourites]);
+
   return (
     <body className="body">
       <div className="wrapper">
-        <Header />
+
+        <Header itemsCart={itemsCart} itemsFavourites={itemsFavourites} />
 
         <main className="main">
           <div className="container">
@@ -23,7 +50,17 @@ export const App: React.FC = () => {
               <Route path="/" element={<HomePage />} />
 
               <Route path="/phones">
-                <Route index element={<PhoneCatalog />} />
+                <Route
+                  index
+                  element={(
+                    <PhoneCatalog
+                      onCart={handleAddToCart}
+                      onFavourites={handleAddToFavourites}
+                      itemsCart={itemsCart}
+                      itemsFavourites={itemsFavourites}
+                    />
+                  )}
+                />
               </Route>
 
               <Route path="/tablets">
@@ -39,7 +76,11 @@ export const App: React.FC = () => {
               </Route>
 
               <Route path="/cart">
-                <Route index element={<Cart />} />
+                <Route index element={<Cart itemsCart={itemsCart} />} />
+              </Route>
+
+              <Route path="/menu">
+                <Route index element={<Menu />} />
               </Route>
 
               <Route path="*" element={<NotFoundPage />} />

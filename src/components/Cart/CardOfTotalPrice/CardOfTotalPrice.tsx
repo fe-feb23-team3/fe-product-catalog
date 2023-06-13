@@ -1,12 +1,22 @@
 import React from 'react';
 import './CardOfTotalPrice.scss';
+import { PhoneData } from '../../../types/phoneData';
 
-export const CardOfTotalPrice: React.FC = () => {
+interface Props {
+  phones: PhoneData[];
+}
+
+export const CardOfTotalPrice: React.FC<Props> = ({ phones }) => {
+  const count = phones.length;
+  const totalPrice = phones
+    .map((phone) => Number(phone.price))
+    .reduce((prev, cur) => prev + cur, 0);
+
   return (
     <div className="totalPrice">
-      <p className="totalPrice__title">$2657</p>
+      <p className="totalPrice__title">{`$${totalPrice}`}</p>
 
-      <p className="totalPrice__count">Total for 3 items</p>
+      <p className="totalPrice__count">{`Total for ${count} items`}</p>
 
       <div className="totalPrice__hr" />
 

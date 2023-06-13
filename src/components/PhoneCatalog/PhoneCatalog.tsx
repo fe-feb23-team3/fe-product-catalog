@@ -1,14 +1,29 @@
+
 import React, { useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getFilteredPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
 import { Pagination } from '../Pagination';
 import { ProductCard } from '../ProductCard';
+
 import './PhoneCatalog.scss';
 import home from '../images/home.svg';
 import arrowRight from '../images/arrow_right.svg';
 
-export const PhoneCatalog: React.FC = () => {
+interface Props {
+  itemsCart: string[];
+  itemsFavourites: string[];
+  onCart: (productId: string) => void;
+  onFavourites: (productId: string) => void;
+}
+
+
+export const PhoneCatalog: React.FC<Props> = ({
+  itemsCart,
+  itemsFavourites,
+  onCart,
+  onFavourites,
+}) => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
   const [isChekedProductId, setIsChekedProductId] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,15 +31,12 @@ export const PhoneCatalog: React.FC = () => {
   const [sortBy, setSortBy] = useState('default');
   const [totalPages, setTotalPages] = useState(4);
 
+
   const loadPhonesByPage = async (page: string) => {
     const phonesFromServer = await getFilteredPhones(`${page}`);
 
     setPhones(phonesFromServer);
   };
-
-  const handleAddToCart = useCallback((productId) => {
-    setIsChekedProductId((currentId) => [...currentId, productId]);
-  }, []);
 
   useEffect(() => {
     loadPhonesByPage(`page=${currentPage}&sort=${sortBy}&size=${totalPhones}`);
@@ -110,8 +122,10 @@ export const PhoneCatalog: React.FC = () => {
           <ProductCard
             phone={phone}
             key={phone.name}
-            isChekedProductId={isChekedProductId}
-            onCart={handleAddToCart}
+            itemsCart={itemsCart}
+            onCart={onCart}
+            itemsFavourites={itemsFavourites}
+            onFavourites={onFavourites}
           />
         ))}
       </div>

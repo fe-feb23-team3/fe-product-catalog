@@ -4,14 +4,18 @@ import { PhoneData } from '../../types/phoneData';
 
 interface Props {
   phone: PhoneData;
-  isChekedProductId: string[];
+  itemsCart: string[];
+  itemsFavourites: string[];
   onCart: (productId: string) => void;
+  onFavourites: (productId: string) => void;
 }
 
 export const ProductCard: React.FC<Props> = ({
   phone,
-  isChekedProductId,
+  itemsCart,
+  itemsFavourites,
   onCart: handleAddToCart,
+  onFavourites: handleAddToFavourites,
 }) => {
   const {
     id, name, screen, capacity, ram, fullPrice, price,
@@ -28,7 +32,6 @@ export const ProductCard: React.FC<Props> = ({
 
         <h2 className="card__title">
           {name}
-          (MQ023)
         </h2>
 
         <div className="card__price">
@@ -53,20 +56,26 @@ export const ProductCard: React.FC<Props> = ({
           </div>
         </div>
 
-        <div className="card__buttons">
-          <button
-            type="button"
-            onClick={() => handleAddToCart(id)}
-            className={classNames('card__buttons-addToCart', {
-              'card__buttons-addToCart-default':
-                !isChekedProductId.includes(id),
-              'card__buttons-addToCart-checked': isChekedProductId.includes(id),
-            })}
-          >
-            {isChekedProductId.includes(id) ? 'Added to cart' : 'Add to cart'}
-          </button>
-          <div className="card__buttons-AddToFavourites"></div>
-        </div>
+      <div className="card__buttons">
+        <button
+          type="button"
+          onClick={() => handleAddToCart(id)}
+          className={classNames('card__buttons-addToCart', {
+            'card__buttons-addToCart-checked': itemsCart.includes(id),
+          })}
+        >
+          {itemsCart.includes(id) ? 'Added to cart' : 'Add to cart'}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleAddToFavourites(id)}
+          className={classNames('card__buttons-AddToFavourites', {
+            'card__buttons-AddToFavourites-default': !itemsFavourites.includes(id),
+            'card__buttons-AddToFavourites-checked': itemsFavourites.includes(id),
+          })}
+        >
+        </button>
       </div>
     </div>
   );
