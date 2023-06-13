@@ -9,9 +9,10 @@ import favourites from '../images/favourites.svg';
 
 interface Props {
   itemsCart: string[];
+  itemsFavourites: string[];
 }
 
-export const Header: React.FC<Props> = ({ itemsCart }) => {
+export const Header: React.FC<Props> = ({ itemsCart, itemsFavourites }) => {
   const isMobile = useMediaQuery({ maxWidth: 639 });
 
   return (
@@ -54,6 +55,7 @@ export const Header: React.FC<Props> = ({ itemsCart }) => {
         <div className="icon-container">
           <NavLink to="/favourites" className="icon">
             <img src={favourites} alt="favourites" />
+            {itemsFavourites.length}
           </NavLink>
 
           <NavLink to="/cart" className="icon">

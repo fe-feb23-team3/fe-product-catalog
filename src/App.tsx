@@ -14,6 +14,7 @@ import { Menu } from './components/Menu';
 
 export const App: React.FC = () => {
   const [itemsCart, setItemsCart] = useState<string[]>([]);
+  const [itemsFavourites, setItemsFavourites] = useState<string[]>([]);
 
   const handleAddToCart = useCallback(
     (productId) => {
@@ -28,10 +29,20 @@ export const App: React.FC = () => {
     [itemsCart],
   );
 
+  const handleAddToFavourites = useCallback(productId => {
+    if (itemsFavourites.includes(productId)) {
+      setItemsFavourites(itemsFavourites.filter(item => item !== productId));
+
+      return;
+    }
+
+    setItemsFavourites(currentId => [...currentId, productId]);
+  }, [itemsFavourites]);
+
   return (
     <body className="body">
       <div className="wrapper">
-        <Header itemsCart={itemsCart} />
+        <Header itemsCart={itemsCart} itemsFavourites={itemsFavourites} />
 
         <main className="main">
           <div className="container">
@@ -44,7 +55,9 @@ export const App: React.FC = () => {
                   element={(
                     <PhoneCatalog
                       onCart={handleAddToCart}
+                      onFavourites={handleAddToFavourites}
                       itemsCart={itemsCart}
+                      itemsFavourites={itemsFavourites}
                     />
                   )}
                 />
@@ -63,7 +76,7 @@ export const App: React.FC = () => {
               </Route>
 
               <Route path="/cart">
-                <Route index element={<Cart />} />
+                <Route index element={<Cart itemsCart={itemsCart} />} />
               </Route>
 
               <Route path="/menu">
