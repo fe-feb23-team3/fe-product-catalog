@@ -10,7 +10,6 @@ import { Accessories } from './components/Accessories';
 import { Favourites } from './components/Favourites';
 import { Cart } from './components/Cart';
 import { NotFoundPage } from './components/NotFoundPage';
-import { Menu } from './components/Menu';
 
 export const App: React.FC = () => {
   const [itemsCart, setItemsCart] = useState<string[]>([]);
@@ -47,6 +46,7 @@ export const App: React.FC = () => {
   return (
     <body className="body">
       <div className="wrapper">
+
         <Header itemsCart={itemsCart} itemsFavourites={itemsFavourites} />
 
         <main className="main">

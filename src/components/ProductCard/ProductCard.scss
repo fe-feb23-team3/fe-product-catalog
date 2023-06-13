@@ -1,50 +1,25 @@
 @import '../../App.scss';
 
-* {
-  box-sizing: border-box;
-}
-
-body,
-h1,
-h2,
-h3,
-ul,
-p {
-  margin: 0;
-}
-
-@font-face {
-  font-family: Mont;
-  font-weight: 500;
-  src: url(../fonts/Mont-Regular.otf);
-}
-
-@font-face {
-  font-family: Mont;
-  font-weight: 800;
-  src: url(../fonts/Mont-Bold.otf);
-}
-
-@font-face {
-  font-family: Mont;
-  font-weight: 600;
-  src: url(../fonts/Mont-SemiBold.otf);
-}
-
 .card {
-  display: flex;
-  flex-direction: column;
-  max-width: 288px;
-  padding: 32px;
+  box-sizing: border-box;
+  max-width: 272px;
+  width: 100%;
   background: $white-color;
-  font-family: Mont, sans-serif;
+  font-family: 'Mont', sans-serif;
   font-style: normal;
   color: $primary-color;
   border: 1px solid $elements-color;
   border-radius: 8px;
+  margin: 0 auto;
 
-  @include onDesktop {
-    max-width: 272px;
+  &:hover {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px 24px;
   }
 
   &__photo {

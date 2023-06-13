@@ -14,6 +14,27 @@
     grid-template-columns: repeat(24, 1fr);
   }
 
+  &--catalog {
+    column-gap: 16px;
+    row-gap: 40px;
+
+    @include onPhone {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @include onTablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 910px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include onDesktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
   &--phone {
     display: block;
 
