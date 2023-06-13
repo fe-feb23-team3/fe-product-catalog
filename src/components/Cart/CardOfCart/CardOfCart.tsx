@@ -7,6 +7,8 @@ interface Props {
 }
 
 export const CardOfCart: React.FC<Props> = ({ phone }) => {
+  const { name, id, price } = phone;
+
   return (
     <div className="cardOfCart">
       <div className="cardOfCart__header">
@@ -14,11 +16,13 @@ export const CardOfCart: React.FC<Props> = ({ phone }) => {
           {' '}
         </button>
 
-        <img src={`https://be-product-catalog.onrender.com/phones/${phone.id}/image`} alt={phone.name} className="cardOfCart__photo" />
+        <img
+          src={`https://be-product-catalog.onrender.com/phones/${id}/image`}
+          alt={name}
+          className="cardOfCart__photo"
+        />
 
-        <p className="cardOfCart__title">
-          {phone.name}
-        </p>
+        <p className="cardOfCart__title">{name}</p>
       </div>
 
       <div className="cardOfCart__footer">
@@ -40,9 +44,7 @@ export const CardOfCart: React.FC<Props> = ({ phone }) => {
           </button>
         </div>
 
-        <p className="cardOfCart__price">
-          {`$${phone.price}`}
-        </p>
+        <p className="cardOfCart__price">{`$${price}`}</p>
       </div>
     </div>
   );
