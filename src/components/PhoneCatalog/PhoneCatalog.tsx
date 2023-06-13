@@ -1,23 +1,21 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
 import { ProductCard } from '../ProductCard';
 
-/* eslint-disable no-console */
+interface Props {
+  itemsCart: string[];
+  onCart: (productId: string) => void;
+}
 
-export const PhoneCatalog: React.FC = () => {
+export const PhoneCatalog: React.FC<Props> = ({ itemsCart, onCart }) => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
-  const [isChekedProductId, setIsChekedProductId] = useState<string[]>([]);
 
   const loadPhones = async () => {
     const phonesFromServer = await getPhones();
 
     setPhones(phonesFromServer);
   };
-
-  const handleAddToCart = useCallback((productId) => {
-    setIsChekedProductId((currentId) => [...currentId, productId]);
-  }, []);
 
   useEffect(() => {
     loadPhones();
@@ -31,8 +29,8 @@ export const PhoneCatalog: React.FC = () => {
           <ProductCard
             phone={phone}
             key={phone.name}
-            isChekedProductId={isChekedProductId}
-            onCart={handleAddToCart}
+            itemsCart={itemsCart}
+            onCart={onCart}
           />
         ))}
       </div>
