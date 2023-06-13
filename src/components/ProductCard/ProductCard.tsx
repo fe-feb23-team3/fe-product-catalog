@@ -1,19 +1,24 @@
 import React from 'react';
+import classNames from 'classnames';
 import { PhoneData } from '../../types/phoneData';
-/* eslint-disable no-console */
 
 interface Props {
   phone: PhoneData;
+  itemsCart: string[];
+  onCart: (productId: string) => void;
 }
 
-export const ProductCard: React.FC<Props> = ({ phone }) => {
+export const ProductCard: React.FC<Props> = ({
+  phone,
+  itemsCart,
+  onCart: handleAddToCart,
+}) => {
   const {
-    id, name, screen, capacity, ram, fullPrice, price, image,
+    id, name, screen, capacity, ram, fullPrice, price,
   } = phone;
 
   return (
     <div className="card">
-      {console.log(image)}
       <img
         src={`https://be-product-catalog.onrender.com/phones/${id}/image`}
         alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
@@ -48,9 +53,16 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
       </div>
 
       <div className="card__buttons">
-        <a href="/" className="card__buttons-addToCart">
-          Add to cart
-        </a>
+        <button
+          type="button"
+          onClick={() => handleAddToCart(id)}
+          className={classNames('card__buttons-addToCart', {
+            'card__buttons-addToCart-default': !itemsCart.includes(id),
+            'card__buttons-addToCart-checked': itemsCart.includes(id),
+          })}
+        >
+          {itemsCart.includes(id) ? ('Added to cart') : ('Add to cart')}
+        </button>
         <div className="card__buttons-AddToFavourites"></div>
       </div>
     </div>

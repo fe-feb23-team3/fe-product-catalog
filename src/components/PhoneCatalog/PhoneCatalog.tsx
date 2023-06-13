@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
 import { ProductCard } from '../ProductCard';
 
-/* eslint-disable no-console */
+interface Props {
+  itemsCart: string[];
+  onCart: (productId: string) => void;
+}
 
-export const PhoneCatalog: React.FC = () => {
-  const [phones, setPhones] = React.useState<PhoneData[]>([]);
+export const PhoneCatalog: React.FC<Props> = ({ itemsCart, onCart }) => {
+  const [phones, setPhones] = useState<PhoneData[]>([]);
 
   const loadPhones = async () => {
     const phonesFromServer = await getPhones();
@@ -23,7 +26,12 @@ export const PhoneCatalog: React.FC = () => {
       <h1>Phone catalog</h1>
       <div className="catalog">
         {phones.map((phone) => (
-          <ProductCard phone={phone} key={phone.name} />
+          <ProductCard
+            phone={phone}
+            key={phone.name}
+            itemsCart={itemsCart}
+            onCart={onCart}
+          />
         ))}
       </div>
     </>
