@@ -82,13 +82,29 @@ export const ItemCard: React.FC = () => {
             <p>ID: 802390</p>
           </div>
           <div className="colors__circle-container">
-            <img src={colorCircle} alt="color circle" className="colors__circle" />
+            <img
+              src={colorCircle}
+              alt="color circle"
+              className="colors__circle"
+            />
 
-            <img src={colorCircle} alt="color circle" className="colors__circle" />
+            <img
+              src={colorCircle}
+              alt="color circle"
+              className="colors__circle"
+            />
 
-            <img src={colorCircle} alt="color circle" className="colors__circle" />
+            <img
+              src={colorCircle}
+              alt="color circle"
+              className="colors__circle"
+            />
 
-            <img src={colorCircle} alt="color circle" className="colors__circle" />
+            <img
+              src={colorCircle}
+              alt="color circle"
+              className="colors__circle"
+            />
           </div>
         </div>
 
