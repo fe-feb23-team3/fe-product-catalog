@@ -136,7 +136,7 @@ p {
       border: 1px solid transparent;
       color: $white-color;
       background: $accent-color;
-      
+
       cursor: pointer;
 
       @include onDesktop {
@@ -148,12 +148,12 @@ p {
       }
 
       &-checked {
-        border: 1px solid #E2E6E9;
-        color: #F86800;
+        border: 1px solid #e2e6e9;
+        color: #f86800;
         background: none;
       }
     }
-    
+
     &-AddToFavourites {
       border: 1px solid $icons-color;
       border-radius: 48px;

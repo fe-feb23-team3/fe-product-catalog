@@ -63,8 +63,9 @@ export const ProductCard: React.FC<Props> = ({
             'card__buttons-addToCart-checked': itemsCart.includes(id),
           })}
         >
-          {itemsCart.includes(id) ? ('Added to cart') : ('Add to cart')}
+          {itemsCart.includes(id) ? 'Added to cart' : 'Add to cart'}
         </button>
+
         <button
           type="button"
           onClick={() => handleAddToFavourites(id)}

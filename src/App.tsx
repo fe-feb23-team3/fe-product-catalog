@@ -16,15 +16,33 @@ export const App: React.FC = () => {
   const [itemsCart, setItemsCart] = useState<string[]>([]);
   const [itemsFavourites, setItemsFavourites] = useState<string[]>([]);
 
-  const handleAddToCart = useCallback(productId => {
-    if (itemsCart.includes(productId)) {
-      setItemsCart(itemsCart.filter(item => item !== productId));
+  const handleAddToCart = useCallback(
+    (productId) => {
+      if (itemsCart.includes(productId)) {
+        setItemsCart(itemsCart.filter((item) => item !== productId));
 
-      return;
-    }
+        return;
+      }
 
-    setItemsCart(currentId => [...currentId, productId]);
-  }, [itemsCart]);
+      setItemsCart((currentId) => [...currentId, productId]);
+    },
+    [itemsCart],
+  );
+
+  const handleAddToFavourites = useCallback(
+    (productId) => {
+      if (itemsFavourites.includes(productId)) {
+        setItemsFavourites(
+          itemsFavourites.filter((item) => item !== productId),
+        );
+
+        return;
+      }
+
+      setItemsFavourites((currentId) => [...currentId, productId]);
+    },
+    [itemsFavourites],
+  );
 
   const handleAddToFavourites = useCallback(productId => {
     if (itemsFavourites.includes(productId)) {
