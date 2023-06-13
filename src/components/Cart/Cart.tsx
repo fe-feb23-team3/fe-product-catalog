@@ -10,24 +10,57 @@ interface Props {
 }
 
 export const Cart: React.FC<Props> = ({ itemsCart }) => {
-  const [phones, setPhones] = useState<PhoneData[]>([]);
-  const [isLoading, setIsloading] = useState(false);
+  const [selectedPhones, setSelectedPhones] = useState<PhoneData[]>([]);
+  const [additionalPhones, setAdditionalPhones] = useState<PhoneData[]>([]);
+  const [totalPhones, setTotalPhones] = useState<PhoneData[]>([]);
+
+  const handleAddAdditionalPhones = (phone: PhoneData) => {
+    setAdditionalPhones(() => [...additionalPhones, phone]);
+  };
+
+  const handleDeleteAdditionalPhones = (phone: PhoneData) => {
+    let hasFirstItem = false;
+
+    const filteredPhones = additionalPhones.filter(({ id }) => {
+      if (id === phone.id && !hasFirstItem) {
+        hasFirstItem = true;
+
+        return false;
+      }
+
+      return true;
+    });
+
+    setAdditionalPhones(filteredPhones);
+  };
+
+  const handleDeleteAllAdditionalPhones = (phone: PhoneData) => {
+    const filteredPhones = additionalPhones.filter(({ id }) => id !== phone.id);
+
+    setAdditionalPhones(filteredPhones);
+  };
+
+  useEffect(() => {
+    setTotalPhones(() => [...additionalPhones, ...selectedPhones]);
+  }, [additionalPhones, selectedPhones]);
+
+  const handleRemovePhone = (id: string) => {
+    const filteredPhones = selectedPhones.filter((phone) => phone.id !== id);
+
+    setSelectedPhones(filteredPhones);
+  };
 
   const loadPhones = async () => {
-    setIsloading(true);
-
     itemsCart.forEach(async (itemId) => {
       const phoneFromServer = await getPhoneById(itemId);
 
-      setPhones((phone) => [...phone, phoneFromServer]);
+      setSelectedPhones((phone) => [...phone, phoneFromServer]);
     });
-
-    setIsloading(false);
   };
 
   useEffect(() => {
     loadPhones();
-  }, [isLoading]);
+  }, []);
 
   return (
     <div className="cart-Page">
@@ -50,15 +83,18 @@ export const Cart: React.FC<Props> = ({ itemsCart }) => {
             grid__item--desktop-1-16
           "
         >
-          {isLoading ? (
-            <h1>Loading...</h1>
-          ) : (
-            <>
-              {phones.map((phone) => (
-                <CardOfCart phone={phone} key={phone.id} />
-              ))}
-            </>
-          )}
+          <>
+            {selectedPhones.map((phone) => (
+              <CardOfCart
+                phone={phone}
+                onRemove={handleRemovePhone}
+                onAdd={handleAddAdditionalPhones}
+                onDelete={handleDeleteAdditionalPhones}
+                onDeleteAll={handleDeleteAllAdditionalPhones}
+                key={phone.id}
+              />
+            ))}
+          </>
         </div>
 
         <div
@@ -67,7 +103,7 @@ export const Cart: React.FC<Props> = ({ itemsCart }) => {
             grid__item--desktop-17-24
           "
         >
-          <CardOfTotalPrice phones={phones} />
+          <CardOfTotalPrice phones={totalPhones} />
         </div>
       </div>
     </div>

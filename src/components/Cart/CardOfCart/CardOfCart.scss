@@ -12,8 +12,8 @@
     align-items: center;
   }
 
-  background-color: #fff;
-  border: 1px solid #e2e6e9;
+  background-color: $white-color;
+  border: 1px solid $elements-color;
   border-radius: 16px;
   padding: 16px;
 
@@ -34,27 +34,40 @@
   }
 
   &__close {
-    width: 16px;
-    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    color: #b4bdc3;
+    width: 32px;
+    height: 32px;
 
     background-color: Transparent;
-    background-image: url('../../images/Close.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    border: none;
+    border: 1px solid #ffffff00;
+    border-radius: 50%;
+
+    &:hover {
+      border: 1px solid $icons-color;
+
+      .iconSvg * {
+        fill: $primary-color;
+      }
+    }
+
+    &:active {
+      border: 1px solid $accent-color;
+    }
   }
 
   &__photo {
     width: 80px;
     height: 80px;
 
-    background-color: #0f0f11;
+    object-position: center;
+    object-fit: contain;
   }
 
   &__title {
-    color: #0f0f11;
+    color: $primary-color;
 
     font-weight: 600;
     font-size: 14px;
@@ -65,7 +78,7 @@
   }
 
   &__price {
-    color: #0f0f11;
+    color: $primary-color;
 
     width: 80px;
 
@@ -88,31 +101,35 @@
   }
 
   &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 32px;
     height: 32px;
 
-    &--minus {
-      background-image: url('../../images/Minus.svg');
-      border: 1px solid #e2e6e9;
-    }
+    border: 1px solid $elements-color;
 
-    &--plus {
-      background-image: url('../../images/Plus.svg');
-      border: 1px solid #b4bdc3;
+    &--active {
+      border: 1px solid $icons-color;
+
+      .iconSvg * {
+        fill: $primary-color;
+      }
 
       &:hover {
-        border: 1px solid #0f0f11;
+        border: 1px solid $primary-color;
       }
 
       &:active {
-        border: 1px solid #eb5757;
+        .iconSvg * {
+          fill: $accent-color;
+        }
       }
     }
 
     border-radius: 50%;
 
     background-color: Transparent;
-    background-repeat: no-repeat;
-    background-position: center;
   }
 }
