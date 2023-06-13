@@ -29,21 +29,6 @@ export const App: React.FC = () => {
     [itemsCart],
   );
 
-  const handleAddToFavourites = useCallback(
-    (productId) => {
-      if (itemsFavourites.includes(productId)) {
-        setItemsFavourites(
-          itemsFavourites.filter((item) => item !== productId),
-        );
-
-        return;
-      }
-
-      setItemsFavourites((currentId) => [...currentId, productId]);
-    },
-    [itemsFavourites],
-  );
-
   const handleAddToFavourites = useCallback(productId => {
     if (itemsFavourites.includes(productId)) {
       setItemsFavourites(itemsFavourites.filter(item => item !== productId));
