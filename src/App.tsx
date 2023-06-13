@@ -44,6 +44,16 @@ export const App: React.FC = () => {
     [itemsFavourites],
   );
 
+  const handleAddToFavourites = useCallback(productId => {
+    if (itemsFavourites.includes(productId)) {
+      setItemsFavourites(itemsFavourites.filter(item => item !== productId));
+
+      return;
+    }
+
+    setItemsFavourites(currentId => [...currentId, productId]);
+  }, [itemsFavourites]);
+
   return (
     <body className="body">
       <div className="wrapper">
