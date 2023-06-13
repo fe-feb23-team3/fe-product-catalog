@@ -1,0 +1,52 @@
+@import '../../App.scss';
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 40px 0 64px;
+
+  &__wraper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__button {
+    background-color: $white-color;
+    @include icon-wrapper-default;
+    @include body-text;
+    color: $primary-color;
+
+    &--active {
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
+      color: $white-color;
+      border-radius: 48px;
+      width: 32px;
+      height: 32px;
+    }
+
+    &:hover {
+      border: 1px solid $primary-color;
+      border-radius: 48px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @include onPhone {
+    margin-top: 24px;
+  }
+}
