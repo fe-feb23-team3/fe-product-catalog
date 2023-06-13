@@ -5,10 +5,17 @@ import { ProductCard } from '../ProductCard';
 
 interface Props {
   itemsCart: string[];
+  itemsFavourites: string[];
   onCart: (productId: string) => void;
+  onFavourites: (productId: string) => void;
 }
 
-export const PhoneCatalog: React.FC<Props> = ({ itemsCart, onCart }) => {
+export const PhoneCatalog: React.FC<Props> = ({
+  itemsCart,
+  itemsFavourites,
+  onCart,
+  onFavourites,
+}) => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
 
   const loadPhones = async () => {
@@ -31,6 +38,8 @@ export const PhoneCatalog: React.FC<Props> = ({ itemsCart, onCart }) => {
             key={phone.name}
             itemsCart={itemsCart}
             onCart={onCart}
+            itemsFavourites={itemsFavourites}
+            onFavourites={onFavourites}
           />
         ))}
       </div>
