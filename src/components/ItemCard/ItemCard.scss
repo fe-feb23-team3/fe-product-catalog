@@ -1,7 +1,7 @@
-@import "../../App.scss"; 
+@import '../../App.scss';
 .title {
-    margin-top: 16px;
-  }
+  margin-top: 16px;
+}
 
 .path {
   display: flex;
@@ -34,5 +34,76 @@
 
   &-item {
     margin-right: 4px;
+  }
+}
+
+.section {
+
+  &__photo {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+
+    &-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+    }
+  }
+
+  &__controllers {
+    margin-top: 40px;
+  }
+}
+
+.phone {
+  padding: 0px 70px;
+
+  &__image {
+    margin-right: 8px;
+    padding: 4px 12px;
+
+    border: 1px solid black;
+    border-radius: 4px;
+
+    width: 62px;
+  }
+}
+
+.colors {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #E2E6E9;
+
+  &__circle {
+    margin-right: 8px;
+
+    &-container {
+      margin-top: 8px;
+    }
+  }
+}
+
+.controllers__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.capacity {
+  margin-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #E2E6E9;
+
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__button {
+    margin: 8px 8px 0 0;
+    padding: 4px 8px;
+
+    border: 1px solid black;
+    border-radius: 4px;
   }
 }
