@@ -1,16 +1,71 @@
 @import '../../App.scss';
 
 .catalog {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: 1, 288px;
-  gap: 16px;
-
-  @include onTablet {
-    grid-template-columns: repeat(2, 288px);
+  &__title {
+    margin: 0;
+    margin-top: 40px;
+    font-weight: 800;
+    @include desktop-tablet-h1;
   }
 
-  @include onDesktop {
-    grid-template-columns: repeat(4, 272px);
+  &__back {
+    margin: 0;
+    margin-top: 8px;
+    color: $secondary-color;
+    @include body-text;
+    cursor: pointer;
+  }
+
+  &__sorting {
+    margin: 0;
+    margin-top: 40px;
+  }
+
+  &__filter {
+    &-title {
+      margin: 0;
+      color: $secondary-color;
+      font-weight: 700;
+      @include small-text;
+    }
+
+    &-sort-by {
+      margin-top: 4px;
+      height: 40px;
+      width: 100%;
+      border: 1px solid $icons-color;
+      border-radius: 8px;
+      padding: 0 8px;
+      color: $primary-color;
+      @include button-text;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__item-count {
+    margin: 0;
+    margin-top: 8px;
+    color: $secondary-color;
+    @include body-text;
+  }
+
+  &__phones {
+    margin-top: 24px;
+  }
+
+  &__breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+    width: 96px;
+    margin-top: 24px;
+    color: $secondary-color;
+    @include body-text;
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const BASE_URL = 'https://be-product-catalog.onrender.com';
 
 // returns a promise resolved after a given delay
