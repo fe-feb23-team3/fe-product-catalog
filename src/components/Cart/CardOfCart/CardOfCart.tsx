@@ -1,8 +1,12 @@
 import React from 'react';
-import image from '../../images/phone.png';
+import { PhoneData } from '../../../types/phoneData';
 import './CardOfCart.scss';
 
-export const CardOfCart: React.FC = () => {
+interface Props {
+  phone: PhoneData;
+}
+
+export const CardOfCart: React.FC<Props> = ({ phone }) => {
   return (
     <div className="cardOfCart">
       <div className="cardOfCart__header">
@@ -10,10 +14,10 @@ export const CardOfCart: React.FC = () => {
           {' '}
         </button>
 
-        <img src={image} alt="Phone" className="cardOfCart__photo" />
+        <img src={`https://be-product-catalog.onrender.com/phones/${phone.id}/image`} alt={phone.name} className="cardOfCart__photo" />
 
         <p className="cardOfCart__title">
-          Apple iPhone 14 Pro 128GB Silver (MQ023)
+          {phone.name}
         </p>
       </div>
 
@@ -36,7 +40,9 @@ export const CardOfCart: React.FC = () => {
           </button>
         </div>
 
-        <p className="cardOfCart__price">$999</p>
+        <p className="cardOfCart__price">
+          {`$${phone.price}`}
+        </p>
       </div>
     </div>
   );
