@@ -4,13 +4,13 @@ import { PhoneData } from '../../types/phoneData';
 
 interface Props {
   phone: PhoneData;
-  isChekedProductId: string[];
+  itemsCart: string[];
   onCart: (productId: string) => void;
 }
 
 export const ProductCard: React.FC<Props> = ({
   phone,
-  isChekedProductId,
+  itemsCart,
   onCart: handleAddToCart,
 }) => {
   const {
@@ -57,11 +57,11 @@ export const ProductCard: React.FC<Props> = ({
           type="button"
           onClick={() => handleAddToCart(id)}
           className={classNames('card__buttons-addToCart', {
-            'card__buttons-addToCart-default': !isChekedProductId.includes(id),
-            'card__buttons-addToCart-checked': isChekedProductId.includes(id),
+            'card__buttons-addToCart-default': !itemsCart.includes(id),
+            'card__buttons-addToCart-checked': itemsCart.includes(id),
           })}
         >
-          {isChekedProductId.includes(id) ? ('Added to cart') : ('Add to cart')}
+          {itemsCart.includes(id) ? ('Added to cart') : ('Add to cart')}
         </button>
         <div className="card__buttons-AddToFavourites"></div>
       </div>
