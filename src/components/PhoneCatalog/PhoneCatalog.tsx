@@ -1,5 +1,4 @@
-
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getFilteredPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
@@ -17,7 +16,6 @@ interface Props {
   onFavourites: (productId: string) => void;
 }
 
-
 export const PhoneCatalog: React.FC<Props> = ({
   itemsCart,
   itemsFavourites,
@@ -25,12 +23,11 @@ export const PhoneCatalog: React.FC<Props> = ({
   onFavourites,
 }) => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
-  const [isChekedProductId, setIsChekedProductId] = useState<string[]>([]);
+  // const [isChekedProductId, setIsChekedProductId] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPhones, setTotalPhones] = useState(8);
   const [sortBy, setSortBy] = useState('default');
   const [totalPages, setTotalPages] = useState(4);
-
 
   const loadPhonesByPage = async (page: string) => {
     const phonesFromServer = await getFilteredPhones(`${page}`);

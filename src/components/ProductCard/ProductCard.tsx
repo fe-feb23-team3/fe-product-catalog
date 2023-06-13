@@ -30,7 +30,7 @@ export const ProductCard: React.FC<Props> = ({
           className="card__photo"
         />
 
-      <h2 className="card__title">{name}</h2>
+        <h2 className="card__title">{name}</h2>
 
         <div className="card__price">
           <span className="card__price-current">{`$${price}`}</span>
@@ -54,28 +54,29 @@ export const ProductCard: React.FC<Props> = ({
           </div>
         </div>
 
-      <div className="card__buttons">
-        <button
-          type="button"
-          onClick={() => handleAddToCart(id)}
-          className={classNames('card__buttons-addToCart', {
-            'card__buttons-addToCart-checked': itemsCart.includes(id),
-          })}
-        >
-          {itemsCart.includes(id) ? 'Added to cart' : 'Add to cart'}
-        </button>
+        <div className="card__buttons">
+          <button
+            type="button"
+            onClick={() => handleAddToCart(id)}
+            className={classNames('card__buttons-addToCart', {
+              'card__buttons-addToCart-checked': itemsCart.includes(id),
+            })}
+          >
+            {itemsCart.includes(id) ? 'Added to cart' : 'Add to cart'}
+          </button>
 
-        <button
-          type="button"
-          onClick={() => handleAddToFavourites(id)}
-          className={classNames('card__buttons-AddToFavourites', {
-            'card__buttons-AddToFavourites-default':
-              !itemsFavourites.includes(id),
-            'card__buttons-AddToFavourites-checked':
-              itemsFavourites.includes(id),
-          })}
-        >
-        </button>
+          <button
+            type="button"
+            onClick={() => handleAddToFavourites(id)}
+            className={classNames('card__buttons-AddToFavourites', {
+              'card__buttons-AddToFavourites-default':
+                !itemsFavourites.includes(id),
+              'card__buttons-AddToFavourites-checked':
+                itemsFavourites.includes(id),
+            })}
+          >
+          </button>
+        </div>
       </div>
     </div>
   );

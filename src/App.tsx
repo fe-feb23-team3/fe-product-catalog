@@ -10,6 +10,7 @@ import { Accessories } from './components/Accessories';
 import { Favourites } from './components/Favourites';
 import { Cart } from './components/Cart';
 import { NotFoundPage } from './components/NotFoundPage';
+import { Menu } from './components/Menu';
 
 export const App: React.FC = () => {
   const [itemsCart, setItemsCart] = useState<string[]>([]);
