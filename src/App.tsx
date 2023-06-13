@@ -33,8 +33,8 @@ export const App: React.FC = () => {
     if (itemsFavourites.includes(productId)) {
       setItemsFavourites(itemsFavourites.filter(item => item !== productId));
 
-      return;
-    }
+        return;
+      }
 
     setItemsFavourites(currentId => [...currentId, productId]);
   }, [itemsFavourites]);
@@ -76,7 +76,7 @@ export const App: React.FC = () => {
               </Route>
 
               <Route path="/cart">
-                <Route index element={<Cart />} />
+                <Route index element={<Cart itemsCart={itemsCart} />} />
               </Route>
 
               <Route path="/menu">
