@@ -5,13 +5,17 @@ import { PhoneData } from '../../types/phoneData';
 interface Props {
   phone: PhoneData;
   itemsCart: string[];
+  itemsFavourites: string[];
   onCart: (productId: string) => void;
+  onFavourites: (productId: string) => void;
 }
 
 export const ProductCard: React.FC<Props> = ({
   phone,
   itemsCart,
+  itemsFavourites,
   onCart: handleAddToCart,
+  onFavourites: handleAddToFavourites,
 }) => {
   const {
     id, name, screen, capacity, ram, fullPrice, price,
@@ -27,7 +31,6 @@ export const ProductCard: React.FC<Props> = ({
 
       <h2 className="card__title">
         {name}
-        (MQ023)
       </h2>
 
       <div className="card__price">
@@ -57,13 +60,20 @@ export const ProductCard: React.FC<Props> = ({
           type="button"
           onClick={() => handleAddToCart(id)}
           className={classNames('card__buttons-addToCart', {
-            'card__buttons-addToCart-default': !itemsCart.includes(id),
             'card__buttons-addToCart-checked': itemsCart.includes(id),
           })}
         >
           {itemsCart.includes(id) ? ('Added to cart') : ('Add to cart')}
         </button>
-        <div className="card__buttons-AddToFavourites"></div>
+        <button
+          type="button"
+          onClick={() => handleAddToFavourites(id)}
+          className={classNames('card__buttons-AddToFavourites', {
+            'card__buttons-AddToFavourites-default': !itemsFavourites.includes(id),
+            'card__buttons-AddToFavourites-checked': itemsFavourites.includes(id),
+          })}
+        >
+        </button>
       </div>
     </div>
   );
