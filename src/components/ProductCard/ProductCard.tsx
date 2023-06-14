@@ -25,7 +25,7 @@ export const ProductCard: React.FC<Props> = ({
     <div className="card">
       <div className="card__container">
         <img
-          src={`https://be-product-catalog.onrender.com/phones/${id}/image`}
+          src={`https://be-product-catalog.onrender.com/products/phones/${id}/image`}
           alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
           className="card__photo"
         />
