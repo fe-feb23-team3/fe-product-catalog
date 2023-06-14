@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
 import { PhoneData } from '../../types/phoneData';
 
 interface Props {
@@ -18,41 +19,45 @@ export const ProductCard: React.FC<Props> = ({
   onFavourites: handleAddToFavourites,
 }) => {
   const {
-    id, name, screen, capacity, ram, fullPrice, price,
+    id, name, screen, capacity, ram, fullPrice, price, itemId,
   } = phone;
 
   return (
     <div className="card">
       <div className="card__container">
-        <img
-          src={`https://be-product-catalog.onrender.com/products/phones/${id}/image`}
-          alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
-          className="card__photo"
-        />
-
-        <h2 className="card__title">{name}</h2>
-
-        <div className="card__price">
-          <span className="card__price-current">{`$${price}`}</span>
-          <span className="card__price-full">{`$${fullPrice}`}</span>
-        </div>
-
-        <div className="card__divider"></div>
-
-        <div className="card__specs">
-          <div className="card__spec">
-            <p className="card__spec-title">Screen</p>
-            <p className="card__spec-value">{screen}</p>
+        <NavLink to={`/phoneCardData/${itemId}`} className="item__card__link">
+          <div className="image__wrapper">
+            <img
+              src={`https://be-product-catalog.onrender.com/products/phones/${id}/image`}
+              alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+              className="card__photo"
+            />
           </div>
-          <div className="card__spec">
-            <p className="card__spec-title">Capacity</p>
-            <p className="card__spec-value">{capacity}</p>
+
+          <h2 className="card__title">{name}</h2>
+
+          <div className="card__price">
+            <span className="card__price-current">{`$${price}`}</span>
+            <span className="card__price-full">{`$${fullPrice}`}</span>
           </div>
-          <div className="card__spec">
-            <p className="card__spec-title">RAM</p>
-            <p className="card__spec-value">{ram}</p>
+
+          <div className="card__divider"></div>
+
+          <div className="card__specs">
+            <div className="card__spec">
+              <p className="card__spec-title">Screen</p>
+              <p className="card__spec-value">{screen}</p>
+            </div>
+            <div className="card__spec">
+              <p className="card__spec-title">Capacity</p>
+              <p className="card__spec-value">{capacity}</p>
+            </div>
+            <div className="card__spec">
+              <p className="card__spec-title">RAM</p>
+              <p className="card__spec-value">{ram}</p>
+            </div>
           </div>
-        </div>
+        </NavLink>
 
         <div className="card__buttons">
           <button

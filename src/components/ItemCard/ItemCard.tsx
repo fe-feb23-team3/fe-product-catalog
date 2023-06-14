@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './ItemCard.scss';
 import home from '../images/home.svg';
@@ -8,8 +9,32 @@ import arrowBlackLeft from '../images/Stroke.svg';
 import arrowBlackRight from '../images/arrow_black_right.svg';
 import colorCircle from '../images/color_circle.svg';
 import favourites from '../images/favourites.svg';
+import { getItemCardDataById } from '../../api/phones';
+import { ItemCardData } from '../../types/itemCardData';
 
 export const ItemCard: React.FC = () => {
+  const [cardData, setCardData] = useState<ItemCardData | null>(null);
+
+  const url = window.location.hash;
+  const splitedUrl = url.split('/');
+  const itemName = splitedUrl[2];
+
+  // eslint-disable-next-line no-console
+  console.log(itemName);
+
+  const loadPhoneData = async () => {
+    const desiredPhone = await getItemCardDataById(itemName);
+
+    setCardData(desiredPhone);
+  };
+
+  // eslint-disable-next-line no-console
+  console.log(cardData);
+
+  useEffect(() => {
+    loadPhoneData();
+  }, []);
+
   return (
     <div className="item__card">
       <div className="path">
@@ -21,9 +46,7 @@ export const ItemCard: React.FC = () => {
 
         <img src={arrowGreyRight} alt="arrow right" className="path__item" />
 
-        <p className="path__item-text">
-          Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
-        </p>
+        <p className="path__item-text">{cardData?.name}</p>
       </div>
 
       <NavLink to="/" className="back__link">
@@ -36,7 +59,7 @@ export const ItemCard: React.FC = () => {
         <p className="back__link-name">Back</p>
       </NavLink>
 
-      <h1 className="title">Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)</h1>
+      <h1 className="title">{cardData?.name}</h1>
 
       <div className="grid">
         <div
@@ -54,7 +77,7 @@ export const ItemCard: React.FC = () => {
           >
             <div className="phone__photo">
               <img
-                src="https://be-product-catalog.onrender.com/phones/8/image"
+                src="https://be-product-catalog.onrender.com/products/phones/8/image"
                 alt="phone"
                 className="phone__photo--main"
               />
@@ -87,27 +110,9 @@ export const ItemCard: React.FC = () => {
             <div className="colors">
               <div className="controllers__title">
                 <p>Available colors</p>
-                <p>ID: 802390</p>
+                <p>{`ID: ${cardData?.namespaceId}`}</p>
               </div>
               <div className="colors__circle-container">
-                <img
-                  src={colorCircle}
-                  alt="color circle"
-                  className="colors__circle"
-                />
-
-                <img
-                  src={colorCircle}
-                  alt="color circle"
-                  className="colors__circle"
-                />
-
-                <img
-                  src={colorCircle}
-                  alt="color circle"
-                  className="colors__circle"
-                />
-
                 <img
                   src={colorCircle}
                   alt="color circle"
@@ -120,15 +125,17 @@ export const ItemCard: React.FC = () => {
           <div className="capacity">
             <p>Select capacity</p>
             <div className="capacity__container">
-              <div className="capacity__button">64 GB</div>
-              <div className="capacity__button">256 GB</div>
-              <div className="capacity__button">512 GB</div>
+              {cardData?.capacityAvailable.map((capacity) => (
+                <div className="capacity__button" key={cardData?.id}>
+                  {capacity}
+                </div>
+              ))}
             </div>
           </div>
 
           <div className="price">
-            <span className="price__new">$799</span>
-            <span className="price__old">$1119</span>
+            <span className="price__new">{`$${cardData?.priceRegular}`}</span>
+            <span className="price__old">{`$${cardData?.priceDiscount}`}</span>
           </div>
 
           <div className="add-to-cart">
@@ -151,10 +158,10 @@ export const ItemCard: React.FC = () => {
             </div>
 
             <div className="characteristics__description">
-              <p className="characteristics__item">6.5” OLED</p>
-              <p className="characteristics__item">2688x1242</p>
-              <p className="characteristics__item">Apple A12 Bionic</p>
-              <p className="characteristics__item">3 GB</p>
+              <p className="characteristics__item">{cardData?.screen}</p>
+              <p className="characteristics__item">{cardData?.resolution}</p>
+              <p className="characteristics__item">{cardData?.processor}</p>
+              <p className="characteristics__item">{cardData?.ram}</p>
             </div>
           </div>
         </div>
@@ -169,44 +176,25 @@ export const ItemCard: React.FC = () => {
         >
           <div className="about">
             <h2 className="about__title">About</h2>
-            <h3 className="about__paragraph-title">And then there was Pro</h3>
-
-            <p className="about__text">
-              A transformative triple&#8211;camera system that adds tons of
-              capability without complexity.
-            </p>
-
-            <p className="about__text">
-              An unprecedented leap in battery life. And a mind&#8211;blowing
-              chip that doubles down on machine learning and pushes the
-              boundaries of what a smartphone can do. Welcome to the first
-              iPhone powerful enough to be called Pro.
-            </p>
-
-            <h3 className="about__paragraph-title">Camera</h3>
-
-            <p className="about__text">
-              Meet the first triple&#8211;camera system to combine
-              cutting&#8211;edge technology with the legendary simplicity of
-              iPhone. Capture up to four times more scene. Get beautiful images
-              in drastically lower light. Shoot the highest&#8211;quality video
-              in a smartphone — then edit with the same tools you love for
-              photos. You&#39;ve never shot with anything like it.
-            </p>
-
             <h3 className="about__paragraph-title">
-              Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it.
-              Love it.
+              {cardData?.description[0].title}
             </h3>
 
-            <p className="about__text">
-              iPhone 11 Pro lets you capture videos that are beautifully true to
-              life, with greater detail and smoother motion. Epic processing
-              power means it can shoot 4K video with extended dynamic range and
-              cinematic video stabilization — all at 60 fps. You get more
-              creative control, too, with four times more scene and powerful new
-              editing tools to play with.
-            </p>
+            <p className="about__text">{cardData?.description[0].text[0]}</p>
+
+            <p className="about__text">{cardData?.description[0].text[1]}</p>
+
+            <h3 className="about__paragraph-title">
+              {cardData?.description[1].title}
+            </h3>
+
+            <p className="about__text">{cardData?.description[1].text[0]}</p>
+
+            <h3 className="about__paragraph-title">
+              {cardData?.description[2].title}
+            </h3>
+
+            <p className="about__text">{cardData?.description[2].text[0]}</p>
           </div>
         </div>
 
@@ -231,16 +219,14 @@ export const ItemCard: React.FC = () => {
               </div>
 
               <div className="tech-specs__description">
-                <p className="tech-specs__item">6.5” OLED</p>
-                <p className="tech-specs__item">2688x1242</p>
-                <p className="tech-specs__item">Apple A12 Bionic</p>
-                <p className="tech-specs__item">3 GB</p>
-                <p className="tech-specs__item">64 GB</p>
-                <p className="tech-specs__item">
-                  12 Mp + 12 Mp + 12 Mp (Triple)
-                </p>
-                <p className="tech-specs__item">Optical, 2x</p>
-                <p className="tech-specs__item">GSM, LTE, UMTS</p>
+                <p className="tech-specs__item">{cardData?.screen}</p>
+                <p className="tech-specs__item">{cardData?.resolution}</p>
+                <p className="tech-specs__item">{cardData?.processor}</p>
+                <p className="tech-specs__item">{cardData?.ram}</p>
+                <p className="tech-specs__item">{cardData?.capacity}</p>
+                <p className="tech-specs__item">{cardData?.camera}</p>
+                <p className="tech-specs__item">{cardData?.zoom}</p>
+                <p className="tech-specs__item">{cardData?.cell.join(', ')}</p>
               </div>
             </div>
           </div>

@@ -11,6 +11,7 @@ import { Favourites } from './components/Favourites';
 import { Cart } from './components/Cart';
 import { NotFoundPage } from './components/NotFoundPage';
 import { Menu } from './components/Menu';
+import { ItemCard } from './components/ItemCard';
 
 export const App: React.FC = () => {
   const [countAdditionalCart, setCountAdditionalCart] = useState(0);
@@ -94,6 +95,10 @@ export const App: React.FC = () => {
                     />
                   )}
                 />
+              </Route>
+
+              <Route path="/phoneCardData/:itemId">
+                <Route index element={<ItemCard />} />
               </Route>
 
               <Route path="/menu">

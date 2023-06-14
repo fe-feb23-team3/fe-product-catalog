@@ -1,3 +1,4 @@
+import { ItemCardData } from '../types/itemCardData';
 import { PhoneData } from '../types/phoneData';
 import { client } from '../utils/fetchClient';
 
@@ -11,3 +12,5 @@ export const getPhoneById = (id: string) => client.get<PhoneData>(`/products/pho
 export const getFilteredPhones = (searchParams: string) => {
   return client.get<Info>(`/products/phones/pagination?${searchParams}`);
 };
+
+export const getItemCardDataById = (id: string) => client.get<ItemCardData>(`/phoneCardData/${id}`);
