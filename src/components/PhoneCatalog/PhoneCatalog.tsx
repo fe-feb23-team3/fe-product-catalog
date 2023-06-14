@@ -34,12 +34,8 @@ export const PhoneCatalog: React.FC<Props> = ({
     const visiblePhonesFromServer = info.visiblePhones;
     const totalPagess = info.pages;
 
-    console.log(info);
-
     setTotalPages(totalPagess);
     setPhones(visiblePhonesFromServer);
-
-    console.log(totalPages);
   };
 
   if (totalPages < currentPage) {
