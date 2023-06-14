@@ -6,8 +6,8 @@ type Info = {
   visiblePhones: PhoneData[];
 };
 
-export const getPhones = () => client.get<PhoneData[]>('/phones');
-export const getPhoneById = (id: string) => client.get<PhoneData>(`/phones/${id}`);
+export const getPhones = () => client.get<PhoneData[]>('/products/phones');
+export const getPhoneById = (id: string) => client.get<PhoneData>(`/products/phones/${id}`);
 export const getFilteredPhones = (searchParams: string) => {
-  return client.get<Info>(`/phones/pagination?${searchParams}`);
+  return client.get<Info>(`/products/phones/pagination?${searchParams}`);
 };
