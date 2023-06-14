@@ -151,10 +151,10 @@ export const ItemCard: React.FC = () => {
             </p>
 
             <p className="about__text">
-              An unprecedented leap in battery life. And a mind&#8211;blowing chip
-              that doubles down on machine learning and pushes the boundaries of
-              what a smartphone can do. Welcome to the first iPhone powerful
-              enough to be called Pro.
+              An unprecedented leap in battery life. And a mind&#8211;blowing
+              chip that doubles down on machine learning and pushes the
+              boundaries of what a smartphone can do. Welcome to the first
+              iPhone powerful enough to be called Pro.
             </p>
 
             <h3 className="about__paragraph-title">Camera</h3>
@@ -162,10 +162,10 @@ export const ItemCard: React.FC = () => {
             <p className="about__text">
               Meet the first triple&#8211;camera system to combine
               cutting&#8211;edge technology with the legendary simplicity of
-              iPhone. Capture up to four times more scene. Get beautiful images in
-              drastically lower light. Shoot the highest&#8211;quality video in a
-              smartphone — then edit with the same tools you love for photos.
-              You&#39;ve never shot with anything like it.
+              iPhone. Capture up to four times more scene. Get beautiful images
+              in drastically lower light. Shoot the highest&#8211;quality video
+              in a smartphone — then edit with the same tools you love for
+              photos. You&#39;ve never shot with anything like it.
             </p>
 
             <h3 className="about__paragraph-title">
@@ -175,11 +175,11 @@ export const ItemCard: React.FC = () => {
 
             <p className="about__text">
               iPhone 11 Pro lets you capture videos that are beautifully true to
-              life, with greater detail and smoother motion. Epic processing power
-              means it can shoot 4K video with extended dynamic range and
-              cinematic video stabilization — all at 60 fps. You get more creative
-              control, too, with four times more scene and powerful new editing
-              tools to play with.
+              life, with greater detail and smoother motion. Epic processing
+              power means it can shoot 4K video with extended dynamic range and
+              cinematic video stabilization — all at 60 fps. You get more
+              creative control, too, with four times more scene and powerful new
+              editing tools to play with.
             </p>
           </div>
         </div>
@@ -205,7 +205,9 @@ export const ItemCard: React.FC = () => {
                 <p className="tech-specs__item">Apple A12 Bionic</p>
                 <p className="tech-specs__item">3 GB</p>
                 <p className="tech-specs__item">64 GB</p>
-                <p className="tech-specs__item">12 Mp + 12 Mp + 12 Mp (Triple)</p>
+                <p className="tech-specs__item">
+                  12 Mp + 12 Mp + 12 Mp (Triple)
+                </p>
                 <p className="tech-specs__item">Optical, 2x</p>
                 <p className="tech-specs__item">GSM, LTE, UMTS</p>
               </div>

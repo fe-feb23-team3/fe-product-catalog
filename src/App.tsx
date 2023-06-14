@@ -47,7 +47,6 @@ export const App: React.FC = () => {
   return (
     <body className="body">
       <div className="wrapper">
-
         <Header itemsCart={itemsCart} itemsFavourites={itemsFavourites} />
 
         <main className="main">
