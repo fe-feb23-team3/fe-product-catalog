@@ -25,7 +25,7 @@ export const CardOfTotalPrice: React.FC<Props> = ({ phones, openModal }) => {
         type="button"
         className="totalPrice__button"
         onClick={openModal}
-        // disabled={count === 0}
+        disabled={count === 0}
       >
         Checkout
       </button>
