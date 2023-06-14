@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getFilteredPhones } from '../../api/phones';
@@ -23,21 +24,30 @@ export const PhoneCatalog: React.FC<Props> = ({
   onFavourites,
 }) => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
-  // const [isChekedProductId, setIsChekedProductId] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPhones, setTotalPhones] = useState(8);
   const [sortBy, setSortBy] = useState('default');
   const [totalPages, setTotalPages] = useState(4);
 
   const loadPhonesByPage = async (page: string) => {
-    const phonesFromServer = await getFilteredPhones(`${page}`);
+    const info = await getFilteredPhones(`${page}`);
+    const visiblePhonesFromServer = info.visiblePhones;
+    const totalPagess = info.pages;
 
-    setPhones(phonesFromServer);
+    console.log(info);
+
+    setTotalPages(totalPagess);
+    setPhones(visiblePhonesFromServer);
+
+    console.log(totalPages);
   };
+
+  if (totalPages < currentPage) {
+    setCurrentPage(totalPages);
+  }
 
   useEffect(() => {
     loadPhonesByPage(`page=${currentPage}&sort=${sortBy}&size=${totalPhones}`);
-    setTotalPages(Math.ceil(72 / totalPhones));
   }, [totalPhones, sortBy, currentPage]);
 
   const handlePageChange = (page: number) => {
@@ -83,12 +93,12 @@ export const PhoneCatalog: React.FC<Props> = ({
             onChange={(e) => handleSortBy(e.target.value)}
           >
             <option value="default" disabled>
-              select
+              Select
             </option>
-            <option value="year_high_low">Newest</option>
-            <option value="year_low_high">Oldest</option>
-            <option value="price_low_high">Price Asc</option>
-            <option value="price_high_low">Price Desc</option>
+            <option value="year_desc">Newest</option>
+            <option value="year_asc">Oldest</option>
+            <option value="price_asc">Price Asc</option>
+            <option value="price_desc">Price Desc</option>
           </select>
         </div>
 
