@@ -9,9 +9,7 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="home-page">
-      <div className="home-page-title__wraper">
-        <PageTitle title={homePageTitle} />
-      </div>
+      <PageTitle title={homePageTitle} />
 
       <ShopByCategory
         totalOfPhones={72}

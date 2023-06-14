@@ -1,11 +1,13 @@
 @import '../../App.scss';
 
 .home-page {
-  &__wraper {
-    margin-top: 24px;
+  margin: 24px auto 64px;
 
-    @include onTablet {
-      margin-top: 56px;
-    }
+  @include onTablet {
+    margin: 32px auto;
+  }
+
+  @include onDesktop {
+    margin: 56px auto 80px;
   }
 }
