@@ -1,13 +1,4 @@
 @import '../../App.scss';
-.title {
-  margin-top: 16px;
-
-  font-style: normal;
-  font-weight: 800;
-  font-size: 22px;
-  line-height: 140%;
-}
-
 .path {
   display: flex;
   align-items: center;
@@ -17,6 +8,23 @@
 
   &__item {
     margin-right: 12px;
+
+    &-text {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #0F0F11;
+
+      &:last-child {
+        color: #89939A;
+
+        @include onDesktop {
+          font-weight: 600;
+        }
+      }
+    }
   }
 }
 
@@ -40,35 +48,100 @@
   &-item {
     margin-right: 4px;
   }
+
+  &-name {
+    margin: 0px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 
-.photo {
-  margin-top: 36px;
+.title {
+  margin-top: 16px;
+
+  font-style: normal;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 140%;
+
+  @include onDesktop {
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.01em;
+  }
+}
+
+.phone__photo {
   display: flex;
   flex-direction: column;
 
+  &-wraper {
+    margin-top: 40px;
+
+    @include onDesktop {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-around;
+    }
+  }
+
   &-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 16px;
+
+    @include onDesktop {
+      flex-direction: column;
+      margin-top: 0px;
+    }
+  }
+
+  &--main {
+    padding: 0px 70px;
+
+    max-height: 464px;
+    
+    @include onDesktop {
+      padding: 0px;
+    }
+  }
+
+  &--small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 52px;
+    height: 52px;
+
+    border: 1px solid black;
+
+    background-image: url(https://be-product-catalog.onrender.com/phones/8/image);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+    border-radius: 4px;
+
+    @include onDesktop {
+      width: 80px;
+      height: 80px;
+
+      margin-bottom: 16px;
+    }
   }
 }
 
 .controllers {
   margin-top: 40px;
-}
 
-.phone {
-  padding: 0px 70px;
-
-  &__image {
-    margin-right: 8px;
-    padding: 4px 12px;
-
-    border: 1px solid black;
-    border-radius: 4px;
-
-    width: 52px;
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -83,12 +156,6 @@
       margin-top: 8px;
     }
   }
-}
-
-.controllers__title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .capacity {
@@ -140,6 +207,8 @@
   display: flex;
   justify-content: space-between;
   text-align: center;
+
+  margin-top: 16px;
 
   &__button {
     display: flex;
@@ -195,19 +264,28 @@
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
-    line-height: 23px;
+    line-height: 15px;
   }
 
   &__description {
     font-style: normal;
     font-weight: 700;
     font-size: 12px;
-    line-height: 23px;
+    line-height: 15px;
     text-align: right;
+  }
+
+  &__item {
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
   }
 }
 
 .about {
+  display: grid;
   margin-top: 56px;
 
   &__title {
@@ -266,6 +344,8 @@
     line-height: 26px;
 
     color: #0f0f11;
+
+    border-bottom: 1px solid #e2e6e9;
   }
 
   &__name {
@@ -281,6 +361,14 @@
     font-size: 12px;
     line-height: 23px;
     text-align: right;
+  }
+
+  &__item {
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
   }
 }
 
