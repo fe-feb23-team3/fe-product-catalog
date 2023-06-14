@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { ColorRing } from 'react-loader-spinner';
 import { getFilteredPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
 import { Pagination } from '../Pagination';
@@ -28,6 +29,7 @@ export const PhoneCatalog: React.FC<Props> = ({
   const [totalPhones, setTotalPhones] = useState(8);
   const [sortBy, setSortBy] = useState('default');
   const [totalPages, setTotalPages] = useState(4);
+  const [isLoading, setIsLoading] = useState(false);
 
   const loadPhonesByPage = async (page: string) => {
     const info = await getFilteredPhones(`${page}`);
@@ -121,6 +123,16 @@ export const PhoneCatalog: React.FC<Props> = ({
       </div>
 
       <div className="catalog__phones grid--catalog grid">
+        <ColorRing
+          visible={isLoading}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+        />
+
         {phones.map((phone) => (
           <ProductCard
             phone={phone}
