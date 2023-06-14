@@ -127,16 +127,17 @@ export const PhoneCatalog: React.FC<Props> = ({
       <Loader isLoading={isLoading} />
 
       <div className="catalog__phones grid--catalog grid">
-        {!isLoading && phones.map((phone) => (
-          <ProductCard
-            phone={phone}
-            key={phone.name}
-            itemsCart={itemsCart}
-            onCart={onCart}
-            itemsFavourites={itemsFavourites}
-            onFavourites={onFavourites}
-          />
-        ))}
+        {!isLoading
+          && phones.map((phone) => (
+            <ProductCard
+              phone={phone}
+              key={phone.name}
+              itemsCart={itemsCart}
+              onCart={onCart}
+              itemsFavourites={itemsFavourites}
+              onFavourites={onFavourites}
+            />
+          ))}
       </div>
 
       <Pagination
