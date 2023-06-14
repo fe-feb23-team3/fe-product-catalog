@@ -1,0 +1,8 @@
+@import '../../../App.scss';
+
+.cart-is-empty {
+  background-color: $white-color;
+  border: 1px solid $elements-color;
+  border-radius: 16px;
+  padding: 16px;
+}
