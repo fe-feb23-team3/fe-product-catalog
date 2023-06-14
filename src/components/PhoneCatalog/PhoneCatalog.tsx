@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ColorRing } from 'react-loader-spinner';
 import { getFilteredPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
 import { Pagination } from '../Pagination';
 import { ProductCard } from '../ProductCard';
+import { Loader } from '../Loader';
 
 import './PhoneCatalog.scss';
 import home from '../images/home.svg';
@@ -32,12 +32,14 @@ export const PhoneCatalog: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const loadPhonesByPage = async (page: string) => {
+    setIsLoading(true);
     const info = await getFilteredPhones(`${page}`);
     const visiblePhonesFromServer = info.visiblePhones;
     const totalPagess = info.pages;
 
     setTotalPages(totalPagess);
     setPhones(visiblePhonesFromServer);
+    setIsLoading(false);
   };
 
   if (totalPages < currentPage) {
@@ -122,18 +124,10 @@ export const PhoneCatalog: React.FC<Props> = ({
         </div>
       </div>
 
-      <div className="catalog__phones grid--catalog grid">
-        <ColorRing
-          visible={isLoading}
-          height="80"
-          width="80"
-          ariaLabel="blocks-loading"
-          wrapperStyle={{}}
-          wrapperClass="blocks-wrapper"
-          colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-        />
+      <Loader isLoading={isLoading} />
 
-        {phones.map((phone) => (
+      <div className="catalog__phones grid--catalog grid">
+        {!isLoading && phones.map((phone) => (
           <ProductCard
             phone={phone}
             key={phone.name}
