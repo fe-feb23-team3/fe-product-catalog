@@ -39,8 +39,19 @@ export const ItemCard: React.FC = () => {
       <h1 className="title">Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)</h1>
 
       <div className="grid">
-        <div className="phone__photo-wraper grid__item--desktop-1-12 grid__item--phone-1-4">
-          <div className="grid__item--desktop-3-10 grid__item--phone-1-4">
+        <div
+          className="
+          phone__photo-wraper
+          grid__item--desktop-1-12
+          grid__item--tablet-1-7
+          grid__item--phone-1-4"
+        >
+          <div
+            className="
+            grid__item--desktop-3-10
+            grid__item--tablet-3-7
+            grid__item--phone-1-4"
+          >
             <div className="phone__photo">
               <img
                 src="https://be-product-catalog.onrender.com/phones/8/image"
@@ -50,7 +61,12 @@ export const ItemCard: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid__item--desktop-1-2 grid__item--phone-1-4">
+          <div
+            className="
+            grid__item--desktop-1-2
+            grid__item--tablet-1-2
+            grid__item--phone-1-4"
+          >
             <div className="phone__photo-container">
               <div className="phone__photo--small"></div>
               <div className="phone__photo--small"></div>
@@ -61,7 +77,12 @@ export const ItemCard: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid__item--desktop-13-19 grid__item--phone-1-4">
+        <div
+          className="
+          grid__item--desktop-13-19
+          grid__item--tablet-8-12
+          grid__item--phone-1-4"
+        >
           <div className="controllers">
             <div className="colors">
               <div className="controllers__title">
@@ -140,7 +161,12 @@ export const ItemCard: React.FC = () => {
       </div>
 
       <div className="grid">
-        <div className="grid__item--desktop-1-11 grid__item--phone-1-4">
+        <div
+          className="
+          grid__item--desktop-1-11
+          grid__item--tablet-1-12
+          grid__item--phone-1-4"
+        >
           <div className="about">
             <h2 className="about__title">About</h2>
             <h3 className="about__paragraph-title">And then there was Pro</h3>
@@ -184,7 +210,12 @@ export const ItemCard: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid__item--desktop-13-24 grid__item--phone-1-4">
+        <div
+          className="
+          grid__item--desktop-13-24
+          grid__item--tablet-1-12
+          grid__item--phone-1-4"
+        >
           <div className="tech-specs">
             <h2 className="tech-specs__title">Tech specs</h2>
             <div className="tech-specs__container">
