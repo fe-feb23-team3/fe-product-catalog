@@ -1,0 +1,13 @@
+@import '../../App.scss';
+
+.home-page {
+  margin: 24px auto 64px;
+
+  @include onTablet {
+    margin: 32px auto;
+  }
+
+  @include onDesktop {
+    margin: 56px auto 80px;
+  }
+}

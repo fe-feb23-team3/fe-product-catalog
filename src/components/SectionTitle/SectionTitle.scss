@@ -1,0 +1,12 @@
+@import '../../App.scss';
+
+.section-title {
+  margin-bottom: 24px 0 0;
+  font-weight: 800;
+  @include mobile-h2;
+  line-height: 100%;
+
+  @include onTablet {
+    @include desktop-tablet-h2;
+  }
+}

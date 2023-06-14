@@ -1,0 +1,120 @@
+@import '../../../App.scss';
+
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+
+  &__background {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    background-color: $white-color;
+    border: 1px solid $elements-color;
+    box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 16px;
+  }
+
+  &__footer {
+    display: flex;
+    gap: 50%;
+  }
+
+  &__link {
+    display: block;
+    width: 100%;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    height: 48px;
+
+    border: 1px solid $accent-color;
+    border-radius: 8px;
+
+    color: $white-color;
+    background: $accent-color;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 48px;
+    text-align: center;
+    transition: 0.15s;
+
+    &:hover {
+      box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+    }
+
+    &:active {
+      color: $accent-color;
+      border: 1px solid $elements-color;
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    &--cancel {
+      color: $primary-color;
+      background: $white-color;
+      border: 1px solid $elements-color;
+
+      &:hover {
+        border: 1px solid $accent-color;
+      }
+
+      &:active {
+        color: $accent-color;
+        border: 1px solid $elements-color;
+      }
+    }
+
+    &--close {
+      align-self: end;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 32px;
+      height: 32px;
+
+      background-color: Transparent;
+      border: 1px solid #ffffff00;
+      border-radius: 8px;
+      transition: 0.15s;
+
+      &:hover {
+        border: 1px solid $icons-color;
+
+        .iconSvg * {
+          fill: $primary-color;
+        }
+      }
+
+      &:active {
+        border: 1px solid $accent-color;
+      }
+    }
+
+    &--buy {
+      background: $green-color;
+      color: $white-color;
+    }
+  }
+}

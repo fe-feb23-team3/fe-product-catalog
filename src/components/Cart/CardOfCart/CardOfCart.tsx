@@ -54,7 +54,7 @@ export const CardOfCart: React.FC<Props> = ({
         </button>
 
         <img
-          src={`https://be-product-catalog.onrender.com/phones/${id}/image`}
+          src={`https://be-product-catalog.onrender.com/products/phones/${id}/image`}
           alt={name}
           className="cardOfCart__photo"
         />

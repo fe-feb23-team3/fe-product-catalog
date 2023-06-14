@@ -62,7 +62,7 @@
     "deploy": "gh-pages -d build",
     "format": "prettier --write ./src",
     "lint": "eslint ./src",
-    "fix-style": "npm run format && npm run lint -- --fix",
+    "fix-style": "npm run lint",
     "prepare": "husky install"
   },
   "lint-staged": {
