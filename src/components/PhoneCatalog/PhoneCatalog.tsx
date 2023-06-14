@@ -5,6 +5,7 @@ import { getFilteredPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
 import { Pagination } from '../Pagination';
 import { ProductCard } from '../ProductCard';
+import { Loader } from '../Loader';
 
 import './PhoneCatalog.scss';
 import home from '../images/home.svg';
@@ -28,14 +29,17 @@ export const PhoneCatalog: React.FC<Props> = ({
   const [totalPhones, setTotalPhones] = useState(8);
   const [sortBy, setSortBy] = useState('default');
   const [totalPages, setTotalPages] = useState(4);
+  const [isLoading, setIsLoading] = useState(false);
 
   const loadPhonesByPage = async (page: string) => {
+    setIsLoading(true);
     const info = await getFilteredPhones(`${page}`);
     const visiblePhonesFromServer = info.visiblePhones;
     const totalPagess = info.pages;
 
     setTotalPages(totalPagess);
     setPhones(visiblePhonesFromServer);
+    setIsLoading(false);
   };
 
   if (totalPages < currentPage) {
@@ -120,8 +124,10 @@ export const PhoneCatalog: React.FC<Props> = ({
         </div>
       </div>
 
+      <Loader isLoading={isLoading} />
+
       <div className="catalog__phones grid--catalog grid">
-        {phones.map((phone) => (
+        {!isLoading && phones.map((phone) => (
           <ProductCard
             phone={phone}
             key={phone.name}
