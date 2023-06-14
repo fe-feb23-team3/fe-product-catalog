@@ -4,6 +4,8 @@ import { CardOfCart } from './CardOfCart';
 import { CardOfTotalPrice } from './CardOfTotalPrice';
 import { PhoneData } from '../../types/phoneData';
 import './Cart.scss';
+import { Loader } from '../Loader';
+import { CartIsEmpty } from './CartIsEmpty/CartIsEmpty';
 
 interface Props {
   itemsCart: string[];
@@ -15,6 +17,7 @@ export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
   const [selectedPhones, setSelectedPhones] = useState<PhoneData[]>([]);
   const [additionalPhones, setAdditionalPhones] = useState<PhoneData[]>([]);
   const [totalPhones, setTotalPhones] = useState<PhoneData[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleAddAdditionalPhones = (phone: PhoneData) => {
     setAdditionalPhones(() => [...additionalPhones, phone]);
@@ -57,9 +60,14 @@ export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
   };
 
   const loadPhones = async () => {
+    if (itemsCart.length) {
+      setIsLoading(true);
+    }
+
     itemsCart.forEach(async (itemId) => {
       const phoneFromServer = await getPhoneById(itemId);
 
+      setIsLoading(false);
       setSelectedPhones((phone) => [...phone, phoneFromServer]);
     });
   };
@@ -90,6 +98,10 @@ export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
           "
         >
           <>
+            {isLoading && <Loader isLoading={isLoading} />}
+
+            {!totalPhones.length && !isLoading && <CartIsEmpty />}
+
             {selectedPhones.map((phone) => (
               <CardOfCart
                 phone={phone}
