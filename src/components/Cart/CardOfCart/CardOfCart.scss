@@ -91,6 +91,7 @@
 
 .counter {
   display: flex;
+  align-items: center;
 
   &__amount {
     width: 32px;
@@ -129,7 +130,6 @@
     }
 
     border-radius: 50%;
-
     background-color: Transparent;
   }
 }

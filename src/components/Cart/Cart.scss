@@ -1,12 +1,13 @@
+@import '../../App.scss';
+
 .cart-Page {
-  background-color: #fafbfc;
   padding: 25px 0 56px;
 
   &__back {
     display: flex;
     gap: 4px;
 
-    color: #89939a;
+    color: $secondary-color;
 
     font-weight: 700;
     font-size: 12px;
@@ -28,7 +29,7 @@
   }
 
   &__title {
-    color: #0f0f11;
+    color: $primary-color;
 
     font-weight: 800;
     font-size: 32px;
