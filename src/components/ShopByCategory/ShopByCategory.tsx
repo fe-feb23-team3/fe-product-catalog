@@ -12,7 +12,9 @@ interface Props {
 }
 
 export const ShopByCategory: React.FC<Props> = ({
-  totalOfPhones, totalOfTablets, totalOfAccessories,
+  totalOfPhones,
+  totalOfTablets,
+  totalOfAccessories,
 }) => {
   const shopByCategoryTitle = 'Shop by category';
 
@@ -23,23 +25,21 @@ export const ShopByCategory: React.FC<Props> = ({
       </div>
 
       <div className="shop-by-category__wrapper grid">
-        <div className="
+        <div
+          className="
         shop-by-category__item
         grid__item--phone-1-4
         grid__item--tablet-1-4
         grid__item--desktop-1-8
         "
         >
-          <img
-            src={phones}
-            alt="Phones"
-            className="shop-by-category__photo"
-          />
+          <img src={phones} alt="Phones" className="shop-by-category__photo" />
           <div className="shop-by-category__card-title">Mobile phones</div>
           <div className="shop-by-category__total">{`${totalOfPhones} models`}</div>
         </div>
 
-        <div className="
+        <div
+          className="
         shop-by-category__item
         grid__item--phone-1-4
         grid__item--tablet-5-8
@@ -55,7 +55,8 @@ export const ShopByCategory: React.FC<Props> = ({
           <div className="shop-by-category__total">{`${totalOfTablets} models`}</div>
         </div>
 
-        <div className="
+        <div
+          className="
         shop-by-category__item
         grid__item--phone-1-4
         grid__item--tablet-9-12

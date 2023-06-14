@@ -6,6 +6,7 @@ import { PhoneData } from '../../types/phoneData';
 import './Cart.scss';
 import { Loader } from '../Loader';
 import { CartIsEmpty } from './CartIsEmpty/CartIsEmpty';
+import { ModalOfCart } from './ModalOfCart/ModalOfCart';
 
 interface Props {
   itemsCart: string[];
@@ -18,6 +19,15 @@ export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
   const [additionalPhones, setAdditionalPhones] = useState<PhoneData[]>([]);
   const [totalPhones, setTotalPhones] = useState<PhoneData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   const handleAddAdditionalPhones = (phone: PhoneData) => {
     setAdditionalPhones(() => [...additionalPhones, phone]);
@@ -122,9 +132,11 @@ export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
             grid__item--desktop-17-24
           "
         >
-          <CardOfTotalPrice phones={totalPhones} />
+          <CardOfTotalPrice phones={totalPhones} openModal={handleOpenModal} />
         </div>
       </div>
+
+      {openModal && <ModalOfCart closeModal={handleCloseModal} />}
     </div>
   );
 };
