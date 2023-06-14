@@ -7,7 +7,5 @@ interface Props {
 }
 
 export const SectionTitle: React.FC<Props> = ({ title }) => {
-  return (
-    <h1 className="section-title">{title}</h1>
-  );
+  return <h1 className="section-title">{title}</h1>;
 };
