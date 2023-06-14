@@ -1,0 +1,47 @@
+@import '../../App.scss';
+
+.shop-by-category {
+  margin: 54px auto 56px;
+
+  @include onTablet {
+    margin: 64px auto 64px;
+  }
+
+  @include onDesktop {
+    margin: 80px auto 80px;
+  }
+
+  &__title-wrapper {
+    margin-bottom: 24px;
+  }
+
+  &__item {
+    margin: 0 auto 24px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include onTablet {
+      margin: 0;
+    }
+  }
+
+  &__photo {
+    max-width: 100%;
+    height: auto;
+
+    border-radius: 8px;
+  }
+
+  &__card-title {
+    margin: 24px 0 8px;
+    color: $primary-color;
+    @include desktop-tablet-h4;
+  }
+
+  &__total {
+    color: $secondary-color;
+    @include body-text;
+  }
+}

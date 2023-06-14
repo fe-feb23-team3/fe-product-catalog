@@ -1,0 +1,11 @@
+@import '../../App.scss';
+
+.home-page {
+  &__wraper {
+    margin-top: 24px;
+
+    @include onTablet {
+      margin-top: 56px;
+    }
+  }
+}
