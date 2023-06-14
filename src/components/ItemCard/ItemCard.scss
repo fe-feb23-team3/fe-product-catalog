@@ -31,7 +31,7 @@
 .back__link {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 
   margin-top: 24px;
 
@@ -141,7 +141,7 @@
 
     border: 1px solid black;
 
-    background-image: url(https://be-product-catalog.onrender.com/phones/8/image);
+    background-image: url(https://be-product-catalog.onrender.com/products/phones/8/image);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;

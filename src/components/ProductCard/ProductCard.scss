@@ -1,5 +1,18 @@
 @import '../../App.scss';
 
+.item__card__link {
+  text-decoration: none;
+
+  &:visited {
+    text-decoration: none;
+  }
+}
+
+.image__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .card {
   box-sizing: border-box;
   max-width: 272px;
@@ -39,6 +52,8 @@
     font-size: 14px;
     line-height: 150%;
     margin-bottom: 8px;
+
+    color: #0F0F11;
   }
 
   &__price {
@@ -49,6 +64,8 @@
     &-current {
       font-weight: 800;
       margin-right: 8px;
+
+      color: #0F0F11;
     }
 
     &-full {
