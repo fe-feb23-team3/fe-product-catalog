@@ -1,9 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { SectionTitle } from '../SectionTitle';
+
 import phones from '../images/phones.png';
 import tablets from '../images/tablets.png';
 import accessories from '../images/accessories.png';
 import './ShopByCategory.scss';
-import { SectionTitle } from '../SectionTitle';
 
 interface Props {
   totalOfPhones: number;
@@ -18,12 +20,12 @@ export const ShopByCategory: React.FC<Props> = ({
 
   return (
     <section className="shop-by-category">
-      <div className="shop-by-category__title-wrapper">
-        <SectionTitle title={shopByCategoryTitle} />
-      </div>
+      <SectionTitle title={shopByCategoryTitle} />
 
       <div className="shop-by-category__wrapper grid">
-        <div className="
+        <NavLink
+          to="/phones"
+          className="
         shop-by-category__item
         grid__item--phone-1-4
         grid__item--tablet-1-4
@@ -37,9 +39,11 @@ export const ShopByCategory: React.FC<Props> = ({
           />
           <div className="shop-by-category__card-title">Mobile phones</div>
           <div className="shop-by-category__total">{`${totalOfPhones} models`}</div>
-        </div>
+        </NavLink>
 
-        <div className="
+        <NavLink
+          to="/tablets"
+          className="
         shop-by-category__item
         grid__item--phone-1-4
         grid__item--tablet-5-8
@@ -53,9 +57,11 @@ export const ShopByCategory: React.FC<Props> = ({
           />
           <div className="shop-by-category__card-title">Tablets</div>
           <div className="shop-by-category__total">{`${totalOfTablets} models`}</div>
-        </div>
+        </NavLink>
 
-        <div className="
+        <NavLink
+          to="/accessories"
+          className="
         shop-by-category__item
         grid__item--phone-1-4
         grid__item--tablet-9-12
@@ -69,7 +75,7 @@ export const ShopByCategory: React.FC<Props> = ({
           />
           <div className="shop-by-category__card-title">Accessories</div>
           <div className="shop-by-category__total">{`${totalOfAccessories} models`}</div>
-        </div>
+        </NavLink>
       </div>
     </section>
   );

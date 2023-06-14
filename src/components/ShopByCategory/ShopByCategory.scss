@@ -11,12 +11,13 @@
     margin: 80px auto 80px;
   }
 
-  &__title-wrapper {
-    margin-bottom: 24px;
+  &__wrapper {
+    margin: 24px auto 0;
   }
 
   &__item {
     margin: 0 auto 24px;
+    text-decoration: none;
 
     &:last-child {
       margin-bottom: 0;
@@ -30,8 +31,13 @@
   &__photo {
     max-width: 100%;
     height: auto;
-
     border-radius: 8px;
+
+    transition: opacity 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   &__card-title {
