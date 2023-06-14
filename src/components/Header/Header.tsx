@@ -8,11 +8,11 @@ import menu from '../images/burger-menu.svg';
 import favourites from '../images/favourites.svg';
 
 interface Props {
-  itemsCart: string[];
+  itemsCount: number;
   itemsFavourites: string[];
 }
 
-export const Header: React.FC<Props> = ({ itemsCart, itemsFavourites }) => {
+export const Header: React.FC<Props> = ({ itemsCount, itemsFavourites }) => {
   const isMobile = useMediaQuery({ maxWidth: 639 });
 
   return (
@@ -60,7 +60,7 @@ export const Header: React.FC<Props> = ({ itemsCart, itemsFavourites }) => {
 
           <NavLink to="/cart" className="icon">
             <img src={cart} alt="cart" />
-            {itemsCart.length}
+            {itemsCount}
           </NavLink>
         </div>
       ) : (

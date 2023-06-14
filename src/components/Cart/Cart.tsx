@@ -7,9 +7,11 @@ import './Cart.scss';
 
 interface Props {
   itemsCart: string[];
+  onCart: (productId: string) => void;
+  onCount: (length: number) => void;
 }
 
-export const Cart: React.FC<Props> = ({ itemsCart }) => {
+export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
   const [selectedPhones, setSelectedPhones] = useState<PhoneData[]>([]);
   const [additionalPhones, setAdditionalPhones] = useState<PhoneData[]>([]);
   const [totalPhones, setTotalPhones] = useState<PhoneData[]>([]);
@@ -43,6 +45,10 @@ export const Cart: React.FC<Props> = ({ itemsCart }) => {
   useEffect(() => {
     setTotalPhones(() => [...additionalPhones, ...selectedPhones]);
   }, [additionalPhones, selectedPhones]);
+
+  useEffect(() => {
+    onCount(additionalPhones.length);
+  }, [additionalPhones]);
 
   const handleRemovePhone = (id: string) => {
     const filteredPhones = selectedPhones.filter((phone) => phone.id !== id);
@@ -91,6 +97,7 @@ export const Cart: React.FC<Props> = ({ itemsCart }) => {
                 onAdd={handleAddAdditionalPhones}
                 onDelete={handleDeleteAdditionalPhones}
                 onDeleteAll={handleDeleteAllAdditionalPhones}
+                onCart={onCart}
                 key={phone.id}
               />
             ))}

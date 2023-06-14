@@ -12,6 +12,7 @@ interface Props {
   onAdd: (phone: PhoneData) => void;
   onDelete: (phone: PhoneData) => void;
   onDeleteAll: (phone: PhoneData) => void;
+  onCart: (productId: string) => void;
 }
 
 export const CardOfCart: React.FC<Props> = ({
@@ -20,6 +21,7 @@ export const CardOfCart: React.FC<Props> = ({
   onAdd,
   onDelete,
   onDeleteAll,
+  onCart,
 }) => {
   const { name, id, price } = phone;
   const [amount, setAmount] = useState(1);
@@ -45,6 +47,7 @@ export const CardOfCart: React.FC<Props> = ({
           onClick={() => {
             onRemove(id);
             onDeleteAll(phone);
+            onCart(id);
           }}
         >
           <Close className="iconSvg" />
