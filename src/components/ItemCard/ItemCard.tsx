@@ -46,9 +46,7 @@ export const ItemCard: React.FC = () => {
 
         <img src={arrowGreyRight} alt="arrow right" className="path__item" />
 
-        <p className="path__item-text">
-          {cardData?.name}
-        </p>
+        <p className="path__item-text">{cardData?.name}</p>
       </div>
 
       <NavLink to="/" className="back__link">
@@ -127,7 +125,7 @@ export const ItemCard: React.FC = () => {
           <div className="capacity">
             <p>Select capacity</p>
             <div className="capacity__container">
-              {cardData?.capacityAvailable.map(capacity => (
+              {cardData?.capacityAvailable.map((capacity) => (
                 <div className="capacity__button" key={cardData?.id}>
                   {capacity}
                 </div>
@@ -178,29 +176,25 @@ export const ItemCard: React.FC = () => {
         >
           <div className="about">
             <h2 className="about__title">About</h2>
-            <h3 className="about__paragraph-title">{cardData?.description[0].title}</h3>
+            <h3 className="about__paragraph-title">
+              {cardData?.description[0].title}
+            </h3>
 
-            <p className="about__text">
-              {cardData?.description[0].text[0]}
-            </p>
+            <p className="about__text">{cardData?.description[0].text[0]}</p>
 
-            <p className="about__text">
-              {cardData?.description[0].text[1]}
-            </p>
+            <p className="about__text">{cardData?.description[0].text[1]}</p>
 
-            <h3 className="about__paragraph-title">{cardData?.description[1].title}</h3>
+            <h3 className="about__paragraph-title">
+              {cardData?.description[1].title}
+            </h3>
 
-            <p className="about__text">
-              {cardData?.description[1].text[0]}
-            </p>
+            <p className="about__text">{cardData?.description[1].text[0]}</p>
 
             <h3 className="about__paragraph-title">
               {cardData?.description[2].title}
             </h3>
 
-            <p className="about__text">
-              {cardData?.description[2].text[0]}
-            </p>
+            <p className="about__text">{cardData?.description[2].text[0]}</p>
           </div>
         </div>
 
@@ -230,9 +224,7 @@ export const ItemCard: React.FC = () => {
                 <p className="tech-specs__item">{cardData?.processor}</p>
                 <p className="tech-specs__item">{cardData?.ram}</p>
                 <p className="tech-specs__item">{cardData?.capacity}</p>
-                <p className="tech-specs__item">
-                  {cardData?.camera}
-                </p>
+                <p className="tech-specs__item">{cardData?.camera}</p>
                 <p className="tech-specs__item">{cardData?.zoom}</p>
                 <p className="tech-specs__item">{cardData?.cell.join(', ')}</p>
               </div>
