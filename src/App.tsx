@@ -13,8 +13,11 @@ import { NotFoundPage } from './components/NotFoundPage';
 import { Menu } from './components/Menu';
 
 export const App: React.FC = () => {
+  const [countAdditionalCart, setCountAdditionalCart] = useState(0);
   const [itemsCart, setItemsCart] = useState<string[]>([]);
   const [itemsFavourites, setItemsFavourites] = useState<string[]>([]);
+
+  const itemsCount = countAdditionalCart + itemsCart.length;
 
   const handleAddToCart = useCallback(
     (productId) => {
@@ -47,7 +50,7 @@ export const App: React.FC = () => {
   return (
     <body className="body">
       <div className="wrapper">
-        <Header itemsCart={itemsCart} itemsFavourites={itemsFavourites} />
+        <Header itemsCount={itemsCount} itemsFavourites={itemsFavourites} />
 
         <main className="main">
           <div className="container">
@@ -81,7 +84,16 @@ export const App: React.FC = () => {
               </Route>
 
               <Route path="/cart">
-                <Route index element={<Cart itemsCart={itemsCart} />} />
+                <Route
+                  index
+                  element={(
+                    <Cart
+                      itemsCart={itemsCart}
+                      onCart={handleAddToCart}
+                      onCount={setCountAdditionalCart}
+                    />
+                  )}
+                />
               </Route>
 
               <Route path="/menu">

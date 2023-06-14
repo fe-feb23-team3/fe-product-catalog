@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getFilteredPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
 import { Pagination } from '../Pagination';
 import { ProductCard } from '../ProductCard';
+import { Loader } from '../Loader';
 
 import './PhoneCatalog.scss';
 import home from '../images/home.svg';
@@ -23,21 +25,29 @@ export const PhoneCatalog: React.FC<Props> = ({
   onFavourites,
 }) => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
-  // const [isChekedProductId, setIsChekedProductId] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPhones, setTotalPhones] = useState(8);
   const [sortBy, setSortBy] = useState('default');
   const [totalPages, setTotalPages] = useState(4);
+  const [isLoading, setIsLoading] = useState(false);
 
   const loadPhonesByPage = async (page: string) => {
-    const phonesFromServer = await getFilteredPhones(`${page}`);
+    setIsLoading(true);
+    const info = await getFilteredPhones(`${page}`);
+    const visiblePhonesFromServer = info.visiblePhones;
+    const totalPagess = info.pages;
 
-    setPhones(phonesFromServer);
+    setTotalPages(totalPagess);
+    setPhones(visiblePhonesFromServer);
+    setIsLoading(false);
   };
+
+  if (totalPages < currentPage) {
+    setCurrentPage(totalPages);
+  }
 
   useEffect(() => {
     loadPhonesByPage(`page=${currentPage}&sort=${sortBy}&size=${totalPhones}`);
-    setTotalPages(Math.ceil(72 / totalPhones));
   }, [totalPhones, sortBy, currentPage]);
 
   const handlePageChange = (page: number) => {
@@ -83,12 +93,12 @@ export const PhoneCatalog: React.FC<Props> = ({
             onChange={(e) => handleSortBy(e.target.value)}
           >
             <option value="default" disabled>
-              select
+              Select
             </option>
-            <option value="year_high_low">Newest</option>
-            <option value="year_low_high">Oldest</option>
-            <option value="price_low_high">Price Asc</option>
-            <option value="price_high_low">Price Desc</option>
+            <option value="year_desc">Newest</option>
+            <option value="year_asc">Oldest</option>
+            <option value="price_asc">Price Asc</option>
+            <option value="price_desc">Price Desc</option>
           </select>
         </div>
 
@@ -114,17 +124,20 @@ export const PhoneCatalog: React.FC<Props> = ({
         </div>
       </div>
 
+      <Loader isLoading={isLoading} />
+
       <div className="catalog__phones grid--catalog grid">
-        {phones.map((phone) => (
-          <ProductCard
-            phone={phone}
-            key={phone.name}
-            itemsCart={itemsCart}
-            onCart={onCart}
-            itemsFavourites={itemsFavourites}
-            onFavourites={onFavourites}
-          />
-        ))}
+        {!isLoading
+          && phones.map((phone) => (
+            <ProductCard
+              phone={phone}
+              key={phone.name}
+              itemsCart={itemsCart}
+              onCart={onCart}
+              itemsFavourites={itemsFavourites}
+              onFavourites={onFavourites}
+            />
+          ))}
       </div>
 
       <Pagination
