@@ -14,3 +14,5 @@ export const getFilteredPhones = (searchParams: string) => {
 };
 
 export const getItemCardDataById = (id: string) => client.get<ItemCardData>(`/phoneCardData/${id}`);
+
+export const getImagesById = (id: string) => client.get<ItemCardData>(`/phoneCardData/${id}/images`);

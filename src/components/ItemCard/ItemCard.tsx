@@ -9,7 +9,7 @@ import arrowGreyLeft from '../images/arrow_grey_left.svg';
 import arrowBlackLeft from '../images/Stroke.svg';
 import arrowBlackRight from '../images/arrow_black_right.svg';
 import favourites from '../images/favourites.svg';
-import { getItemCardDataById } from '../../api/phones';
+import { getItemCardDataById, getImagesById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
 
 export const ItemCard: React.FC = () => {
@@ -28,8 +28,10 @@ export const ItemCard: React.FC = () => {
     setCardData(desiredPhone);
   };
 
+  const imagesArray = cardData?.images;
+
   // eslint-disable-next-line no-console
-  console.log(cardData);
+  console.log(imagesArray);
 
   useEffect(() => {
     loadPhoneData();
@@ -77,7 +79,7 @@ export const ItemCard: React.FC = () => {
           >
             <div className="phone__photo">
               <img
-                src="https://be-product-catalog.onrender.com/products/phones/8/image"
+                src="https://be-product-catalog.onrender.com/products/phones/7/image"
                 alt="phone"
                 className="phone__photo--main"
               />
@@ -90,13 +92,15 @@ export const ItemCard: React.FC = () => {
             grid__item--tablet-1-2
             grid__item--phone-1-4"
           >
-            <div className="phone__photo-container">
-              <div className="phone__photo--small"></div>
-              <div className="phone__photo--small"></div>
-              <div className="phone__photo--small"></div>
-              <div className="phone__photo--small"></div>
-              <div className="phone__photo--small"></div>
-            </div>
+            {cardData?.images.map(image => (
+              <div key={image} className="phone__photo-container">
+                <img
+                  src={`https://be-product-catalog.onrender.com/phoneCardData/${image}`}
+                  alt=""
+                  className="phone__photo--small"
+                />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -114,18 +118,14 @@ export const ItemCard: React.FC = () => {
               </div>
 
               <div className="colors__circle-container">
-                {cardData?.colorsAvailable.map(color => {
-                  const backgroundColor = PhoneColors;
-
-                  return (
-                    <div key={color} className="colors__circle">
-                      <div
-                        className="colors__circle-item"
-                        style={{ backgroundColor: PhoneColors[color as keyof typeof PhoneColors] }}
-                      />
-                    </div>
-                  );
-                })}
+                {cardData?.colorsAvailable.map(color => (
+                  <div key={color} className="colors__circle">
+                    <div
+                      className="colors__circle-item"
+                      style={{ backgroundColor: PhoneColors[color as keyof typeof PhoneColors] }}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
