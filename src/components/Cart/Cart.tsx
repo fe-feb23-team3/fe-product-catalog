@@ -7,14 +7,15 @@ import './Cart.scss';
 import { Loader } from '../Loader';
 import { CartIsEmpty } from './CartIsEmpty/CartIsEmpty';
 import { ModalOfCart } from './ModalOfCart/ModalOfCart';
+import { useLocalStorage } from '../../utils/useLocalStorage';
 
 interface Props {
-  itemsCart: string[];
   onCart: (productId: string) => void;
-  onCount: (length: number) => void;
+  onClear: () => void;
 }
 
-export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
+export const Cart: React.FC<Props> = ({ onCart, onClear }) => {
+  const [itemsCart] = useLocalStorage('cartImest', []);
   const [selectedPhones, setSelectedPhones] = useState<PhoneData[]>([]);
   const [additionalPhones, setAdditionalPhones] = useState<PhoneData[]>([]);
   const [totalPhones, setTotalPhones] = useState<PhoneData[]>([]);
@@ -58,10 +59,6 @@ export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
   useEffect(() => {
     setTotalPhones(() => [...additionalPhones, ...selectedPhones]);
   }, [additionalPhones, selectedPhones]);
-
-  useEffect(() => {
-    onCount(additionalPhones.length);
-  }, [additionalPhones]);
 
   const handleRemovePhone = (id: string) => {
     const filteredPhones = selectedPhones.filter((phone) => phone.id !== id);
@@ -132,11 +129,13 @@ export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
             grid__item--desktop-17-24
           "
         >
-          <CardOfTotalPrice phones={totalPhones} openModal={handleOpenModal} />
+          <CardOfTotalPrice phones={selectedPhones} openModal={handleOpenModal} />
         </div>
       </div>
 
-      {openModal && <ModalOfCart closeModal={handleCloseModal} />}
+      {openModal && (
+        <ModalOfCart closeModal={handleCloseModal} onClear={onClear} />
+      )}
     </div>
   );
 };

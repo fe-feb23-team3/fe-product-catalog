@@ -8,9 +8,28 @@ interface Props {
 }
 
 export const CardOfTotalPrice: React.FC<Props> = ({ phones, openModal }) => {
-  const count = phones.length;
+  const itemsAndAmounts = localStorage.getItem('itemsAndAmounts');
+
+  let count = phones.length;
+
+  if (itemsAndAmounts) {
+    const amountAddionals = JSON.parse(itemsAndAmounts);
+    const array: number[] = Object.values(amountAddionals);
+
+    count = array.reduce((prev, cur) => prev + cur, 0);
+    localStorage.setItem('countItemsOfCart', count.toString());
+  }
+
   const totalPrice = phones
-    .map((phone) => Number(phone.price))
+    .map((phone) => {
+      if (!itemsAndAmounts) {
+        return phone.price;
+      }
+
+      const amountAddionals = JSON.parse(itemsAndAmounts);
+
+      return phone.price * amountAddionals[phone.id];
+    })
     .reduce((prev, cur) => prev + cur, 0);
 
   return (

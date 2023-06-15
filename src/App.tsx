@@ -1,5 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useLocalStorage } from './utils/useLocalStorage';
 import './App.scss';
 import { HomePage } from './components/HomePage';
 import { PhoneCatalog } from './components/PhoneCatalog';
@@ -14,11 +15,26 @@ import { Menu } from './components/Menu';
 import { ItemCard } from './components/ItemCard';
 
 export const App: React.FC = () => {
-  const [countAdditionalCart, setCountAdditionalCart] = useState(0);
   const [itemsCart, setItemsCart] = useState<string[]>([]);
+  const [cartItemsLocalStorage, setCartItemsLocalStorage] = useLocalStorage('cartImest', itemsCart);
+  const [, setAmountAddionals] = useLocalStorage('itemsAndAmounts', {});
+  const [itemsCount, setItemsCount] = useState(itemsCart.length);
+  const countItemsOfCart = localStorage.getItem('countItemsOfCart');
+
   const [itemsFavourites, setItemsFavourites] = useState<string[]>([]);
 
-  const itemsCount = countAdditionalCart + itemsCart.length;
+  useEffect(() => {
+    setItemsCart(cartItemsLocalStorage);
+  }, []);
+
+  useEffect(() => {
+    setCartItemsLocalStorage(() => itemsCart);
+    if (countItemsOfCart) {
+      setItemsCount(Number(countItemsOfCart));
+    } else {
+      setItemsCount(itemsCart.length);
+    }
+  }, [itemsCart]);
 
   const handleAddToCart = useCallback(
     (productId) => {
@@ -32,6 +48,12 @@ export const App: React.FC = () => {
     },
     [itemsCart],
   );
+
+  const handleClearCart = () => {
+    setItemsCart([]);
+    setCartItemsLocalStorage([]);
+    setAmountAddionals({});
+  };
 
   const handleAddToFavourites = useCallback(
     (productId) => {
@@ -89,9 +111,8 @@ export const App: React.FC = () => {
                   index
                   element={(
                     <Cart
-                      itemsCart={itemsCart}
                       onCart={handleAddToCart}
-                      onCount={setCountAdditionalCart}
+                      onClear={handleClearCart}
                     />
                   )}
                 />

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { PhoneData } from '../../../types/phoneData';
 import './CardOfCart.scss';
 import { ReactComponent as Minus } from '../../images/Minus.svg';
 import { ReactComponent as Plus } from '../../images/Plus.svg';
 import { ReactComponent as Close } from '../../images/Close.svg';
+import { useLocalStorage } from '../../../utils/useLocalStorage';
 
 interface Props {
   phone: PhoneData;
@@ -26,14 +27,51 @@ export const CardOfCart: React.FC<Props> = ({
   const { name, id, price } = phone;
   const [amount, setAmount] = useState(1);
 
+  const [, setAmountAddionals] = useLocalStorage('itemsAndAmounts', {});
+  const itemsAndAmounts = localStorage.getItem('itemsAndAmounts');
+
+  useEffect(() => {
+    if (!itemsAndAmounts) {
+      return;
+    }
+
+    const amountAddionals = JSON.parse(itemsAndAmounts);
+
+    if (amountAddionals[id] === undefined) {
+      return;
+    }
+
+    setAmount(amountAddionals[id]);
+  }, []);
+
+  const updateLocalStorage = () => {
+    if (itemsAndAmounts) {
+      const amountAddionals = JSON.parse(itemsAndAmounts);
+
+      amountAddionals[id] = amount;
+
+      setAmountAddionals(() => amountAddionals);
+    } else {
+      setAmountAddionals({});
+    }
+  };
+
+  useEffect(() => {
+    updateLocalStorage();
+  }, [amount]);
+
   const handleAddAmount = () => {
-    setAmount(() => amount + 1);
+    const value = amount + 1;
+
+    setAmount(() => value);
     onAdd(phone);
   };
 
   const handleSubtractAmount = () => {
     if (amount > 1) {
-      setAmount(() => amount - 1);
+      const value = amount - 1;
+
+      setAmount(() => value);
       onDelete(phone);
     }
   };
@@ -79,7 +117,9 @@ export const CardOfCart: React.FC<Props> = ({
           <button
             type="button"
             className="counter__button counter__button--active"
-            onClick={handleAddAmount}
+            onClick={() => {
+              handleAddAmount();
+            }}
           >
             <Plus className="iconSvg" />
           </button>
