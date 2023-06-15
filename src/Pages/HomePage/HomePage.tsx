@@ -2,6 +2,7 @@ import React from 'react';
 import { PageTitle } from '../../components/PageTitle';
 import { ShopByCategory } from '../../components/ShopByCategory';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import { getNewestPhones, getByDiscount } from '../../api/phones';
 
 import './HomePage.scss';
 import { RecomendModels } from '../../components/RecomendModels';
@@ -27,6 +28,8 @@ export const HomePage: React.FC<Props> = ({
 
       <RecomendModels
         title="Brand new models"
+        getPhones={getNewestPhones}
+        showDiscount={!false}
         onCart={onCart}
         onFavourites={onFavourites}
         itemsCart={itemsCart}
@@ -41,6 +44,7 @@ export const HomePage: React.FC<Props> = ({
 
       <RecomendModels
         title="Hoot prices"
+        getPhones={getByDiscount}
         onCart={onCart}
         onFavourites={onFavourites}
         itemsCart={itemsCart}

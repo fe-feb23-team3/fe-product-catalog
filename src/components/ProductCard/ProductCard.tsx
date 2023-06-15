@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { PhoneData } from '../../types/phoneData';
 
 interface Props {
+  showDiscount?: boolean;
   phone: PhoneData;
   itemsCart: string[];
   itemsFavourites: string[];
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const ProductCard: React.FC<Props> = ({
+  showDiscount,
   phone,
   itemsCart,
   itemsFavourites,
@@ -38,7 +40,9 @@ export const ProductCard: React.FC<Props> = ({
 
           <div className="card__price">
             <span className="card__price-current">{`$${price}`}</span>
-            <span className="card__price-full">{`$${fullPrice}`}</span>
+            {!showDiscount && (
+              <span className="card__price-full">{`$${fullPrice}`}</span>
+            )}
           </div>
 
           <div className="card__divider"></div>
@@ -85,4 +89,8 @@ export const ProductCard: React.FC<Props> = ({
       </div>
     </div>
   );
+};
+
+ProductCard.defaultProps = {
+  showDiscount: false,
 };

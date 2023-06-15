@@ -13,6 +13,9 @@ export const getFilteredPhones = (searchParams: string) => {
   return client.get<Info>(`/products/phones/pagination?${searchParams}`);
 };
 
+export const getNewestPhones = () => client.get<PhoneData[]>('/products/phones/newest');
+export const getByDiscount = () => client.get<PhoneData[]>('/products/phones/discount');
+
 export const getItemCardDataById = (id: string) => client.get<ItemCardData>(`/phoneCardData/${id}`);
 
 export const getImagesById = (id: string) => client.get<ItemCardData>(`/phoneCardData/${id}/images`);
