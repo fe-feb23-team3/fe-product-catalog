@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { getFilteredPhones } from '../../api/phones';
 import { Loader } from '../Loader';
 import { ProductCard } from '../ProductCard';
 import { PhoneData } from '../../types/phoneData';
@@ -12,6 +11,8 @@ import arrowDarkRight from '../images/arrow_dark_right.svg';
 
 interface Props {
   title: string;
+  getPhones: () => Promise<PhoneData[]>;
+  showDiscount?: boolean;
   itemsCart: string[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
@@ -20,6 +21,8 @@ interface Props {
 
 export const RecomendModels: React.FC<Props> = ({
   title,
+  getPhones,
+  showDiscount,
   itemsCart,
   itemsFavourites,
   onCart,
@@ -29,10 +32,10 @@ export const RecomendModels: React.FC<Props> = ({
   const [phones, setPhones] = useState<PhoneData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const loadPhonesByPage = async (page: string) => {
+  const loadPhonesByPage = async () => {
     setIsLoading(true);
-    const info = await getFilteredPhones(`${page}`);
-    const visiblePhonesFromServer = info.visiblePhones;
+    const loadPhones = await getPhones();
+    const visiblePhonesFromServer = loadPhones;
 
     setPhones(visiblePhonesFromServer);
     setIsLoading(false);
@@ -43,7 +46,7 @@ export const RecomendModels: React.FC<Props> = ({
 
     if (scrollContainer) {
       scrollContainer.scrollTo({
-        left: scrollContainer.scrollLeft - 400,
+        left: scrollContainer.scrollLeft - 430,
         behavior: 'smooth',
       });
     }
@@ -54,14 +57,14 @@ export const RecomendModels: React.FC<Props> = ({
 
     if (scrollContainer) {
       scrollContainer.scrollTo({
-        left: scrollContainer.scrollLeft + 400,
+        left: scrollContainer.scrollLeft + 430,
         behavior: 'smooth',
       });
     }
   };
 
   useEffect(() => {
-    loadPhonesByPage(`page=${1}&sort=${'default'}&size=${8}`);
+    loadPhonesByPage();
   }, []);
 
   return (
@@ -94,6 +97,7 @@ export const RecomendModels: React.FC<Props> = ({
         {!isLoading
           && phones.map((phone) => (
             <ProductCard
+              showDiscount={showDiscount}
               phone={phone}
               key={phone.name}
               itemsCart={itemsCart}
@@ -105,4 +109,8 @@ export const RecomendModels: React.FC<Props> = ({
       </div>
     </div>
   );
+};
+
+RecomendModels.defaultProps = {
+  showDiscount: false,
 };
