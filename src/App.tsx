@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.scss';
 import { HomePage } from './Pages/HomePage';
@@ -12,13 +12,21 @@ import { Cart } from './components/Cart';
 import { NotFoundPage } from './Pages/NotFoundPage';
 import { Menu } from './components/Menu';
 import { ItemCard } from './components/ItemCard';
+import { getPhones } from './api/phones';
 
 export const App: React.FC = () => {
   const [countAdditionalCart, setCountAdditionalCart] = useState(0);
   const [itemsCart, setItemsCart] = useState<string[]>([]);
   const [itemsFavourites, setItemsFavourites] = useState<string[]>([]);
+  const [phonesLength, setPhonesLength] = useState(0);
 
   const itemsCount = countAdditionalCart + itemsCart.length;
+
+  const loadPhones = async () => {
+    const phones = await getPhones();
+
+    setPhonesLength(phones.length);
+  };
 
   const handleAddToCart = useCallback(
     (productId) => {
@@ -48,6 +56,10 @@ export const App: React.FC = () => {
     [itemsFavourites],
   );
 
+  useEffect(() => {
+    loadPhones();
+  }, []);
+
   return (
     <body className="body">
       <div className="wrapper">
@@ -64,6 +76,7 @@ export const App: React.FC = () => {
                     onFavourites={handleAddToFavourites}
                     itemsCart={itemsCart}
                     itemsFavourites={itemsFavourites}
+                    phonesCount={phonesLength}
                   />
                 )}
               />

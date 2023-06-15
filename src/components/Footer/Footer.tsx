@@ -17,15 +17,16 @@ export const Footer: React.FC = () => {
         </NavLink>
 
         <div className="footer__links">
-          <a href="/" className="footer__link">
+          <NavLink to="https://github.com/fe-feb23-team3" target="_blank" className="footer__link">
             github
-          </a>
-          <a href="/" className="footer__link">
+          </NavLink>
+
+          <NavLink to="/" className="footer__link">
             contacts
-          </a>
-          <a href="/" className="footer__link">
+          </NavLink>
+          <NavLink to="/" className="footer__link">
             rights
-          </a>
+          </NavLink>
         </div>
 
         <div className="footer__button">
