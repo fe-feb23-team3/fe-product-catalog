@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "./static/css/main.308c2bf8.chunk.css",
-    "main.js": "./static/js/main.7fa3dc83.chunk.js",
-    "main.js.map": "./static/js/main.7fa3dc83.chunk.js.map",
+    "main.css": "./static/css/main.55b8bdfb.chunk.css",
+    "main.js": "./static/js/main.0e5509b6.chunk.js",
+    "main.js.map": "./static/js/main.0e5509b6.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.f2edf19d.js",
     "runtime-main.js.map": "./static/js/runtime-main.f2edf19d.js.map",
-    "static/js/2.9a018133.chunk.js": "./static/js/2.9a018133.chunk.js",
-    "static/js/2.9a018133.chunk.js.map": "./static/js/2.9a018133.chunk.js.map",
+    "static/css/2.9db3cb29.chunk.css": "./static/css/2.9db3cb29.chunk.css",
+    "static/js/2.6b17d143.chunk.js": "./static/js/2.6b17d143.chunk.js",
+    "static/js/2.6b17d143.chunk.js.map": "./static/js/2.6b17d143.chunk.js.map",
     "index.html": "./index.html",
-    "static/css/main.308c2bf8.chunk.css.map": "./static/css/main.308c2bf8.chunk.css.map",
-    "static/js/2.9a018133.chunk.js.LICENSE.txt": "./static/js/2.9a018133.chunk.js.LICENSE.txt",
+    "static/css/2.9db3cb29.chunk.css.map": "./static/css/2.9db3cb29.chunk.css.map",
+    "static/css/main.55b8bdfb.chunk.css.map": "./static/css/main.55b8bdfb.chunk.css.map",
+    "static/js/2.6b17d143.chunk.js.LICENSE.txt": "./static/js/2.6b17d143.chunk.js.LICENSE.txt",
     "static/media/Close.6e7f15f7.svg": "./static/media/Close.6e7f15f7.svg",
     "static/media/Minus.4b7c4fa3.svg": "./static/media/Minus.4b7c4fa3.svg",
     "static/media/index.scss": "./static/media/favourites_icon_blue.74bfb93a.svg",
@@ -25,7 +27,6 @@
     "static/media/arrow_right.2a072ff1.svg": "./static/media/arrow_right.2a072ff1.svg",
     "static/media/burger-menu.73ddde2c.svg": "./static/media/burger-menu.73ddde2c.svg",
     "static/media/cart.df23e4fb.svg": "./static/media/cart.df23e4fb.svg",
-    "static/media/color_circle.bacd3f4d.svg": "./static/media/color_circle.bacd3f4d.svg",
     "static/media/favourites.cc696932.svg": "./static/media/favourites.cc696932.svg",
     "static/media/home.9a24a705.svg": "./static/media/home.9a24a705.svg",
     "static/media/logo.c6f2f3ed.svg": "./static/media/logo.c6f2f3ed.svg",
@@ -34,8 +35,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.f2edf19d.js",
-    "static/js/2.9a018133.chunk.js",
-    "static/css/main.308c2bf8.chunk.css",
-    "static/js/main.7fa3dc83.chunk.js"
+    "static/css/2.9db3cb29.chunk.css",
+    "static/js/2.6b17d143.chunk.js",
+    "static/css/main.55b8bdfb.chunk.css",
+    "static/js/main.0e5509b6.chunk.js"
   ]
 }
