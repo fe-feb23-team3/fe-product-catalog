@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { PhoneData } from '../../types/phoneData';
 import { ProductCard } from '../ProductCard';
 
-import '../PhoneCatalog/PhoneCatalog.scss';
 import './Favourites.scss';
 import home from '../images/home.svg';
 import arrowRight from '../images/arrow_right.svg';
