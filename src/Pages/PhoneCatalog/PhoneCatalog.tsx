@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getFilteredPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
-import { Pagination } from '../Pagination';
-import { ProductCard } from '../ProductCard';
-import { Loader } from '../Loader';
+import { Pagination } from '../../components/Pagination';
+import { ProductCard } from '../../components/ProductCard';
+import { Loader } from '../../components/Loader';
 
 import './PhoneCatalog.scss';
-import home from '../images/home.svg';
-import arrowRight from '../images/arrow_right.svg';
+import home from '../../components/images/home.svg';
+import arrowRight from '../../components/images/arrow_right.svg';
 
 interface Props {
   itemsCart: string[];

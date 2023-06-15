@@ -1,15 +1,15 @@
 import React, { useState, useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.scss';
-import { HomePage } from './components/HomePage';
-import { PhoneCatalog } from './components/PhoneCatalog';
+import { HomePage } from './Pages/HomePage';
+import { PhoneCatalog } from './Pages/PhoneCatalog';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { TabletsCatalog } from './components/TabletsCatalog';
 import { Accessories } from './components/Accessories';
 import { Favourites } from './components/Favourites';
 import { Cart } from './components/Cart';
-import { NotFoundPage } from './components/NotFoundPage';
+import { NotFoundPage } from './Pages/NotFoundPage';
 import { Menu } from './components/Menu';
 import { ItemCard } from './components/ItemCard';
 
@@ -56,7 +56,17 @@ export const App: React.FC = () => {
         <main className="main">
           <div className="container">
             <Routes>
-              <Route path="/" element={<HomePage />} />
+              <Route
+                path="/"
+                element={(
+                  <HomePage
+                    onCart={handleAddToCart}
+                    onFavourites={handleAddToFavourites}
+                    itemsCart={itemsCart}
+                    itemsFavourites={itemsFavourites}
+                  />
+                )}
+              />
 
               <Route path="/phones">
                 <Route

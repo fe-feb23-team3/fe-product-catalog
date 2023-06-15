@@ -1,0 +1,32 @@
+@import '../../App.scss';
+
+.home-page {
+  margin: 24px auto 64px;
+
+  @include onTablet {
+    margin: 32px auto;
+  }
+
+  @include onDesktop {
+    margin: 56px auto 80px;
+  }
+}
+
+.sliderign {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover
+}
+
+.alice-carousel {
+
+  &__dots {
+
+    &-item {
+      height: 10px;
+      width: 10px;
+      border: solid 1px #111;
+    }
+  }
+}
+
