@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './ItemCard.scss';
+import { PhoneColors } from '../../types/PhoneColors';
 import home from '../images/home.svg';
 import arrowGreyRight from '../images/arrow_grey_right.svg';
 import arrowGreyLeft from '../images/arrow_grey_left.svg';
 import arrowBlackLeft from '../images/Stroke.svg';
 import arrowBlackRight from '../images/arrow_black_right.svg';
-import colorCircle from '../images/color_circle.svg';
 import favourites from '../images/favourites.svg';
 import { getItemCardDataById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
@@ -112,12 +112,20 @@ export const ItemCard: React.FC = () => {
                 <p>Available colors</p>
                 <p>{`ID: ${cardData?.namespaceId}`}</p>
               </div>
+
               <div className="colors__circle-container">
-                <img
-                  src={colorCircle}
-                  alt="color circle"
-                  className="colors__circle"
-                />
+                {cardData?.colorsAvailable.map(color => {
+                  const backgroundColor = PhoneColors;
+
+                  return (
+                    <div key={color} className="colors__circle">
+                      <div
+                        className="colors__circle-item"
+                        style={{ backgroundColor: PhoneColors[color as keyof typeof PhoneColors] }}
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -134,8 +142,8 @@ export const ItemCard: React.FC = () => {
           </div>
 
           <div className="price">
-            <span className="price__new">{`$${cardData?.priceRegular}`}</span>
-            <span className="price__old">{`$${cardData?.priceDiscount}`}</span>
+            <span className="price__new">{`$${cardData?.priceDiscount}`}</span>
+            <span className="price__old">{`$${cardData?.priceRegular}`}</span>
           </div>
 
           <div className="add-to-cart">
