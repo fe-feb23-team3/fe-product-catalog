@@ -7,7 +7,6 @@ import './Cart.scss';
 import { Loader } from '../Loader';
 import { CartIsEmpty } from './CartIsEmpty/CartIsEmpty';
 import { ModalOfCart } from './ModalOfCart/ModalOfCart';
-import { useLocalStorage } from '../../utils/useLocalStorage';
 
 interface Props {
   onCart: (productId: string) => void;
@@ -15,7 +14,7 @@ interface Props {
 }
 
 export const Cart: React.FC<Props> = ({ onCart, onClear }) => {
-  const [itemsCart] = useLocalStorage('cartImest', []);
+  const itemsCartLocalStorage = localStorage.getItem('itemsCart');
   const [selectedPhones, setSelectedPhones] = useState<PhoneData[]>([]);
   const [additionalPhones, setAdditionalPhones] = useState<PhoneData[]>([]);
   const [totalPhones, setTotalPhones] = useState<PhoneData[]>([]);
@@ -67,16 +66,20 @@ export const Cart: React.FC<Props> = ({ onCart, onClear }) => {
   };
 
   const loadPhones = async () => {
-    if (itemsCart.length) {
-      setIsLoading(true);
+    if (itemsCartLocalStorage) {
+      const itemsCart: string[] = JSON.parse(itemsCartLocalStorage);
+
+      if (itemsCart.length) {
+        setIsLoading(true);
+      }
+
+      itemsCart.forEach(async (itemId) => {
+        const phoneFromServer = await getPhoneById(itemId);
+
+        setIsLoading(false);
+        setSelectedPhones((phone) => [...phone, phoneFromServer]);
+      });
     }
-
-    itemsCart.forEach(async (itemId) => {
-      const phoneFromServer = await getPhoneById(itemId);
-
-      setIsLoading(false);
-      setSelectedPhones((phone) => [...phone, phoneFromServer]);
-    });
   };
 
   useEffect(() => {
@@ -129,7 +132,10 @@ export const Cart: React.FC<Props> = ({ onCart, onClear }) => {
             grid__item--desktop-17-24
           "
         >
-          <CardOfTotalPrice phones={selectedPhones} openModal={handleOpenModal} />
+          <CardOfTotalPrice
+            phones={selectedPhones}
+            openModal={handleOpenModal}
+          />
         </div>
       </div>
 

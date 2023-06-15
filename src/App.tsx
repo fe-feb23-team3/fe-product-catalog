@@ -16,19 +16,22 @@ import { ItemCard } from './components/ItemCard';
 
 export const App: React.FC = () => {
   const [itemsCart, setItemsCart] = useState<string[]>([]);
-  const [cartItemsLocalStorage, setCartItemsLocalStorage] = useLocalStorage('cartImest', itemsCart);
-  const [, setAmountAddionals] = useLocalStorage('itemsAndAmounts', {});
-  const [itemsCount, setItemsCount] = useState(itemsCart.length);
-  const countItemsOfCart = localStorage.getItem('countItemsOfCart');
+  const [itemsCartLocalStorage, setItemsCartLocalStorage] = useLocalStorage('itemsCart', itemsCart);
+  const [, setItemsAndAmounts] = useLocalStorage('itemsAndAmounts', {});
+  const [countItemsOfCart, setCountItemsOfCart] = useLocalStorage('countItemsOfCart', 0);
+  const [itemsCount, setItemsCount] = useState(itemsCartLocalStorage.length);
 
   const [itemsFavourites, setItemsFavourites] = useState<string[]>([]);
 
   useEffect(() => {
-    setItemsCart(cartItemsLocalStorage);
+    setItemsCart(itemsCartLocalStorage);
   }, []);
 
   useEffect(() => {
-    setCartItemsLocalStorage(() => itemsCart);
+    if (itemsCart.length) {
+      setItemsCartLocalStorage(() => itemsCart);
+    }
+
     if (countItemsOfCart) {
       setItemsCount(Number(countItemsOfCart));
     } else {
@@ -51,8 +54,9 @@ export const App: React.FC = () => {
 
   const handleClearCart = () => {
     setItemsCart([]);
-    setCartItemsLocalStorage([]);
-    setAmountAddionals({});
+    setItemsCartLocalStorage([]);
+    setItemsAndAmounts({});
+    setCountItemsOfCart(0);
   };
 
   const handleAddToFavourites = useCallback(

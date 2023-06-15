@@ -27,8 +27,8 @@ export const CardOfCart: React.FC<Props> = ({
   const { name, id, price } = phone;
   const [amount, setAmount] = useState(1);
 
-  const [, setAmountAddionals] = useLocalStorage('itemsAndAmounts', {});
   const itemsAndAmounts = localStorage.getItem('itemsAndAmounts');
+  const [, setItemsAndAmounts] = useLocalStorage('itemsAndAmounts', {});
 
   useEffect(() => {
     if (!itemsAndAmounts) {
@@ -50,9 +50,9 @@ export const CardOfCart: React.FC<Props> = ({
 
       amountAddionals[id] = amount;
 
-      setAmountAddionals(() => amountAddionals);
+      setItemsAndAmounts(() => amountAddionals);
     } else {
-      setAmountAddionals({});
+      setItemsAndAmounts({});
     }
   };
 
