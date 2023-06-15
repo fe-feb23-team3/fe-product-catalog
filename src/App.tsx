@@ -90,6 +90,7 @@ export const App: React.FC = () => {
                       onFavourites={handleAddToFavourites}
                       itemsCart={itemsCart}
                       itemsFavourites={itemsFavourites}
+                      phonesCount={phonesLength}
                     />
                   )}
                 />
