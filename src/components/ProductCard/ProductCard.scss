@@ -29,6 +29,10 @@
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
   }
 
+  @include onTablet {
+    min-width: 272px;
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
@@ -37,14 +41,9 @@
 
   &__photo {
     align-self: center;
-    width: 97px;
-    height: 130px;
     margin-bottom: 24px;
-
-    @include onTablet {
-      width: 146px;
-      height: 196px;
-    }
+    width: 146px;
+    height: 196px;
   }
 
   &__title {
