@@ -41,14 +41,9 @@
 
   &__photo {
     align-self: center;
-    width: 97px;
-    height: 130px;
     margin-bottom: 24px;
-
-    @include onTablet {
-      width: 146px;
-      height: 196px;
-    }
+    width: 146px;
+    height: 196px;
   }
 
   &__title {
