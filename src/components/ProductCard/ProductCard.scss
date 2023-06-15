@@ -29,6 +29,10 @@
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
   }
 
+  @include onTablet {
+    min-width: 272px;
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
