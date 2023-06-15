@@ -1,0 +1,19 @@
+@import '../../App.scss';
+
+.favourites {
+  &__marginBottom {
+    margin-bottom: 80px;
+  }
+
+  &__breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+    width: 110px;
+    margin-top: 24px;
+    @include body-text;
+  }
+}

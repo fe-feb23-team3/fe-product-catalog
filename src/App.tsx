@@ -81,7 +81,17 @@ export const App: React.FC = () => {
               </Route>
 
               <Route path="/favourites">
-                <Route index element={<Favourites />} />
+                <Route
+                  index
+                  element={(
+                    <Favourites
+                      onCart={handleAddToCart}
+                      onFavourites={handleAddToFavourites}
+                      itemsCart={itemsCart}
+                      itemsFavourites={itemsFavourites}
+                    />
+                  )}
+                />
               </Route>
 
               <Route path="/cart">
