@@ -190,7 +190,7 @@
       box-shadow: 0px 0px 0px 1px #e2e6e9;
 
       &:hover {
-        box-shadow: 0px 0px 0px 1px black;
+        box-shadow: 0px 0px 0px 1px #B4BDC3;
       }
     }
 
@@ -221,9 +221,8 @@
     border-radius: 4px;
 
     &:hover {
-      color: #fff;
       cursor: pointer;
-      background-color: black;
+      border: 1px solid #0F0F11;
     }
   }
 }

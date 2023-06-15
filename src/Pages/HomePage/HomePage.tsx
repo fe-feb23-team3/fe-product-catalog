@@ -1,7 +1,6 @@
 import React from 'react';
 import { PageTitle } from '../../components/PageTitle';
 import { ShopByCategory } from '../../components/ShopByCategory';
-import 'react-alice-carousel/lib/alice-carousel.css';
 import { getNewestPhones, getByDiscount } from '../../api/phones';
 
 import './HomePage.scss';

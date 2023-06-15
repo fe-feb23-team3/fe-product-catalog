@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './ItemCard.scss';
 import { PhoneColors } from '../../types/PhoneColors';
 import home from '../images/home.svg';
@@ -9,8 +9,12 @@ import arrowGreyLeft from '../images/arrow_grey_left.svg';
 import arrowBlackLeft from '../images/Stroke.svg';
 import arrowBlackRight from '../images/arrow_black_right.svg';
 import favourites from '../images/favourites.svg';
-import { getItemCardDataById, getImagesById } from '../../api/phones';
+import {
+  getItemCardDataById,
+  getImagesById,
+} from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
+import { RecomendModels } from '../RecomendModels';
 
 export const ItemCard: React.FC = () => {
   const [cardData, setCardData] = useState<ItemCardData | null>(null);
@@ -18,9 +22,6 @@ export const ItemCard: React.FC = () => {
   const url = window.location.hash;
   const splitedUrl = url.split('/');
   const itemName = splitedUrl[2];
-
-  // eslint-disable-next-line no-console
-  console.log(itemName);
 
   const loadPhoneData = async () => {
     const desiredPhone = await getItemCardDataById(itemName);
@@ -95,7 +96,7 @@ export const ItemCard: React.FC = () => {
             {cardData?.images.map(image => (
               <div key={image} className="phone__photo-container">
                 <img
-                  src={`https://be-product-catalog.onrender.com/phoneCardData/${image}`}
+                  src={`https://be-product-catalog.onrender.com/phoneCardData/${cardData?.id}/images/${image}`}
                   alt=""
                   className="phone__photo--small"
                 />
@@ -119,12 +120,17 @@ export const ItemCard: React.FC = () => {
 
               <div className="colors__circle-container">
                 {cardData?.colorsAvailable.map(color => (
-                  <div key={color} className="colors__circle">
-                    <div
-                      className="colors__circle-item"
-                      style={{ backgroundColor: PhoneColors[color as keyof typeof PhoneColors] }}
-                    />
-                  </div>
+                  <Link
+                    to={`/phoneCardData/${cardData?.namespaceId}-${cardData?.capacity.toLowerCase()}-${color}`}
+                    key={color}
+                  >
+                    <div className="colors__circle">
+                      <div
+                        className="colors__circle-item"
+                        style={{ backgroundColor: PhoneColors[color as keyof typeof PhoneColors] }}
+                      />
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -134,9 +140,11 @@ export const ItemCard: React.FC = () => {
             <p>Select capacity</p>
             <div className="capacity__container">
               {cardData?.capacityAvailable.map((capacity) => (
-                <div className="capacity__button" key={cardData?.id}>
-                  {capacity}
-                </div>
+                <Link to={`/phoneCardData/${cardData?.namespaceId}-${capacity.toLowerCase()}-${cardData?.color}`} key={cardData?.id}>
+                  <div className="capacity__button">
+                    {capacity}
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -261,7 +269,7 @@ export const ItemCard: React.FC = () => {
         </div>
       </div>
 
-      <div className="empty__card">Place for card</div>
+      <div className="empty__card">Item card</div>
     </div>
   );
 };
