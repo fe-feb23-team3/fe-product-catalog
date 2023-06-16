@@ -17,7 +17,7 @@ import { ItemCard } from './components/ItemCard';
 export const App: React.FC = () => {
   const [itemsCart, setItemsCart] = useLocalStorage<{id: string, count: number}[]>('itemsCart', []);
 
-  const allCountOfItemsInCart = itemsCart.map(item => +item.count).reduce((a, b) => a + b, 0);
+  const allCountOfItemsInCart = itemsCart.map(item => item.count).reduce((p, c) => p + c, 0);
 
   const handleAddItemToCart = useCallback((productId) => {
     if (itemsCart.some((item) => item.id === productId)) {
@@ -37,17 +37,16 @@ export const App: React.FC = () => {
   const handleChangeCountOfItemOfCart = (id: string, plusOrMinus: boolean) => {
     const indexItem = itemsCart.findIndex(item => item.id === id);
     const countOfItem = itemsCart[indexItem].count;
+    const copyItemsCart = JSON.parse(JSON.stringify(itemsCart));
 
     if (plusOrMinus) {
-      itemsCart[indexItem].count = countOfItem + 1;
+      copyItemsCart[indexItem].count = countOfItem + 1;
     } else {
-      itemsCart[indexItem].count = countOfItem - 1;
+      copyItemsCart[indexItem].count = countOfItem - 1;
     }
 
-    setItemsCart(itemsCart);
+    setItemsCart(copyItemsCart);
   };
-
-  // -------------------------------------------------------------------------------
 
   const [itemsFavourites, setItemsFavourites] = useLocalStorage<string[]>('idsFavourites', []);
 

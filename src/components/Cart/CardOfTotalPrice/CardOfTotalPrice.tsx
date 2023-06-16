@@ -3,31 +3,40 @@ import './CardOfTotalPrice.scss';
 import { PhoneData } from '../../../types/phoneData';
 
 interface Props {
-  itemsCart: {id: string, count: number}[],
+  itemsCart: { id: string; count: number }[];
   products: PhoneData[];
   openModal: () => void;
 }
 
-export const CardOfTotalPrice: React.FC<Props> = ({ products, openModal, itemsCart }) => {
+export const CardOfTotalPrice: React.FC<Props> = ({
+  products,
+  openModal,
+  itemsCart,
+}) => {
   const [totalPrice, setTotalPrice] = useState(0);
-  const [totalCount, setTotalCount] = useState(products.length);
-
-  // eslint-disable-next-line no-console
-  console.log(itemsCart);
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
-    setTotalCount(products.length);
+    const allCount = itemsCart
+      .map(({ count }) => count)
+      .reduce((prev, cur) => prev + cur, 0);
+
+    setTotalCount(allCount);
 
     const allPrice = products
-      .map(({ price }) => {
-        // const indexItem = itemsCart.find(item => item.id === id);
+      .map((product) => {
+        const indexItem = itemsCart.find((item) => item.id === product.id);
 
-        return price;
+        if (!indexItem) {
+          return product.price;
+        }
+
+        return product.price * indexItem.count;
       })
       .reduce((prev, cur) => prev + cur, 0);
 
     setTotalPrice(allPrice);
-  }, []);
+  });
 
   return (
     <div className="totalPrice">
