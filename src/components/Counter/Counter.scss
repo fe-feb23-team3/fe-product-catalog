@@ -1,0 +1,24 @@
+@import '../../App.scss';
+
+.counter {
+  &__circle {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 18px;
+    left: 32px;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    border: solid 1px #fff;
+    border-radius: 50%;
+    background-color: $secondary-accent-color;
+  }
+
+  &__count {
+    font-weight: 700;
+    font-size: 8px;
+    color: #fff;
+  }
+}

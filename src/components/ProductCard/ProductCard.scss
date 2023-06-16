@@ -17,6 +17,7 @@
   box-sizing: border-box;
   max-width: 272px;
   width: 100%;
+  min-height: 100%;
   background: $white-color;
   font-family: 'Mont', sans-serif;
   font-style: normal;
@@ -24,6 +25,8 @@
   border: 1px solid $elements-color;
   border-radius: 8px;
   margin: 0 auto;
+  transition: box-shadow 0.3s ease-in-out;
+  
 
   &:hover {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
@@ -37,6 +40,9 @@
     display: flex;
     flex-direction: column;
     padding: 32px 24px 24px;
+    justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
   }
 
   &__photo {
@@ -44,6 +50,11 @@
     margin-bottom: 24px;
     width: 146px;
     height: 196px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover .card__photo {
+    transform: scale(1.15);
   }
 
   &__title {

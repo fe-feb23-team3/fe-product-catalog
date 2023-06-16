@@ -3,6 +3,7 @@ import { PageTitle } from '../../components/PageTitle';
 import { ShopByCategory } from '../../components/ShopByCategory';
 import { getNewestPhones, getByDiscount } from '../../api/phones';
 
+
 import './HomePage.scss';
 import { RecomendModels } from '../../components/RecomendModels';
 import { Slider } from '../../components/Slider';
@@ -47,8 +48,8 @@ export const HomePage: React.FC<Props> = ({
       />
 
       <RecomendModels
-        title="Hoot prices"
-        getPhones={getByDiscount}
+        title="Hot prices"
+        getPhones={getByDiscountPhones}
         onCart={onCart}
         onFavourites={onFavourites}
         itemsCart={itemsCart}

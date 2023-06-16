@@ -6,6 +6,7 @@ import logo from '../images/logo.svg';
 import cart from '../images/cart.svg';
 import menu from '../images/burger-menu.svg';
 import favourites from '../images/favourites.svg';
+import { Counter } from '../Counter';
 
 interface Props {
   itemsCount: number;
@@ -55,12 +56,14 @@ export const Header: React.FC<Props> = ({ itemsCount, itemsFavourites }) => {
         <div className="icon-container">
           <NavLink to="/favourites" className="icon">
             <img src={favourites} alt="favourites" />
-            {itemsFavourites.length}
+            {itemsFavourites.length > 0 && (
+              <Counter count={itemsFavourites.length} />
+            )}
           </NavLink>
 
           <NavLink to="/cart" className="icon">
             <img src={cart} alt="cart" />
-            {itemsCount}
+            {itemsCount > 0 && <Counter count={itemsCount} />}
           </NavLink>
         </div>
       ) : (
