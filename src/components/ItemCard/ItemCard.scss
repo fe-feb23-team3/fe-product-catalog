@@ -1,8 +1,9 @@
 @import '../../App.scss';
+
 .path {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 
   margin-top: 24px;
 
@@ -109,6 +110,10 @@
     justify-content: space-around;
     margin-top: 16px;
 
+    &--active {
+      border-color: #313237;
+    }
+
     @include onTablet {
       flex-direction: column;
       margin-top: 0px;
@@ -140,18 +145,17 @@
     width: 52px;
     height: 52px;
 
-    border: 1px solid black;
+    padding: 4px 0px;
 
-    background-image: url(https://be-product-catalog.onrender.com/products/phones/8/image);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+    object-fit: contain;
+
+    border: 1px solid black;
 
     border-radius: 4px;
 
     @include onTablet {
-      width: 35px;
-      height: 35px;
+      width: 80px;
+      height: 80px;
 
       margin-bottom: 8px;
     }
@@ -191,6 +195,14 @@
       padding: 1px;
 
       box-shadow: 0px 0px 0px 1px #e2e6e9;
+
+      &:hover {
+        box-shadow: 0px 0px 0px 1px #B4BDC3;
+      }
+
+      &--active {
+        box-shadow: 0px 0px 0px 1px black;
+      }
     }
 
     &-container {
@@ -212,17 +224,28 @@
     align-items: center;
   }
 
+  &__link {
+    text-decoration: none;
+    color: #0F0F11;
+  }
+
   &__button {
     margin: 8px 8px 0 0;
     padding: 4px 8px;
+
+    text-decoration: none;
 
     border: 1px solid #B4BDC3;
     border-radius: 4px;
 
     &:hover {
-      color: #fff;
       cursor: pointer;
-      background-color: black;
+      border: 1px solid #0F0F11;
+    }
+
+    &--active {
+      color: #fff;
+      background-color: #0F0F11;
     }
   }
 }
