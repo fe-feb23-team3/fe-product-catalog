@@ -34,7 +34,13 @@ export const ShopByCategory: React.FC<Props> = ({
         grid__item--desktop-1-8
         "
         >
-          <img src={phones} alt="Phones" className="shop-by-category__photo" />
+          <div className="shop-by-category__photo-wrapper">
+            <img
+              src={phones}
+              alt="Phones"
+              className="shop-by-category__photo"
+            />
+          </div>
           <div className="shop-by-category__card-title">Mobile phones</div>
           <div className="shop-by-category__total">{`${totalOfPhones} models`}</div>
         </NavLink>
@@ -48,11 +54,13 @@ export const ShopByCategory: React.FC<Props> = ({
         grid__item--desktop-9-16
         "
         >
-          <img
-            src={tablets}
-            alt="Tablets"
-            className="shop-by-category__photo"
-          />
+          <div className="shop-by-category__photo-wrapper">
+            <img
+              src={tablets}
+              alt="Tablets"
+              className="shop-by-category__photo"
+            />
+          </div>
           <div className="shop-by-category__card-title">Tablets</div>
           <div className="shop-by-category__total">{`${totalOfTablets} models`}</div>
         </NavLink>
@@ -66,11 +74,13 @@ export const ShopByCategory: React.FC<Props> = ({
         grid__item--desktop-17-24
         "
         >
-          <img
-            src={accessories}
-            alt="Laptops"
-            className="shop-by-category__photo"
-          />
+          <div className="shop-by-category__photo-wrapper">
+            <img
+              src={accessories}
+              alt="Laptops"
+              className="shop-by-category__photo"
+            />
+          </div>
           <div className="shop-by-category__card-title">Accessories</div>
           <div className="shop-by-category__total">{`${totalOfAccessories} models`}</div>
         </NavLink>

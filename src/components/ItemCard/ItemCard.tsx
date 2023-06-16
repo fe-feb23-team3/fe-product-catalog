@@ -9,8 +9,9 @@ import arrowGreyLeft from '../images/arrow_grey_left.svg';
 import arrowBlackLeft from '../images/Stroke.svg';
 import arrowBlackRight from '../images/arrow_black_right.svg';
 import favourites from '../images/favourites.svg';
-import { getItemCardDataById } from '../../api/phones';
+import { getItemCardDataById, getRecommendedPhones } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
+// import { RecomendModels } from '../RecomendModels';
 
 export const ItemCard: React.FC = () => {
   const [cardData, setCardData] = useState<ItemCardData | null>(null);
@@ -261,7 +262,14 @@ export const ItemCard: React.FC = () => {
         </div>
       </div>
 
-      <div className="empty__card">Place for card</div>
+      {/* <RecomendModels
+        title="You may also like"
+        getPhones={getRecommendedPhones}
+        onCart={onCart}
+        onFavourites={onFavourites}
+        itemsCart={itemsCart}
+        itemsFavourites={itemsFavourites}
+      /> */}
     </div>
   );
 };

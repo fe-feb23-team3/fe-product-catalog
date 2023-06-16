@@ -31,12 +31,17 @@
   &__photo {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    transform: scale(1.03);
 
-    transition: opacity 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
 
     &:hover {
-      opacity: 0.8;
+      transform: scale(1.1);
+    }
+
+    &-wrapper {
+      overflow: hidden;
+      border-radius: 8px;
     }
   }
 
