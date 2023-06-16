@@ -1,3 +1,4 @@
+@import './vars';
 @mixin onDesktop {
   @media (min-width: 1200px) {
     @content;
@@ -13,5 +14,34 @@
 @mixin onPhone {
   @media (max-width: 639px) {
     @content;
+  }
+}
+
+@mixin sliderArrows {
+  position: absolute;
+  top: 0;
+  display: none;
+  width: 32px;
+  height: 100%;
+  border: 1px solid $arrow-color;
+  border-radius: 48px;
+  transition: border $transition-time ease-in-out, transform $transition-time ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid $primary-color;
+    transform: scale(1.01);
+  }
+
+  @include onDesktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include onTablet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

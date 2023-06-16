@@ -16,6 +16,7 @@ interface Props {
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;
+  phonesCount: number;
 }
 
 export const PhoneCatalog: React.FC<Props> = ({
@@ -23,6 +24,7 @@ export const PhoneCatalog: React.FC<Props> = ({
   itemsFavourites,
   onCart,
   onFavourites,
+  phonesCount,
 }) => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -74,7 +76,7 @@ export const PhoneCatalog: React.FC<Props> = ({
 
       <h1 className="catalog__title">Mobile phones</h1>
 
-      <div className="catalog__item-count">{`${phones.length} models`}</div>
+      <div className="catalog__item-count">{`${phonesCount} models`}</div>
 
       <div className="catalog__sorting grid">
         <div

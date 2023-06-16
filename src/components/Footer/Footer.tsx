@@ -17,15 +17,17 @@ export const Footer: React.FC = () => {
         </NavLink>
 
         <div className="footer__links">
-          <a href="https://w.forfun.com/fetch/92/9229ddab9983ab6b4082bbc7f25f58f9.jpeg" className="footer__link">
+          <NavLink to="https://github.com/fe-feb23-team3" target="_blank" className="footer__link">
             github
-          </a>
-          <a href="https://w.forfun.com/fetch/b0/b0ebdaa1402892e90d28fad4e3190d22.jpeg" className="footer__link">
+          </NavLink>
+
+          <NavLink to="https://w.forfun.com/fetch/b0/b0ebdaa1402892e90d28fad4e3190d22.jpeg" target="_blank" className="footer__link">
             contacts
-          </a>
-          <a href="https://w.forfun.com/fetch/e4/e46916f00da4bf755047f02b4560eb0c.jpeg" className="footer__link">
+          </NavLink>
+          
+          <NavLink to="https://w.forfun.com/fetch/e4/e46916f00da4bf755047f02b4560eb0c.jpeg" target="_blank" className="footer__link"
             rights
-          </a>
+          </NavLink>
         </div>
 
         <div className="footer__button">
