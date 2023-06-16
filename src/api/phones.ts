@@ -14,8 +14,8 @@ export const getFilteredPhones = (searchParams: string) => {
 };
 
 export const getNewestPhones = () => client.get<PhoneData[]>('/products/phones/newest');
-export const getByDiscount = () => client.get<PhoneData[]>('/products/phones/discount');
-export const getRecomended = (id: string) => client.get<PhoneData[]>(`/phoneCardData/${id}/recomended`);
+export const getByDiscountPhones = () => client.get<PhoneData[]>('/products/phones/discount');
+export const getRecommendedPhones = (id: string) => client.get<PhoneData[]>(`/products/phones/${id}/recommended`);
 
 export const getItemCardDataById = (id: string) => client.get<ItemCardData>(`/phoneCardData/${id}`);
 

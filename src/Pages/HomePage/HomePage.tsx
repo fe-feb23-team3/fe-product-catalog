@@ -1,16 +1,18 @@
 import React from 'react';
 import { PageTitle } from '../../components/PageTitle';
 import { ShopByCategory } from '../../components/ShopByCategory';
-import { getNewestPhones, getByDiscount } from '../../api/phones';
+import { getNewestPhones, getByDiscountPhones } from '../../api/phones';
 
 import './HomePage.scss';
 import { RecomendModels } from '../../components/RecomendModels';
+import { Slider } from '../../components/Slider';
 
 interface Props {
   itemsCart: string[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;
+  phonesCount: number;
 }
 
 export const HomePage: React.FC<Props> = ({
@@ -18,12 +20,15 @@ export const HomePage: React.FC<Props> = ({
   itemsFavourites,
   onCart,
   onFavourites,
+  phonesCount,
 }) => {
   const homePageTitle = 'Welcome to Nice Gadgets store!';
 
   return (
     <div className="home-page">
       <PageTitle title={homePageTitle} />
+
+      <Slider />
 
       <RecomendModels
         title="Brand new models"
@@ -36,14 +41,14 @@ export const HomePage: React.FC<Props> = ({
       />
 
       <ShopByCategory
-        totalOfPhones={72}
-        totalOfTablets={100500}
-        totalOfAccessories={500100}
+        totalOfPhones={phonesCount}
+        totalOfTablets={24}
+        totalOfAccessories={100}
       />
 
       <RecomendModels
-        title="Hoot prices"
-        getPhones={getByDiscount}
+        title="Hot prices"
+        getPhones={getByDiscountPhones}
         onCart={onCart}
         onFavourites={onFavourites}
         itemsCart={itemsCart}
