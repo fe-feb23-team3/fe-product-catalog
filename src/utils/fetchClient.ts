@@ -35,7 +35,10 @@ function request<T>(
         throw new Error();
       }
 
-      return response.json();
+      return response.text();
+    })
+    .then(text => {
+      return text ? JSON.parse(text) : null;
     });
 }
 

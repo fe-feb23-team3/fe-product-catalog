@@ -25,7 +25,9 @@ export const App: React.FC = () => {
   const loadPhones = async () => {
     const phones = await getPhones();
 
-    setPhonesLength(phones.length);
+    if (phones) {
+      setPhonesLength(phones.length);
+    }
   };
 
   const handleAddToCart = useCallback(

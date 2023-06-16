@@ -6,13 +6,11 @@ import './ItemCard.scss';
 import { PhoneColors } from '../../types/PhoneColors';
 import home from '../images/home.svg';
 import arrowGreyRight from '../images/arrow_grey_right.svg';
-import arrowGreyLeft from '../images/arrow_grey_left.svg';
 import arrowBlackLeft from '../images/Stroke.svg';
-import arrowBlackRight from '../images/arrow_black_right.svg';
 import favourites from '../images/favourites.svg';
-import { getItemCardDataById, getRecommendedPhones } from '../../api/phones';
+import { getItemCardDataById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
-import { RecomendModels } from '../RecomendModels';
+import { RecomendModelsForItemCard } from '../RecomendModelsForItemCard';
 
 interface Props {
   itemsCart: string[];
@@ -38,20 +36,6 @@ export const ItemCard: React.FC<Props> = ({
 
     setCardData(desiredPhone);
   };
-
-  const getRecommendedPhonesOnItemCard = async () => {
-    console.log('cardData1', cardData);
-    if (cardData) {
-      console.log('cardData3', cardData);
-      const recommendedPhones = await getRecommendedPhones(cardData.id);
-
-      return recommendedPhones;
-    }
-
-    return [];
-  };
-
-  console.log('cardData2', cardData);
 
   useEffect(() => {
     loadPhoneData();
@@ -263,34 +247,16 @@ export const ItemCard: React.FC<Props> = ({
         </div>
       </div>
 
-      <div className="recomended">
-        <div className="recomended__container">
-          <h2 className="recomended__title">You may also like</h2>
-
-          <div className="arrow">
-            <img
-              src={arrowGreyLeft}
-              alt="arrow left"
-              className="arrow-icon arrow-icon--grey"
-            />
-
-            <img
-              src={arrowBlackRight}
-              alt="arrow right"
-              className="arrow-icon arrow-icon--black"
-            />
-          </div>
-        </div>
-      </div>
-
-      <RecomendModels
-        title="You may also like"
-        getPhones={getRecommendedPhonesOnItemCard}
-        onCart={onCart}
-        onFavourites={onFavourites}
-        itemsCart={itemsCart}
-        itemsFavourites={itemsFavourites}
-      />
+      {cardData && (
+        <RecomendModelsForItemCard
+          id={cardData.id}
+          title="You may also like"
+          onCart={onCart}
+          onFavourites={onFavourites}
+          itemsCart={itemsCart}
+          itemsFavourites={itemsFavourites}
+        />
+      )}
     </div>
   );
 };
