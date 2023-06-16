@@ -135,7 +135,15 @@ export const App: React.FC = () => {
               </Route>
 
               <Route path="/menu">
-                <Route index element={<Menu />} />
+                <Route
+                  index
+                  element={(
+                    <Menu
+                      itemsCount={itemsCount}
+                      itemsFavourites={itemsFavourites}
+                    />
+                  )}
+                />
               </Route>
 
               <Route path="*" element={<NotFoundPage />} />

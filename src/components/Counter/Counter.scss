@@ -6,14 +6,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 18px;
-    left: 32px;
     width: 14px;
     height: 14px;
     display: flex;
     border: solid 1px #fff;
     border-radius: 50%;
     background-color: $secondary-accent-color;
+
+    @include onTablet {
+      top: 18px;
+      left: 32px;
+    }
+    
+    @include onDesktop {
+      top: 18px;
+      left: 32px;
+    }
   }
 
   &__count {

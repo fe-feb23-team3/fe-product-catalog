@@ -28,7 +28,7 @@ export const ItemCard: React.FC = () => {
   const [cardData, setCardData] = useState<ItemCardData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [mainImage, setMainImage] = useState(0);
-  const [selectedCapacity, setSelectedCapacity] = useState(cardData?.capacity);
+  const [selectedOption, setSelectedOption] = useState(cardData?.capacity);
 
   const navigate = useNavigate();
 
@@ -51,14 +51,14 @@ export const ItemCard: React.FC = () => {
     chosenColor: string,
   ) => {
     if (chosenColor) {
-      setSelectedCapacity(chosenCapacity);
+      setSelectedOption(chosenColor);
       const urlWithColor = `/phoneCardData/${cardData?.namespaceId}-${chosenCapacity}-${chosenColor}`;
 
       navigate(urlWithColor);
     }
 
     if (chosenCapacity) {
-      setSelectedCapacity(chosenCapacity);
+      setSelectedOption(chosenCapacity);
       const urlWithCapacity = `/phoneCardData/${cardData?.namespaceId}-${chosenCapacity}-${chosenColor}`;
 
       navigate(urlWithCapacity);

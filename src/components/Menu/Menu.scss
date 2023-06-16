@@ -1,5 +1,5 @@
 .menu {
-  height: 100vh;
+  height: 93vh;
   overflow-y: auto;
 
   display: flex;
@@ -7,6 +7,14 @@
   justify-content: space-between;
 
   overflow: hidden;
+
+  &__container {
+    min-height: 100%;
+    flex-direction: column;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+  }
 
   &-list {
     display: flex;
