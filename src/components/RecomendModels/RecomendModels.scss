@@ -8,6 +8,14 @@
     gap: 16px;
     overflow: hidden;
     overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+
+      &-thumb {
+        background-color: transparent;
+      }
+    }
   }
 
   &__title {

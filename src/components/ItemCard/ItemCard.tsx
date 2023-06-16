@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import './ItemCard.scss';
 import { PhoneColors } from '../../types/PhoneColors';
@@ -11,17 +12,26 @@ import arrowBlackRight from '../images/arrow_black_right.svg';
 import favourites from '../images/favourites.svg';
 import { getItemCardDataById, getRecommendedPhones } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
-// import { RecomendModels } from '../RecomendModels';
+import { RecomendModels } from '../RecomendModels';
 
-export const ItemCard: React.FC = () => {
+interface Props {
+  itemsCart: string[];
+  itemsFavourites: string[];
+  onCart: (productId: string) => void;
+  onFavourites: (productId: string) => void;
+}
+
+export const ItemCard: React.FC<Props> = ({
+  onCart,
+  onFavourites,
+  itemsCart,
+  itemsFavourites,
+}) => {
   const [cardData, setCardData] = useState<ItemCardData | null>(null);
 
   const url = window.location.hash;
   const splitedUrl = url.split('/');
   const itemName = splitedUrl[2];
-
-  // eslint-disable-next-line no-console
-  console.log(itemName);
 
   const loadPhoneData = async () => {
     const desiredPhone = await getItemCardDataById(itemName);
@@ -29,8 +39,19 @@ export const ItemCard: React.FC = () => {
     setCardData(desiredPhone);
   };
 
-  // eslint-disable-next-line no-console
-  console.log(cardData);
+  const getRecommendedPhonesOnItemCard = async () => {
+    console.log('cardData1', cardData);
+    if (cardData) {
+      console.log('cardData3', cardData);
+      const recommendedPhones = await getRecommendedPhones(cardData.id);
+
+      return recommendedPhones;
+    }
+
+    return [];
+  };
+
+  console.log('cardData2', cardData);
 
   useEffect(() => {
     loadPhoneData();
@@ -262,14 +283,14 @@ export const ItemCard: React.FC = () => {
         </div>
       </div>
 
-      {/* <RecomendModels
+      <RecomendModels
         title="You may also like"
-        getPhones={getRecommendedPhones}
+        getPhones={getRecommendedPhonesOnItemCard}
         onCart={onCart}
         onFavourites={onFavourites}
         itemsCart={itemsCart}
         itemsFavourites={itemsFavourites}
-      /> */}
+      />
     </div>
   );
 };

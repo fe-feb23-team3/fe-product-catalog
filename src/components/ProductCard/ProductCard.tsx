@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { PhoneData } from '../../types/phoneData';
@@ -17,28 +17,42 @@ export const ProductCard: React.FC<Props> = ({
   phone,
   itemsCart,
   itemsFavourites,
-  onCart: handleAddToCart,
-  onFavourites: handleAddToFavourites,
+  onCart,
+  onFavourites,
 }) => {
   const {
     id, name, screen, capacity, ram, fullPrice, price, itemId,
   } = phone;
 
+  const handleAddToCart = useCallback(
+    (event) => {
+      event.preventDefault();
+      onCart(id);
+    },
+    [id, onCart],
+  );
+
+  const handleAddToFavourites = useCallback(
+    (event) => {
+      event.preventDefault();
+      onFavourites(id);
+    },
+    [id, onFavourites],
+  );
+
   return (
-    <div className="card">
+    <NavLink to={`/phoneCardData/${itemId}`} className="item__card__link card">
       <div className="card__container">
         <div className="card__top-wrapper">
-          <NavLink to={`/phoneCardData/${itemId}`} className="item__card__link">
-            <div className="image__wrapper">
-              <img
-                src={`https://be-product-catalog.onrender.com/products/phones/${id}/image`}
-                alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
-                className="card__photo"
-              />
-            </div>
+          <div className="image__wrapper">
+            <img
+              src={`https://be-product-catalog.onrender.com/products/phones/${id}/image`}
+              alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+              className="card__photo"
+            />
+          </div>
 
-            <h2 className="card__title">{name}</h2>
-          </NavLink>
+          <h2 className="card__title">{name}</h2>
         </div>
 
         <div className="card__bottom-wrapper">
@@ -70,7 +84,7 @@ export const ProductCard: React.FC<Props> = ({
             <div className="card__buttons">
               <button
                 type="button"
-                onClick={() => handleAddToCart(id)}
+                onClick={handleAddToCart}
                 className={classNames('card__buttons-addToCart', {
                   'card__buttons-addToCart-checked': itemsCart.includes(id),
                 })}
@@ -80,7 +94,7 @@ export const ProductCard: React.FC<Props> = ({
 
               <button
                 type="button"
-                onClick={() => handleAddToFavourites(id)}
+                onClick={handleAddToFavourites}
                 className={classNames('card__buttons-AddToFavourites', {
                   'card__buttons-AddToFavourites-default':
                     !itemsFavourites.includes(id),
@@ -93,7 +107,8 @@ export const ProductCard: React.FC<Props> = ({
           </div>
         </div>
       </div>
-    </div>
+    </NavLink>
+
   );
 };
 
