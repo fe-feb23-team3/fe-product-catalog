@@ -1,8 +1,9 @@
 @import '../../App.scss';
+
 .path {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 
   margin-top: 24px;
 
@@ -198,6 +199,10 @@
       &:hover {
         box-shadow: 0px 0px 0px 1px #B4BDC3;
       }
+
+      &--active {
+        box-shadow: 0px 0px 0px 1px black;
+      }
     }
 
     &-container {
@@ -219,9 +224,16 @@
     align-items: center;
   }
 
+  &__link {
+    text-decoration: none;
+    color: #0F0F11;
+  }
+
   &__button {
     margin: 8px 8px 0 0;
     padding: 4px 8px;
+
+    text-decoration: none;
 
     border: 1px solid #B4BDC3;
     border-radius: 4px;
@@ -229,6 +241,11 @@
     &:hover {
       cursor: pointer;
       border: 1px solid #0F0F11;
+    }
+
+    &--active {
+      color: #fff;
+      background-color: #0F0F11;
     }
   }
 }
