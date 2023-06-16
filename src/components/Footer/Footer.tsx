@@ -24,8 +24,8 @@ export const Footer: React.FC = () => {
           <NavLink to="https://w.forfun.com/fetch/b0/b0ebdaa1402892e90d28fad4e3190d22.jpeg" target="_blank" className="footer__link">
             contacts
           </NavLink>
-          
-          <NavLink to="https://w.forfun.com/fetch/e4/e46916f00da4bf755047f02b4560eb0c.jpeg" target="_blank" className="footer__link"
+
+          <NavLink to="https://w.forfun.com/fetch/e4/e46916f00da4bf755047f02b4560eb0c.jpeg" target="_blank" className="footer__link">
             rights
           </NavLink>
         </div>
