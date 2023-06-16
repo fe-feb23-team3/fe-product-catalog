@@ -9,7 +9,7 @@ import { getPhoneById } from '../../api/phones';
 import { Loader } from '../Loader';
 
 interface Props {
-  itemsCart: string[];
+  itemsCart: {id: string, count: number}[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;

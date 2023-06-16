@@ -9,15 +9,19 @@ import { CartIsEmpty } from './CartIsEmpty/CartIsEmpty';
 import { ModalOfCart } from './ModalOfCart/ModalOfCart';
 
 interface Props {
-  itemsCart: string[];
+  itemsCart: {id: string, count: number}[],
   onCart: (productId: string) => void;
-  onCount: (length: number) => void;
+  onClear: () => void;
+  onCountChange: (id: string, plusOrMinus: boolean) => void;
 }
 
-export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
-  const [selectedPhones, setSelectedPhones] = useState<PhoneData[]>([]);
-  const [additionalPhones, setAdditionalPhones] = useState<PhoneData[]>([]);
-  const [totalPhones, setTotalPhones] = useState<PhoneData[]>([]);
+export const Cart: React.FC<Props> = ({
+  itemsCart,
+  onCart,
+  onClear,
+  onCountChange,
+}) => {
+  const [products, setProducts] = useState<PhoneData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -29,62 +33,30 @@ export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
     setOpenModal(false);
   };
 
-  const handleAddAdditionalPhones = (phone: PhoneData) => {
-    setAdditionalPhones(() => [...additionalPhones, phone]);
-  };
-
-  const handleDeleteAdditionalPhones = (phone: PhoneData) => {
-    let hasFirstItem = false;
-
-    const filteredPhones = additionalPhones.filter(({ id }) => {
-      if (id === phone.id && !hasFirstItem) {
-        hasFirstItem = true;
-
-        return false;
-      }
-
-      return true;
-    });
-
-    setAdditionalPhones(filteredPhones);
-  };
-
-  const handleDeleteAllAdditionalPhones = (phone: PhoneData) => {
-    const filteredPhones = additionalPhones.filter(({ id }) => id !== phone.id);
-
-    setAdditionalPhones(filteredPhones);
-  };
-
-  useEffect(() => {
-    setTotalPhones(() => [...additionalPhones, ...selectedPhones]);
-  }, [additionalPhones, selectedPhones]);
-
-  useEffect(() => {
-    onCount(additionalPhones.length);
-  }, [additionalPhones]);
-
-  const handleRemovePhone = (id: string) => {
-    const filteredPhones = selectedPhones.filter((phone) => phone.id !== id);
-
-    setSelectedPhones(filteredPhones);
-  };
-
   const loadPhones = async () => {
     if (itemsCart.length) {
       setIsLoading(true);
     }
 
-    itemsCart.forEach(async (itemId) => {
-      const phoneFromServer = await getPhoneById(itemId);
+    itemsCart.forEach(async (item) => {
+      const productFromServer = await getPhoneById(item.id);
 
       setIsLoading(false);
-      setSelectedPhones((phone) => [...phone, phoneFromServer]);
+      setProducts((currentProducts) => [...currentProducts, productFromServer]);
     });
   };
 
   useEffect(() => {
     loadPhones();
   }, []);
+
+  useEffect(() => {
+    const productsFiltered = products.filter(product => {
+      return itemsCart.some((item) => item.id === product.id);
+    });
+
+    setProducts(productsFiltered);
+  }, [itemsCart]);
 
   return (
     <div className="cart-Page">
@@ -110,17 +82,15 @@ export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
           <>
             {isLoading && <Loader isLoading={isLoading} />}
 
-            {!totalPhones.length && !isLoading && <CartIsEmpty />}
+            {!products.length && !isLoading && <CartIsEmpty />}
 
-            {selectedPhones.map((phone) => (
+            {products.map((product) => (
               <CardOfCart
-                phone={phone}
-                onRemove={handleRemovePhone}
-                onAdd={handleAddAdditionalPhones}
-                onDelete={handleDeleteAdditionalPhones}
-                onDeleteAll={handleDeleteAllAdditionalPhones}
+                itemsCart={itemsCart}
+                product={product}
                 onCart={onCart}
-                key={phone.id}
+                onCountChange={onCountChange}
+                key={product.id}
               />
             ))}
           </>
@@ -132,11 +102,17 @@ export const Cart: React.FC<Props> = ({ itemsCart, onCart, onCount }) => {
             grid__item--desktop-17-24
           "
         >
-          <CardOfTotalPrice phones={totalPhones} openModal={handleOpenModal} />
+          <CardOfTotalPrice
+            itemsCart={itemsCart}
+            products={products}
+            openModal={handleOpenModal}
+          />
         </div>
       </div>
 
-      {openModal && <ModalOfCart closeModal={handleCloseModal} />}
+      {openModal && (
+        <ModalOfCart closeModal={handleCloseModal} onClear={onClear} />
+      )}
     </div>
   );
 };
