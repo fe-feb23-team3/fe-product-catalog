@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './ItemCard.scss';
 import { PhoneColors } from '../../types/PhoneColors';
@@ -15,6 +17,7 @@ import { ItemCardData } from '../../types/itemCardData';
 
 export const ItemCard: React.FC = () => {
   const [cardData, setCardData] = useState<ItemCardData | null>(null);
+  const [mainImage, setMainImage] = useState(0);
 
   const url = window.location.hash;
   const splitedUrl = url.split('/');
@@ -26,10 +29,7 @@ export const ItemCard: React.FC = () => {
     setCardData(desiredPhone);
   };
 
-  const imagesArray = cardData?.images;
-
-  // eslint-disable-next-line no-console
-  console.log(imagesArray);
+  const handleSelectImage = useCallback((imageIndex: number) => setMainImage(imageIndex), []);
 
   useEffect(() => {
     loadPhoneData();
@@ -77,7 +77,7 @@ export const ItemCard: React.FC = () => {
           >
             <div className="phone__photo">
               <img
-                src="https://be-product-catalog.onrender.com/products/phones/7/image"
+                src={`https://be-product-catalog.onrender.com/phoneCardData/${cardData?.id}/images/${mainImage}`}
                 alt="phone"
                 className="phone__photo--main"
               />
@@ -91,9 +91,13 @@ export const ItemCard: React.FC = () => {
             grid__item--phone-1-4"
           >
             {cardData?.images.map(image => (
-              <div key={image} className="phone__photo-container">
+              <div
+                key={image}
+                className="phone__photo-container"
+                onClick={() => handleSelectImage(cardData?.images.indexOf(image))}
+              >
                 <img
-                  src={`https://be-product-catalog.onrender.com/phoneCardData/${cardData?.id}/images/${image}`}
+                  src={`https://be-product-catalog.onrender.com/phoneCardData/${cardData?.id}/images/${cardData?.images.indexOf(image)}`}
                   alt=""
                   className="phone__photo--small"
                 />
