@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import './ItemCard.scss';
 import { PhoneColors } from '../../types/PhoneColors';
 import home from '../images/home.svg';
@@ -15,13 +17,11 @@ import { ItemCardData } from '../../types/itemCardData';
 
 export const ItemCard: React.FC = () => {
   const [cardData, setCardData] = useState<ItemCardData | null>(null);
+  const [mainImage, setMainImage] = useState(0);
 
   const url = window.location.hash;
   const splitedUrl = url.split('/');
   const itemName = splitedUrl[2];
-
-  // eslint-disable-next-line no-console
-  console.log(itemName);
 
   const loadPhoneData = async () => {
     const desiredPhone = await getItemCardDataById(itemName);
@@ -29,8 +29,7 @@ export const ItemCard: React.FC = () => {
     setCardData(desiredPhone);
   };
 
-  // eslint-disable-next-line no-console
-  console.log(cardData);
+  const handleSelectImage = useCallback((imageIndex: number) => setMainImage(imageIndex), []);
 
   useEffect(() => {
     loadPhoneData();
@@ -78,7 +77,7 @@ export const ItemCard: React.FC = () => {
           >
             <div className="phone__photo">
               <img
-                src="https://be-product-catalog.onrender.com/products/phones/8/image"
+                src={`https://be-product-catalog.onrender.com/phoneCardData/${cardData?.id}/images/${mainImage}`}
                 alt="phone"
                 className="phone__photo--main"
               />
@@ -91,13 +90,19 @@ export const ItemCard: React.FC = () => {
             grid__item--tablet-1-2
             grid__item--phone-1-4"
           >
-            <div className="phone__photo-container">
-              <div className="phone__photo--small"></div>
-              <div className="phone__photo--small"></div>
-              <div className="phone__photo--small"></div>
-              <div className="phone__photo--small"></div>
-              <div className="phone__photo--small"></div>
-            </div>
+            {cardData?.images.map(image => (
+              <div
+                key={image}
+                className="phone__photo-container"
+                onClick={() => handleSelectImage(cardData?.images.indexOf(image))}
+              >
+                <img
+                  src={`https://be-product-catalog.onrender.com/phoneCardData/${cardData?.id}/images/${cardData?.images.indexOf(image)}`}
+                  alt=""
+                  className="phone__photo--small"
+                />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -115,18 +120,19 @@ export const ItemCard: React.FC = () => {
               </div>
 
               <div className="colors__circle-container">
-                {cardData?.colorsAvailable.map(color => {
-                  const backgroundColor = PhoneColors;
-
-                  return (
-                    <div key={color} className="colors__circle">
+                {cardData?.colorsAvailable.map(color => (
+                  <Link
+                    to={`/phoneCardData/${cardData?.namespaceId}-${cardData?.capacity.toLowerCase()}-${color}`}
+                    key={color}
+                  >
+                    <div className="colors__circle">
                       <div
                         className="colors__circle-item"
                         style={{ backgroundColor: PhoneColors[color as keyof typeof PhoneColors] }}
                       />
                     </div>
-                  );
-                })}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -135,9 +141,11 @@ export const ItemCard: React.FC = () => {
             <p>Select capacity</p>
             <div className="capacity__container">
               {cardData?.capacityAvailable.map((capacity) => (
-                <div className="capacity__button" key={cardData?.id}>
-                  {capacity}
-                </div>
+                <Link to={`/phoneCardData/${cardData?.namespaceId}-${capacity.toLowerCase()}-${cardData?.color}`} key={cardData?.id}>
+                  <div className="capacity__button">
+                    {capacity}
+                  </div>
+                </Link>
               ))}
             </div>
           </div>

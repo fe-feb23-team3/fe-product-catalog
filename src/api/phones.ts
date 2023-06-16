@@ -18,3 +18,5 @@ export const getByDiscountPhones = () => client.get<PhoneData[]>('/products/phon
 export const getRecommendedPhones = (id: string) => client.get<PhoneData[]>(`/products/phones/${id}/recommended`);
 
 export const getItemCardDataById = (id: string) => client.get<ItemCardData>(`/phoneCardData/${id}`);
+
+export const getImagesById = (id: string) => client.get<ItemCardData>(`/phoneCardData/${id}/images`);
