@@ -13,11 +13,12 @@ import { NotFoundPage } from './Pages/NotFoundPage';
 import { Menu } from './components/Menu';
 import { ItemCard } from './components/ItemCard';
 import { getPhones } from './api/phones';
+import { useLocalStorage } from './utils/useLocalStorage';
 
 export const App: React.FC = () => {
   const [countAdditionalCart, setCountAdditionalCart] = useState(0);
   const [itemsCart, setItemsCart] = useState<string[]>([]);
-  const [itemsFavourites, setItemsFavourites] = useState<string[]>([]);
+  const [itemsFavourites, setItemsFavourites] = useLocalStorage<string[]>('idsFavourites', []);
   const [phonesLength, setPhonesLength] = useState(0);
 
   const itemsCount = countAdditionalCart + itemsCart.length;
@@ -41,20 +42,18 @@ export const App: React.FC = () => {
     [itemsCart],
   );
 
-  const handleAddToFavourites = useCallback(
-    (productId) => {
-      if (itemsFavourites.includes(productId)) {
-        setItemsFavourites(
-          itemsFavourites.filter((item) => item !== productId),
-        );
+  const handleAddToFavourites = useCallback((productId) => {
+    if (itemsFavourites.includes(productId)) {
+      const filteredItemsFavourites = itemsFavourites.filter((item) => item !== productId);
 
-        return;
-      }
+      setItemsFavourites(filteredItemsFavourites);
 
-      setItemsFavourites((currentId) => [...currentId, productId]);
-    },
-    [itemsFavourites],
-  );
+      return;
+    }
+
+    setItemsFavourites((currentId) => [...currentId, productId]);
+  },
+  [itemsFavourites]);
 
   useEffect(() => {
     loadPhones();
