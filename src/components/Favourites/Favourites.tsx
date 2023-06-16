@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { PhoneData } from '../../types/phoneData';
 import { ProductCard } from '../ProductCard';
-
 import './Favourites.scss';
 import home from '../images/home.svg';
 import arrowRight from '../images/arrow_right.svg';
@@ -38,6 +37,19 @@ export const Favourites: React.FC<Props> = ({
     });
   };
 
+  const handleOnFavourites = useCallback((productId) => {
+    const findPhoneById = phones.some((item) => item.id === productId);
+
+    if (findPhoneById) {
+      const filteredPhones = phones.filter((phone) => phone.id !== productId);
+
+      setPhones(filteredPhones);
+    }
+
+    onFavourites(productId);
+  },
+  [phones]);
+
   useEffect(() => {
     loadPhones();
   }, []);
@@ -67,7 +79,7 @@ export const Favourites: React.FC<Props> = ({
               itemsCart={itemsCart}
               onCart={onCart}
               itemsFavourites={itemsFavourites}
-              onFavourites={onFavourites}
+              onFavourites={handleOnFavourites}
             />
           ))}
       </div>
