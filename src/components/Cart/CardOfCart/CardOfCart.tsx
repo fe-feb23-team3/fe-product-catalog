@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { PhoneData } from '../../../types/phoneData';
 import './CardOfCart.scss';
@@ -7,34 +7,41 @@ import { ReactComponent as Plus } from '../../images/Plus.svg';
 import { ReactComponent as Close } from '../../images/Close.svg';
 
 interface Props {
-  phone: PhoneData;
-  onRemove: (id: string) => void;
-  onAdd: (phone: PhoneData) => void;
-  onDelete: (phone: PhoneData) => void;
-  onDeleteAll: (phone: PhoneData) => void;
+  itemsCart: {id: string, count: number}[],
+  product: PhoneData;
   onCart: (productId: string) => void;
+  onCountChange: (id: string, plusOrMinus: boolean) => void;
 }
 
 export const CardOfCart: React.FC<Props> = ({
-  phone,
-  onRemove,
-  onAdd,
-  onDelete,
-  onDeleteAll,
+  itemsCart,
+  product,
   onCart,
+  onCountChange,
 }) => {
-  const { name, id, price } = phone;
+  const { name, id, price } = product;
   const [amount, setAmount] = useState(1);
 
+  useEffect(() => {
+    const indexItem = itemsCart.findIndex(item => item.id === id);
+    const countOfItem = itemsCart[indexItem].count;
+
+    setAmount(countOfItem);
+  }, []);
+
   const handleAddAmount = () => {
-    setAmount(() => amount + 1);
-    onAdd(phone);
+    const value = amount + 1;
+
+    setAmount(() => value);
+    onCountChange(id, true);
   };
 
   const handleSubtractAmount = () => {
     if (amount > 1) {
-      setAmount(() => amount - 1);
-      onDelete(phone);
+      const value = amount - 1;
+
+      setAmount(() => value);
+      onCountChange(id, false);
     }
   };
 
@@ -45,8 +52,6 @@ export const CardOfCart: React.FC<Props> = ({
           type="button"
           className="cardOfCart__close"
           onClick={() => {
-            onRemove(id);
-            onDeleteAll(phone);
             onCart(id);
           }}
         >

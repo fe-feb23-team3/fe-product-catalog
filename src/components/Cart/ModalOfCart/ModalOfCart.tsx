@@ -5,9 +5,10 @@ import { ReactComponent as Close } from '../../images/Close.svg';
 
 interface Props {
   closeModal: () => void;
+  onClear: () => void;
 }
 
-export const ModalOfCart: React.FC<Props> = ({ closeModal }) => {
+export const ModalOfCart: React.FC<Props> = ({ closeModal, onClear }) => {
   return (
     <div className="modal">
       <div className="modal__background">
@@ -44,7 +45,7 @@ export const ModalOfCart: React.FC<Props> = ({ closeModal }) => {
               <button
                 type="button"
                 className="modal__button"
-                onClick={closeModal}
+                onClick={onClear}
               >
                 Buy
               </button>
