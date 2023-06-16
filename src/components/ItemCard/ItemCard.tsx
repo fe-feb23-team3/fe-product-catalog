@@ -2,8 +2,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import {
+  Link,
+  NavLink,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 import './ItemCard.scss';
+import classNames from 'classnames';
 import { PhoneColors } from '../../types/PhoneColors';
 import home from '../images/home.svg';
 import arrowGreyRight from '../images/arrow_grey_right.svg';
@@ -17,9 +23,14 @@ import { Loader } from '../Loader';
 // import { RecomendModels } from '../RecomendModels';
 
 export const ItemCard: React.FC = () => {
+  const { pathname } = useLocation();
+
   const [cardData, setCardData] = useState<ItemCardData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [mainImage, setMainImage] = useState(0);
+  const [selectedCapacity, setSelectedCapacity] = useState(cardData?.capacity);
+
+  const navigate = useNavigate();
 
   const url = window.location.hash;
   const splitedUrl = url.split('/');
@@ -35,9 +46,28 @@ export const ItemCard: React.FC = () => {
 
   const handleSelectImage = useCallback((imageIndex: number) => setMainImage(imageIndex), []);
 
+  const handleSelectOptions = (
+    chosenCapacity: string,
+    chosenColor: string,
+  ) => {
+    if (chosenColor) {
+      setSelectedCapacity(chosenCapacity);
+      const urlWithColor = `/phoneCardData/${cardData?.namespaceId}-${chosenCapacity}-${chosenColor}`;
+
+      navigate(urlWithColor);
+    }
+
+    if (chosenCapacity) {
+      setSelectedCapacity(chosenCapacity);
+      const urlWithCapacity = `/phoneCardData/${cardData?.namespaceId}-${chosenCapacity}-${chosenColor}`;
+
+      navigate(urlWithCapacity);
+    }
+  };
+
   useEffect(() => {
     loadPhoneData();
-  }, []);
+  }, [pathname]);
 
   return (
     isLoading ? (
@@ -135,10 +165,15 @@ export const ItemCard: React.FC = () => {
                       >
                         <div className="colors__circle">
                           <div
-                            className="colors__circle-item"
+                            className={
+                              classNames('colors__circle-item', {
+                                'colors__circle-item--active': color === cardData.color,
+                              })
+                            }
                             style={{
                               backgroundColor: PhoneColors[color as keyof typeof PhoneColors],
                             }}
+                            onClick={() => handleSelectOptions('', color)}
                           />
                         </div>
                       </Link>
@@ -151,8 +186,19 @@ export const ItemCard: React.FC = () => {
                 <p>Select capacity</p>
                 <div className="capacity__container">
                   {cardData?.capacityAvailable.map((capacity) => (
-                    <Link to={`/phoneCardData/${cardData?.namespaceId}-${capacity.toLowerCase()}-${cardData?.color}`} key={cardData?.id}>
-                      <div className="capacity__button">
+                    <Link
+                      to={`/phoneCardData/${cardData?.namespaceId}-${capacity.toLowerCase()}-${cardData?.color}`}
+                      key={cardData?.id}
+                      className="capacity__link"
+                    >
+                      <div
+                        className={
+                          classNames('capacity__button', {
+                            'capacity__button--active': capacity === cardData.capacity,
+                          })
+                        }
+                        onClick={() => handleSelectOptions(capacity, '')}
+                      >
                         {capacity}
                       </div>
                     </Link>
