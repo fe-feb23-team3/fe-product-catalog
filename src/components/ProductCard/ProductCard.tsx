@@ -5,7 +5,7 @@ import { PhoneData } from '../../types/phoneData';
 
 interface Props {
   phone: PhoneData;
-  itemsCart: string[];
+  itemsCart: {id: string, count: number}[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;
@@ -59,15 +59,17 @@ export const ProductCard: React.FC<Props> = ({
           </div>
         </NavLink>
 
+        {/* [{id: 1, count: 1}, {id: 2, count: 1}, {id: 3, count: 1}] */}
+
         <div className="card__buttons">
           <button
             type="button"
             onClick={() => handleAddToCart(id)}
             className={classNames('card__buttons-addToCart', {
-              'card__buttons-addToCart-checked': itemsCart.includes(id),
+              'card__buttons-addToCart-checked': itemsCart.some((item) => item.id === id),
             })}
           >
-            {itemsCart.includes(id) ? 'Added to cart' : 'Add to cart'}
+            {itemsCart.some((item) => item.id === id) ? 'Added to cart' : 'Add to cart'}
           </button>
 
           <button

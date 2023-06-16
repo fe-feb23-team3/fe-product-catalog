@@ -12,7 +12,7 @@ import home from '../images/home.svg';
 import arrowRight from '../images/arrow_right.svg';
 
 interface Props {
-  itemsCart: string[];
+  itemsCart: {id: string, count: number}[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;

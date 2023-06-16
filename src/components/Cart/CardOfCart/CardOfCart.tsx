@@ -1,70 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { PhoneData } from '../../../types/phoneData';
 import './CardOfCart.scss';
 import { ReactComponent as Minus } from '../../images/Minus.svg';
 import { ReactComponent as Plus } from '../../images/Plus.svg';
 import { ReactComponent as Close } from '../../images/Close.svg';
-import { useLocalStorage } from '../../../utils/useLocalStorage';
 
 interface Props {
-  phone: PhoneData;
-  onRemove: (id: string) => void;
-  onAdd: (phone: PhoneData) => void;
-  onDelete: (phone: PhoneData) => void;
-  onDeleteAll: (phone: PhoneData) => void;
+  itemsCart: {id: string, count: number}[],
+  product: PhoneData;
   onCart: (productId: string) => void;
+  onCoutnChange: (id: string, plusOrMinus: boolean) => void;
 }
 
 export const CardOfCart: React.FC<Props> = ({
-  phone,
-  onRemove,
-  onAdd,
-  onDelete,
-  onDeleteAll,
+  itemsCart,
+  product,
   onCart,
+  onCoutnChange,
 }) => {
-  const { name, id, price } = phone;
+  const { name, id, price } = product;
   const [amount, setAmount] = useState(1);
 
-  const itemsAndAmounts = localStorage.getItem('itemsAndAmounts');
-  const [, setItemsAndAmounts] = useLocalStorage('itemsAndAmounts', {});
-
   useEffect(() => {
-    if (!itemsAndAmounts) {
-      return;
-    }
+    const indexItem = itemsCart.findIndex(item => item.id === id);
+    const countOfItem = itemsCart[indexItem].count;
 
-    const amountAddionals = JSON.parse(itemsAndAmounts);
-
-    if (amountAddionals[id] === undefined) {
-      return;
-    }
-
-    setAmount(amountAddionals[id]);
+    setAmount(countOfItem);
   }, []);
-
-  const updateLocalStorage = () => {
-    if (itemsAndAmounts) {
-      const amountAddionals = JSON.parse(itemsAndAmounts);
-
-      amountAddionals[id] = amount;
-
-      setItemsAndAmounts(() => amountAddionals);
-    } else {
-      setItemsAndAmounts({});
-    }
-  };
-
-  useEffect(() => {
-    updateLocalStorage();
-  }, [amount]);
 
   const handleAddAmount = () => {
     const value = amount + 1;
 
     setAmount(() => value);
-    onAdd(phone);
+    onCoutnChange(id, true);
   };
 
   const handleSubtractAmount = () => {
@@ -72,7 +41,7 @@ export const CardOfCart: React.FC<Props> = ({
       const value = amount - 1;
 
       setAmount(() => value);
-      onDelete(phone);
+      onCoutnChange(id, false);
     }
   };
 
@@ -83,8 +52,6 @@ export const CardOfCart: React.FC<Props> = ({
           type="button"
           className="cardOfCart__close"
           onClick={() => {
-            onRemove(id);
-            onDeleteAll(phone);
             onCart(id);
           }}
         >
@@ -117,9 +84,7 @@ export const CardOfCart: React.FC<Props> = ({
           <button
             type="button"
             className="counter__button counter__button--active"
-            onClick={() => {
-              handleAddAmount();
-            }}
+            onClick={handleAddAmount}
           >
             <Plus className="iconSvg" />
           </button>

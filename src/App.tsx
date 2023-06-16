@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useLocalStorage } from './utils/useLocalStorage';
 import './App.scss';
@@ -15,49 +15,41 @@ import { Menu } from './components/Menu';
 import { ItemCard } from './components/ItemCard';
 
 export const App: React.FC = () => {
-  const [itemsCart, setItemsCart] = useState<string[]>([]);
-  const [itemsCartLocalStorage, setItemsCartLocalStorage] = useLocalStorage('itemsCart', itemsCart);
-  const [, setItemsAndAmounts] = useLocalStorage('itemsAndAmounts', {});
-  const [countItemsOfCart, setCountItemsOfCart] = useLocalStorage('countItemsOfCart', 0);
-  const [itemsCount, setItemsCount] = useState(itemsCartLocalStorage.length);
+  const [itemsCart, setItemsCart] = useLocalStorage<{id: string, count: number}[]>('itemsCart', []);
 
-  const [itemsFavourites, setItemsFavourites] = useState<string[]>([]);
+  const allCountOfItemsInCart = itemsCart.map(item => +item.count).reduce((a, b) => a + b, 0);
 
-  useEffect(() => {
-    setItemsCart(itemsCartLocalStorage);
-  }, []);
+  const handleAddItemToCart = useCallback((productId) => {
+    if (itemsCart.some((item) => item.id === productId)) {
+      setItemsCart(itemsCart.filter((item) => item.id !== productId));
 
-  useEffect(() => {
-    if (itemsCart.length) {
-      setItemsCartLocalStorage(() => itemsCart);
+      return;
     }
 
-    if (countItemsOfCart) {
-      setItemsCount(Number(countItemsOfCart));
-    } else {
-      setItemsCount(itemsCart.length);
-    }
-  }, [itemsCart]);
-
-  const handleAddToCart = useCallback(
-    (productId) => {
-      if (itemsCart.includes(productId)) {
-        setItemsCart(itemsCart.filter((item) => item !== productId));
-
-        return;
-      }
-
-      setItemsCart((currentId) => [...currentId, productId]);
-    },
-    [itemsCart],
-  );
+    setItemsCart((currentId) => [...currentId, { id: productId, count: 1 }]);
+  },
+  [itemsCart]);
 
   const handleClearCart = () => {
     setItemsCart([]);
-    setItemsCartLocalStorage([]);
-    setItemsAndAmounts({});
-    setCountItemsOfCart(0);
   };
+
+  const handleChangeCountOfItemOfCart = (id: string, plusOrMinus: boolean) => {
+    const indexItem = itemsCart.findIndex(item => item.id === id);
+    const countOfItem = itemsCart[indexItem].count;
+
+    if (plusOrMinus) {
+      itemsCart[indexItem].count = countOfItem + 1;
+    } else {
+      itemsCart[indexItem].count = countOfItem - 1;
+    }
+
+    setItemsCart(itemsCart);
+  };
+
+  // -------------------------------------------------------------------------------
+
+  const [itemsFavourites, setItemsFavourites] = useLocalStorage<string[]>('idsFavourites', []);
 
   const handleAddToFavourites = useCallback(
     (productId) => {
@@ -77,7 +69,7 @@ export const App: React.FC = () => {
   return (
     <body className="body">
       <div className="wrapper">
-        <Header itemsCount={itemsCount} itemsFavourites={itemsFavourites} />
+        <Header itemsCount={allCountOfItemsInCart} itemsFavourites={itemsFavourites} />
 
         <main className="main">
           <div className="container">
@@ -89,7 +81,7 @@ export const App: React.FC = () => {
                   index
                   element={(
                     <PhoneCatalog
-                      onCart={handleAddToCart}
+                      onCart={handleAddItemToCart}
                       onFavourites={handleAddToFavourites}
                       itemsCart={itemsCart}
                       itemsFavourites={itemsFavourites}
@@ -115,8 +107,10 @@ export const App: React.FC = () => {
                   index
                   element={(
                     <Cart
-                      onCart={handleAddToCart}
+                      itemsCart={itemsCart}
+                      onCart={handleAddItemToCart}
                       onClear={handleClearCart}
+                      onCoutnChange={handleChangeCountOfItemOfCart}
                     />
                   )}
                 />
