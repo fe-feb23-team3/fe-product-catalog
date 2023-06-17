@@ -15,7 +15,7 @@ interface Props {
   id: string;
   title: string;
   showDiscount?: boolean;
-  itemsCart: string[];
+  itemsCart: {id: string, count: number}[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;
