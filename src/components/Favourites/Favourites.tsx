@@ -1,12 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { PhoneData } from '../../types/phoneData';
 import { ProductCard } from '../ProductCard';
 import './Favourites.scss';
-import home from '../images/home.svg';
-import arrowRight from '../images/arrow_right.svg';
 import { getPhoneById } from '../../api/phones';
 import { Loader } from '../Loader';
+import { Breadcrumbs } from '../Breadcrumbs';
 
 interface Props {
   itemsCart: {id: string, count: number}[];
@@ -23,6 +21,9 @@ export const Favourites: React.FC<Props> = ({
 }) => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const breadcrumbsPath = [
+    { text: 'Favourites', link: '' },
+  ];
 
   const loadPhones = async () => {
     if (itemsFavourites.length) {
@@ -56,13 +57,7 @@ export const Favourites: React.FC<Props> = ({
 
   return (
     <section className="catalog">
-      <div className="favourites__breadcrumbs">
-        <NavLink to="/" className="catalog__breadcrumbs-link">
-          <img src={home} alt="home" className="catalog__breadcrumbs-icon" />
-        </NavLink>
-        <img src={arrowRight} alt="home" />
-        <span className="catalog__breadcrumbs-text">Favourites</span>
-      </div>
+      <Breadcrumbs path={breadcrumbsPath} />
 
       <h1 className="catalog__title">Favourites</h1>
 

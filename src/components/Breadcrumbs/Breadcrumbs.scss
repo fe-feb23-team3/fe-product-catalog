@@ -1,0 +1,29 @@
+@import '../../App.scss';
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  
+
+  color: $primary-color;
+  @include small-text;
+
+  &__link{
+    &-home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+    }
+
+    &-active {
+      color: $primary-color;
+      text-decoration: none;
+    }
+
+    &-disabled {
+      color: $secondary-color;
+    }
+  }
+}
