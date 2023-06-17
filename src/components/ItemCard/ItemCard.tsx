@@ -10,6 +10,7 @@ import { v4 as uuid4 } from 'uuid';
 import './ItemCard.scss';
 import classNames from 'classnames';
 import { PhoneColors } from '../../types/PhoneColors';
+
 import favourites from '../images/favourites.svg';
 import { getItemCardDataById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
@@ -19,6 +20,7 @@ import { Breadcrumbs } from '../Breadcrumbs';
 import { Breadcrumb } from '../../types/breadcrumbs';
 import { BackLink } from '../BackLink';
 import { PageTitle } from '../PageTitle';
+
 
 interface Props {
   itemsCart: { id: string, count: number }[];
@@ -91,6 +93,7 @@ export const ItemCard: React.FC<Props> = ({
           <div className="item__card-title">
             <PageTitle title={cardData?.name} />
           </div>
+
 
           <div className="grid">
             <div
