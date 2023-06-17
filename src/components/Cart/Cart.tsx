@@ -7,9 +7,11 @@ import './Cart.scss';
 import { Loader } from '../Loader';
 import { CartIsEmpty } from './CartIsEmpty/CartIsEmpty';
 import { ModalOfCart } from './ModalOfCart/ModalOfCart';
+import { BackLink } from '../BackLink';
+import { PageTitle } from '../PageTitle';
 
 interface Props {
-  itemsCart: {id: string, count: number}[],
+  itemsCart: { id: string, count: number }[],
   onCart: (productId: string) => void;
   onClear: () => void;
   onCountChange: (id: string, plusOrMinus: boolean) => void;
@@ -60,14 +62,13 @@ export const Cart: React.FC<Props> = ({
 
   return (
     <div className="cart-Page">
-      <a href="#/home" className="cart-Page__back">
-        Back
-      </a>
+      <BackLink />
 
-      <h1 className="cart-Page__title">Cart</h1>
+      <div className="cart-Page__title">
+        <PageTitle title="Cart" />
+      </div>
 
-      <div
-        className="
+      <div className="
           cart-Page__content
           grid
           grid--desktop

@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   Link,
-  NavLink,
   useLocation,
   useNavigate,
 } from 'react-router-dom';
@@ -11,7 +10,7 @@ import { v4 as uuid4 } from 'uuid';
 import './ItemCard.scss';
 import classNames from 'classnames';
 import { PhoneColors } from '../../types/PhoneColors';
-import arrowBlackLeft from '../images/Stroke.svg';
+
 import favourites from '../images/favourites.svg';
 import { getItemCardDataById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
@@ -19,6 +18,9 @@ import { RecomendModelsForItemCard } from '../RecomendModelsForItemCard';
 import { Loader } from '../Loader';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { Breadcrumb } from '../../types/breadcrumbs';
+import { BackLink } from '../BackLink';
+import { PageTitle } from '../PageTitle';
+
 
 interface Props {
   itemsCart: { id: string, count: number }[];
@@ -86,18 +88,12 @@ export const ItemCard: React.FC<Props> = ({
       cardData && (
         <div className="item__card">
           <Breadcrumbs path={breadcrumbsPath} />
+          <BackLink />
 
-          <NavLink to="/" className="back__link">
-            <img
-              src={arrowBlackLeft}
-              alt="arrow left"
-              className="back__link-item"
-            />
+          <div className="item__card-title">
+            <PageTitle title={cardData?.name} />
+          </div>
 
-            <p className="back__link-name">Back</p>
-          </NavLink>
-
-          <h1 className="title">{cardData?.name}</h1>
 
           <div className="grid">
             <div
