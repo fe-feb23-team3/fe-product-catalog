@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { getFilteredPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
 import { Pagination } from '../../components/Pagination';
@@ -8,8 +7,7 @@ import { ProductCard } from '../../components/ProductCard';
 import { Loader } from '../../components/Loader';
 
 import './PhoneCatalog.scss';
-import home from '../../components/images/home.svg';
-import arrowRight from '../../components/images/arrow_right.svg';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 interface Props {
   itemsCart: {id: string, count: number}[];
@@ -32,6 +30,10 @@ export const PhoneCatalog: React.FC<Props> = ({
   const [sortBy, setSortBy] = useState('default');
   const [totalPages, setTotalPages] = useState(4);
   const [isLoading, setIsLoading] = useState(false);
+
+  const breadcrumbsPath = [
+    { text: 'Phones', link: '' },
+  ];
 
   const loadPhonesByPage = async (page: string) => {
     setIsLoading(true);
@@ -66,13 +68,7 @@ export const PhoneCatalog: React.FC<Props> = ({
 
   return (
     <section className="catalog">
-      <div className="catalog__breadcrumbs">
-        <NavLink to="/" className="catalog__breadcrumbs-link">
-          <img src={home} alt="home" className="catalog__breadcrumbs-icon" />
-        </NavLink>
-        <img src={arrowRight} alt="home" />
-        <span className="catalog__breadcrumbs-text">Phones</span>
-      </div>
+      <Breadcrumbs path={breadcrumbsPath} />
 
       <h1 className="catalog__title">Mobile phones</h1>
 

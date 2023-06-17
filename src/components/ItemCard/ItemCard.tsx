@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   Link,
@@ -8,20 +7,21 @@ import {
   useLocation,
   useNavigate,
 } from 'react-router-dom';
+import { v4 as uuid4 } from 'uuid';
 import './ItemCard.scss';
 import classNames from 'classnames';
 import { PhoneColors } from '../../types/PhoneColors';
-import home from '../images/home.svg';
-import arrowGreyRight from '../images/arrow_grey_right.svg';
 import arrowBlackLeft from '../images/Stroke.svg';
 import favourites from '../images/favourites.svg';
 import { getItemCardDataById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
 import { RecomendModelsForItemCard } from '../RecomendModelsForItemCard';
 import { Loader } from '../Loader';
+import { Breadcrumbs } from '../Breadcrumbs';
+import { Breadcrumb } from '../../types/breadcrumbs';
 
 interface Props {
-  itemsCart: {id: string, count: number}[];
+  itemsCart: { id: string, count: number }[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;
@@ -38,7 +38,7 @@ export const ItemCard: React.FC<Props> = ({
   const [cardData, setCardData] = useState<ItemCardData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [mainImage, setMainImage] = useState(0);
-  const [selectedCapacity, setSelectedCapacity] = useState(cardData?.capacity);
+  const [breadcrumbsPath, setBreadcrumbsPath] = useState<Breadcrumb[]>([]);
 
   const navigate = useNavigate();
 
@@ -49,7 +49,9 @@ export const ItemCard: React.FC<Props> = ({
   const loadPhoneData = async () => {
     setIsLoading(true);
     const desiredPhone = await getItemCardDataById(itemName);
+    const updatedBreadcrumbsPath = [{ text: 'Phones', link: '/phones' }, { text: desiredPhone.name, link: '' }];
 
+    setBreadcrumbsPath(updatedBreadcrumbsPath);
     setCardData(desiredPhone);
     setIsLoading(false);
   };
@@ -61,14 +63,12 @@ export const ItemCard: React.FC<Props> = ({
     chosenColor: string,
   ) => {
     if (chosenColor) {
-      setSelectedCapacity(chosenCapacity);
       const urlWithColor = `/phoneCardData/${cardData?.namespaceId}-${chosenCapacity}-${chosenColor}`;
 
       navigate(urlWithColor);
     }
 
     if (chosenCapacity) {
-      setSelectedCapacity(chosenCapacity);
       const urlWithCapacity = `/phoneCardData/${cardData?.namespaceId}-${chosenCapacity}-${chosenColor}`;
 
       navigate(urlWithCapacity);
@@ -85,17 +85,7 @@ export const ItemCard: React.FC<Props> = ({
     ) : (
       cardData && (
         <div className="item__card">
-          <div className="path">
-            <img src={home} alt="home" className="path__item" />
-
-            <img src={arrowGreyRight} alt="arrow right" className="path__item" />
-
-            <p className="path__item-text">Phones</p>
-
-            <img src={arrowGreyRight} alt="arrow right" className="path__item" />
-
-            <p className="path__item-text">{cardData?.name}</p>
-          </div>
+          <Breadcrumbs path={breadcrumbsPath} />
 
           <NavLink to="/" className="back__link">
             <img
@@ -140,7 +130,7 @@ export const ItemCard: React.FC<Props> = ({
               >
                 {cardData?.images.map(image => (
                   <div
-                    key={image}
+                    key={uuid4()}
                     className="phone__photo-container"
                     onClick={() => handleSelectImage(cardData?.images.indexOf(image))}
                   >

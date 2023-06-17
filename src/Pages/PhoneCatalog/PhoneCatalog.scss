@@ -55,17 +55,4 @@
   &__phones {
     margin-top: 24px;
   }
-
-  &__breadcrumbs {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    margin: 0;
-    width: 96px;
-    margin-top: 24px;
-    color: $secondary-color;
-    @include body-text;
-  }
 }

@@ -1,0 +1,11 @@
+@import '../../../App.scss';
+
+.breadcrumbsItem {
+  display: flex;
+  align-items: center;
+
+  &-icon {
+    margin: 0 8px;
+  }
+}
+ 
