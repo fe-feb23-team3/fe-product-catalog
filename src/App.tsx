@@ -25,7 +25,9 @@ export const App: React.FC = () => {
   const loadPhones = async () => {
     const phones = await getPhones();
 
-    setPhonesLength(phones.length);
+    if (phones) {
+      setPhonesLength(phones.length);
+    }
   };
 
   const handleAddItemToCart = useCallback((productId) => {
@@ -147,7 +149,17 @@ export const App: React.FC = () => {
               </Route>
 
               <Route path="/phoneCardData/:itemId">
-                <Route index element={<ItemCard />} />
+                <Route
+                  index
+                  element={(
+                    <ItemCard
+                      onCart={handleAddToCart}
+                      onFavourites={handleAddToFavourites}
+                      itemsCart={itemsCart}
+                      itemsFavourites={itemsFavourites}
+                    />
+                  )}
+                />
               </Route>
 
               <Route path="/menu">

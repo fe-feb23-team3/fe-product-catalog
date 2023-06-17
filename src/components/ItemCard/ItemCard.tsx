@@ -1,3 +1,4 @@
+
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -13,16 +14,27 @@ import classNames from 'classnames';
 import { PhoneColors } from '../../types/PhoneColors';
 import home from '../images/home.svg';
 import arrowGreyRight from '../images/arrow_grey_right.svg';
-import arrowGreyLeft from '../images/arrow_grey_left.svg';
 import arrowBlackLeft from '../images/Stroke.svg';
-import arrowBlackRight from '../images/arrow_black_right.svg';
 import favourites from '../images/favourites.svg';
-import { getItemCardDataById, getRecommendedPhones } from '../../api/phones';
+import { getItemCardDataById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
+import { RecomendModelsForItemCard } from '../RecomendModelsForItemCard';
 import { Loader } from '../Loader';
-// import { RecomendModels } from '../RecomendModels';
 
-export const ItemCard: React.FC = () => {
+
+interface Props {
+  itemsCart: string[];
+  itemsFavourites: string[];
+  onCart: (productId: string) => void;
+  onFavourites: (productId: string) => void;
+}
+
+export const ItemCard: React.FC<Props> = ({
+  onCart,
+  onFavourites,
+  itemsCart,
+  itemsFavourites,
+}) => {
   const { pathname } = useLocation();
 
   const [cardData, setCardData] = useState<ItemCardData | null>(null);
@@ -305,37 +317,19 @@ export const ItemCard: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div className="recomended">
-            <div className="recomended__container">
-              <h2 className="recomended__title">You may also like</h2>
-
-              <div className="arrow">
-                <img
-                  src={arrowGreyLeft}
-                  alt="arrow left"
-                  className="arrow-icon arrow-icon--grey"
-                />
-
-                <img
-                  src={arrowBlackRight}
-                  alt="arrow right"
-                  className="arrow-icon arrow-icon--black"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* <RecomendModels
+      {cardData && (
+        <RecomendModelsForItemCard
+          id={cardData.id}
           title="You may also like"
-          getPhones={getRecommendedPhones}
           onCart={onCart}
           onFavourites={onFavourites}
           itemsCart={itemsCart}
           itemsFavourites={itemsFavourites}
-        /> */}
-        </div>
-      )
-    )
+        />
+      )}
+    </div>
   );
 };
