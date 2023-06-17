@@ -153,7 +153,7 @@ export const App: React.FC = () => {
                   index
                   element={(
                     <ItemCard
-                      onCart={handleAddToCart}
+                      onCart={handleAddItemToCart}
                       onFavourites={handleAddToFavourites}
                       itemsCart={itemsCart}
                       itemsFavourites={itemsFavourites}

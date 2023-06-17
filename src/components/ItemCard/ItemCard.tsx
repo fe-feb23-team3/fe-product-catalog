@@ -1,4 +1,3 @@
-
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -21,9 +20,8 @@ import { ItemCardData } from '../../types/itemCardData';
 import { RecomendModelsForItemCard } from '../RecomendModelsForItemCard';
 import { Loader } from '../Loader';
 
-
 interface Props {
-  itemsCart: string[];
+  itemsCart: {id: string, count: number}[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;
@@ -317,19 +315,19 @@ export const ItemCard: React.FC<Props> = ({
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      {cardData && (
-        <RecomendModelsForItemCard
-          id={cardData.id}
-          title="You may also like"
-          onCart={onCart}
-          onFavourites={onFavourites}
-          itemsCart={itemsCart}
-          itemsFavourites={itemsFavourites}
-        />
-      )}
-    </div>
+          {cardData && (
+            <RecomendModelsForItemCard
+              id={cardData.id}
+              title="You may also like"
+              onCart={onCart}
+              onFavourites={onFavourites}
+              itemsCart={itemsCart}
+              itemsFavourites={itemsFavourites}
+            />
+          )}
+        </div>
+      )
+    )
   );
 };
