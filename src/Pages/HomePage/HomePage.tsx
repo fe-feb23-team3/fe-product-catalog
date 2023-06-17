@@ -8,7 +8,7 @@ import { RecomendModels } from '../../components/RecomendModels';
 import { Slider } from '../../components/Slider';
 
 interface Props {
-  itemsCart: string[];
+  itemsCart: {id: string, count: number}[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;

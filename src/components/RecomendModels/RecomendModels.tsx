@@ -13,7 +13,7 @@ interface Props {
   title: string;
   getPhones: () => Promise<PhoneData[]>;
   showDiscount?: boolean;
-  itemsCart: string[];
+  itemsCart: {id: string, count: number}[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;
