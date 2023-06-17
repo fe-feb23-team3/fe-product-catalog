@@ -1,59 +1,15 @@
 @import '../../App.scss';
 
-.back__link {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+.item__card {
+  &-title {
+    margin: 16px 0 32px;
 
-  margin-top: 24px;
-
-  text-decoration: none;
-
-  @include onTablet {
-    margin-top: 40px;
-  }
-
-  @include onDesktop {
-    margin-top: 40px;
-  }
-
-  &-item {
-    margin-right: 4px;
-  }
-
-  &-name {
-    margin: 0px;
-
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 16px;
-
-    color: #89939a;
+    @include onTablet {
+      margin: 16px 0 40px;
+    }
   }
 }
 
-.title {
-  margin-top: 16px;
-
-  font-style: normal;
-  font-weight: 800;
-  font-size: 22px;
-  line-height: 140%;
-
-
-  @include onTablet {
-    font-size: 32px;
-    line-height: 41px;
-    letter-spacing: -0.01em;
-  }
-
-  @include onDesktop {
-    font-size: 32px;
-    line-height: 41px;
-    letter-spacing: -0.01em;
-  }
-}
 
 .phone__photo {
   display: flex;
