@@ -10,7 +10,6 @@ import { Accessories } from './components/Accessories';
 import { Favourites } from './components/Favourites';
 import { Cart } from './components/Cart';
 import { NotFoundPage } from './Pages/NotFoundPage';
-import { Menu } from './components/Menu';
 import { ItemCard } from './components/ItemCard';
 import { getPhones } from './api/phones';
 import { useLocalStorage } from './utils/useLocalStorage';
@@ -160,10 +159,6 @@ export const App: React.FC = () => {
                     />
                   )}
                 />
-              </Route>
-
-              <Route path="/menu">
-                <Route index element={<Menu />} />
               </Route>
 
               <Route path="*" element={<NotFoundPage />} />
