@@ -21,7 +21,6 @@ import { Breadcrumb } from '../../types/breadcrumbs';
 import { BackLink } from '../BackLink';
 import { PageTitle } from '../PageTitle';
 
-
 interface Props {
   itemsCart: { id: string, count: number }[];
   itemsFavourites: string[];
@@ -91,9 +90,8 @@ export const ItemCard: React.FC<Props> = ({
           <BackLink />
 
           <div className="item__card-title">
-            <PageTitle title={cardData?.name} />
+            <PageTitle title={cardData.name} />
           </div>
-
 
           <div className="grid">
             <div
@@ -111,7 +109,7 @@ export const ItemCard: React.FC<Props> = ({
               >
                 <div className="phone__photo">
                   <img
-                    src={`https://be-product-catalog.onrender.com/phoneCardData/${cardData?.id}/images/${mainImage}`}
+                    src={`https://be-product-catalog.onrender.com/phoneCardData/${cardData.id}/images/${mainImage}`}
                     alt="phone"
                     className="phone__photo--main"
                   />
@@ -124,19 +122,25 @@ export const ItemCard: React.FC<Props> = ({
               grid__item--tablet-1-2
               grid__item--phone-1-4"
               >
-                {cardData?.images.map(image => (
-                  <div
-                    key={uuid4()}
-                    className="phone__photo-container"
-                    onClick={() => handleSelectImage(cardData?.images.indexOf(image))}
-                  >
-                    <img
-                      src={`https://be-product-catalog.onrender.com/phoneCardData/${cardData?.id}/images/${cardData?.images.indexOf(image)}`}
-                      alt=""
-                      className="phone__photo--small"
-                    />
-                  </div>
-                ))}
+                <div className="phone__photo-mapping">
+                  {cardData.images.map(image => (
+                    <div
+                      key={uuid4()}
+                      className="phone__photo-container"
+                      onClick={() => handleSelectImage(cardData.images.indexOf(image))}
+                    >
+                      <img
+                        src={`https://be-product-catalog.onrender.com/phoneCardData/${cardData.id}/images/${cardData.images.indexOf(image)}`}
+                        alt=""
+                        className={
+                          classNames('phone__photo--small', {
+                            'phone__photo--small--active': cardData.images.indexOf(image) === mainImage,
+                          })
+                        }
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -150,13 +154,13 @@ export const ItemCard: React.FC<Props> = ({
                 <div className="colors">
                   <div className="controllers__title">
                     <p>Available colors</p>
-                    <p>{`ID: ${cardData?.namespaceId}`}</p>
+                    <p>{`ID: ${cardData.namespaceId}`}</p>
                   </div>
 
                   <div className="colors__circle-container">
-                    {cardData?.colorsAvailable.map(color => (
+                    {cardData.colorsAvailable.map(color => (
                       <Link
-                        to={`/phoneCardData/${cardData?.namespaceId}-${cardData?.capacity.toLowerCase()}-${color}`}
+                        to={`/phoneCardData/${cardData.namespaceId}-${cardData.capacity.toLowerCase()}-${color}`}
                         key={color}
                       >
                         <div className="colors__circle">
@@ -181,10 +185,10 @@ export const ItemCard: React.FC<Props> = ({
               <div className="capacity">
                 <p>Select capacity</p>
                 <div className="capacity__container">
-                  {cardData?.capacityAvailable.map((capacity) => (
+                  {cardData.capacityAvailable.map((capacity) => (
                     <Link
-                      to={`/phoneCardData/${cardData?.namespaceId}-${capacity.toLowerCase()}-${cardData?.color}`}
-                      key={cardData?.id}
+                      to={`/phoneCardData/${cardData.namespaceId}-${capacity.toLowerCase()}-${cardData.color}`}
+                      key={cardData.id}
                       className="capacity__link"
                     >
                       <div
@@ -203,8 +207,8 @@ export const ItemCard: React.FC<Props> = ({
               </div>
 
               <div className="price">
-                <span className="price__new">{`$${cardData?.priceDiscount}`}</span>
-                <span className="price__old">{`$${cardData?.priceRegular}`}</span>
+                <span className="price__new">{`$${cardData.priceDiscount}`}</span>
+                <span className="price__old">{`$${cardData.priceRegular}`}</span>
               </div>
 
               <div className="add-to-cart">
@@ -227,10 +231,10 @@ export const ItemCard: React.FC<Props> = ({
                 </div>
 
                 <div className="characteristics__description">
-                  <p className="characteristics__item">{cardData?.screen}</p>
-                  <p className="characteristics__item">{cardData?.resolution}</p>
-                  <p className="characteristics__item">{cardData?.processor}</p>
-                  <p className="characteristics__item">{cardData?.ram}</p>
+                  <p className="characteristics__item">{cardData.screen}</p>
+                  <p className="characteristics__item">{cardData.resolution}</p>
+                  <p className="characteristics__item">{cardData.processor}</p>
+                  <p className="characteristics__item">{cardData.ram}</p>
                 </div>
               </div>
             </div>
@@ -246,24 +250,24 @@ export const ItemCard: React.FC<Props> = ({
               <div className="about">
                 <h2 className="about__title">About</h2>
                 <h3 className="about__paragraph-title">
-                  {cardData?.description[0].title}
+                  {cardData.description[0].title}
                 </h3>
 
-                <p className="about__text">{cardData?.description[0].text[0]}</p>
+                <p className="about__text">{cardData.description[0].text[0]}</p>
 
-                <p className="about__text">{cardData?.description[0].text[1]}</p>
+                <p className="about__text">{cardData.description[0].text[1]}</p>
 
                 <h3 className="about__paragraph-title">
-                  {cardData?.description[1].title}
+                  {cardData.description[1].title}
                 </h3>
 
-                <p className="about__text">{cardData?.description[1].text[0]}</p>
+                <p className="about__text">{cardData.description[1].text[0]}</p>
 
                 <h3 className="about__paragraph-title">
-                  {cardData?.description[2].title}
+                  {cardData.description[2].title}
                 </h3>
 
-                <p className="about__text">{cardData?.description[2].text[0]}</p>
+                <p className="about__text">{cardData.description[2].text[0]}</p>
               </div>
             </div>
 
@@ -288,30 +292,32 @@ export const ItemCard: React.FC<Props> = ({
                   </div>
 
                   <div className="tech-specs__description">
-                    <p className="tech-specs__item">{cardData?.screen}</p>
-                    <p className="tech-specs__item">{cardData?.resolution}</p>
-                    <p className="tech-specs__item">{cardData?.processor}</p>
-                    <p className="tech-specs__item">{cardData?.ram}</p>
-                    <p className="tech-specs__item">{cardData?.capacity}</p>
-                    <p className="tech-specs__item">{cardData?.camera}</p>
-                    <p className="tech-specs__item">{cardData?.zoom}</p>
-                    <p className="tech-specs__item">{cardData?.cell.join(', ')}</p>
+                    <p className="tech-specs__item">{cardData.screen}</p>
+                    <p className="tech-specs__item">{cardData.resolution}</p>
+                    <p className="tech-specs__item">{cardData.processor}</p>
+                    <p className="tech-specs__item">{cardData.ram}</p>
+                    <p className="tech-specs__item">{cardData.capacity}</p>
+                    <p className="tech-specs__item">{cardData.camera}</p>
+                    <p className="tech-specs__item">{cardData.zoom}</p>
+                    <p className="tech-specs__item">{cardData.cell.join(', ')}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {cardData && (
-            <RecomendModelsForItemCard
-              id={cardData.id}
-              title="You may also like"
-              onCart={onCart}
-              onFavourites={onFavourites}
-              itemsCart={itemsCart}
-              itemsFavourites={itemsFavourites}
-            />
-          )}
+          <div className="recomended">
+            {cardData && (
+              <RecomendModelsForItemCard
+                id={cardData.id}
+                title="You may also like"
+                onCart={onCart}
+                onFavourites={onFavourites}
+                itemsCart={itemsCart}
+                itemsFavourites={itemsFavourites}
+              />
+            )}
+          </div>
         </div>
       )
     )
