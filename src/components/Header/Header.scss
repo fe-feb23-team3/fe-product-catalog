@@ -1,8 +1,4 @@
 @import '../../App.scss';
-.icon {
-  text-decoration: none;
-  position: relative;
-}
 
 .header {
   position: sticky;
@@ -32,12 +28,27 @@
       margin-left: 24px;
     }
   }
+
+  &-menu-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    background-color: $white-color;
+    border: none;
+    box-shadow: -1px 0px 0px $elements-color;
+  }
 }
 
-.nav {
+.menu__nav {
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.nav {
 
   &-list {
     display: flex;
@@ -98,9 +109,14 @@
 }
 
 .icon {
+  position: relative;
   display: flex;
 
   padding: 16px;
+
+  text-decoration: none;
+
+  background-color: #fff;
 
   box-shadow: -1px 0px 0px #e2e6e9;
 
