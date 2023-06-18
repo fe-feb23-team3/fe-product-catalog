@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Loader } from '../Loader';
-import { ProductCard } from '../ProductCard';
-import { PhoneData } from '../../types/phoneData';
+import { Loader } from '../../../components/Loader';
+import { ProductCard } from '../../../components/ProductCard';
+import { PhoneData } from '../../../types/phoneData';
 
-import './RecomendModels.scss';
-import { SectionTitle } from '../SectionTitle';
+import './RecomendModelsForHomePage.scss';
+import { SectionTitle } from '../../../components/SectionTitle';
 
-import arrowDarkLeft from '../images/arrow_dark_left.svg';
-import arrowDarkRight from '../images/arrow_dark_right.svg';
+import arrowDarkLeft from '../../../images/arrow_dark_left.svg';
+import arrowDarkRight from '../../../images/arrow_dark_right.svg';
 
 interface Props {
   title: string;

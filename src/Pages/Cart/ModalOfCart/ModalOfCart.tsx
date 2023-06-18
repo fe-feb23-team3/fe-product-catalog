@@ -1,7 +1,7 @@
 import React from 'react';
 import './ModalOfCart.scss';
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as Close } from '../../images/Close.svg';
+import { ReactComponent as Close } from '../../../images/Close.svg';
 
 interface Props {
   closeModal: () => void;

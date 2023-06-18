@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { SectionTitle } from '../SectionTitle';
+import { SectionTitle } from '../../components/SectionTitle';
 
-import phones from '../images/phones.png';
-import tablets from '../images/tablets.png';
-import accessories from '../images/accessories.png';
+import phones from '../../images/phones.png';
+import tablets from '../../images/tablets.png';
+import accessories from '../../images/accessories.png';
 import './ShopByCategory.scss';
 
 interface Props {

@@ -1,21 +1,25 @@
-/* eslint-disable no-console */
-import React, { useEffect, useRef, useState } from 'react';
-import { Loader } from '../Loader';
-import { ProductCard } from '../ProductCard';
-import { PhoneData } from '../../types/phoneData';
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { Loader } from '../../../components/Loader';
+import { ProductCard } from '../../../components/ProductCard';
+import { PhoneData } from '../../../types/phoneData';
 
 import './RecomendModelsForItemCard.scss';
-import { SectionTitle } from '../SectionTitle';
+import { SectionTitle } from '../../../components/SectionTitle';
 
-import arrowDarkLeft from '../images/arrow_dark_left.svg';
-import arrowDarkRight from '../images/arrow_dark_right.svg';
-import { getRecommendedPhones } from '../../api/phones';
+import arrowDarkLeft from '../../../images/arrow_dark_left.svg';
+import arrowDarkRight from '../../../images/arrow_dark_right.svg';
+import { getRecommendedPhones } from '../../../api/phones';
 
 interface Props {
   id: string;
   title: string;
   showDiscount?: boolean;
-  itemsCart: {id: string, count: number}[];
+  itemsCart: { id: string, count: number }[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;
@@ -36,15 +40,12 @@ export const RecomendModelsForItemCard: React.FC<Props> = ({
   const loadPhonesByPage = async () => {
     const loadPhones = await getRecommendedPhones(id);
 
-    console.log('id', id);
-    console.log('visiblePhonesFromServer', loadPhones);
-
     setPhones(loadPhones);
   };
 
   const isLoading = !phones;
 
-  const scrollLeft = () => {
+  const scrollLeft = useCallback(() => {
     const scrollContainer = scrollContainerRef.current;
 
     if (scrollContainer) {
@@ -53,9 +54,9 @@ export const RecomendModelsForItemCard: React.FC<Props> = ({
         behavior: 'smooth',
       });
     }
-  };
+  }, []);
 
-  const scrollRight = () => {
+  const scrollRight = useCallback(() => {
     const scrollContainer = scrollContainerRef.current;
 
     if (scrollContainer) {
@@ -64,7 +65,7 @@ export const RecomendModelsForItemCard: React.FC<Props> = ({
         behavior: 'smooth',
       });
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadPhonesByPage();

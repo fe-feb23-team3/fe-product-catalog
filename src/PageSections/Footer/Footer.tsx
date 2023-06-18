@@ -1,8 +1,8 @@
 import React from 'react';
 import './Footer.scss';
 import { NavLink } from 'react-router-dom';
-import logo from '../images/logo.svg';
-import arrowDarkUp from '../images/arrow_dark_up.svg';
+import logo from '../../images/logo.svg';
+import arrowDarkUp from '../../images/arrow_dark_up.svg';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {

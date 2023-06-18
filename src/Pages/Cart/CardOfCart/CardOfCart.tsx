@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { PhoneData } from '../../../types/phoneData';
 import './CardOfCart.scss';
-import { ReactComponent as Minus } from '../../images/Minus.svg';
-import { ReactComponent as Plus } from '../../images/Plus.svg';
-import { ReactComponent as Close } from '../../images/Close.svg';
+import { ReactComponent as Minus } from '../../../images/Minus.svg';
+import { ReactComponent as Plus } from '../../../images/Plus.svg';
+import { ReactComponent as Close } from '../../../images/Close.svg';
 
 interface Props {
   itemsCart: {id: string, count: number}[],

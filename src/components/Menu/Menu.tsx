@@ -2,10 +2,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Menu.scss';
 import classNames from 'classnames';
-import close from '../images/cross.svg';
-import logo from '../images/logo.svg';
-import favourites from '../images/favourites.svg';
-import cart from '../images/cart.svg';
+import close from '../../images/cross.svg';
+import logo from '../../images/logo.svg';
+import favourites from '../../images/favourites.svg';
+import cart from '../../images/cart.svg';
 import { Counter } from '../Counter';
 
 interface Props {

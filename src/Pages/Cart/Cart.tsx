@@ -4,11 +4,11 @@ import { CardOfCart } from './CardOfCart';
 import { CardOfTotalPrice } from './CardOfTotalPrice';
 import { PhoneData } from '../../types/phoneData';
 import './Cart.scss';
-import { Loader } from '../Loader';
+import { Loader } from '../../components/Loader';
 import { CartIsEmpty } from './CartIsEmpty/CartIsEmpty';
 import { ModalOfCart } from './ModalOfCart/ModalOfCart';
-import { BackLink } from '../BackLink';
-import { PageTitle } from '../PageTitle';
+import { BackLink } from '../../components/BackLink';
+import { PageTitle } from '../../components/PageTitle';
 
 interface Props {
   itemsCart: { id: string, count: number }[],

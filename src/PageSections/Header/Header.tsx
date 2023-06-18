@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
-import logo from '../images/logo.svg';
-import cart from '../images/cart.svg';
-import menu from '../images/burger-menu.svg';
-import favourites from '../images/favourites.svg';
-import { Counter } from '../Counter';
-import { Menu } from '../Menu';
+import logo from '../../images/logo.svg';
+import cart from '../../images/cart.svg';
+import menu from '../../images/burger-menu.svg';
+import favourites from '../../images/favourites.svg';
+import { Counter } from '../../components/Counter';
+import { Menu } from '../../components/Menu';
 
 interface Props {
   itemsCount: number;

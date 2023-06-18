@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@import '../../../App.scss';
 
 .recomend {
   &-models {
@@ -8,7 +8,6 @@
     gap: 16px;
     overflow: hidden;
     overflow-x: scroll;
-    overflow-x: hidden;
 
     &::-webkit-scrollbar {
       width: 8px;

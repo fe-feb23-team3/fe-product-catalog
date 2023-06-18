@@ -1,7 +1,7 @@
 import React from 'react';
 import { v4 as uuid4 } from 'uuid';
 import { NavLink } from 'react-router-dom';
-import home from '../images/home.svg';
+import home from '../../images/home.svg';
 import { BreadcrumbsItem } from './BreadcrumbsItem';
 import './Breadcrumbs.scss';
 import { Breadcrumb } from '../../types/breadcrumbs';

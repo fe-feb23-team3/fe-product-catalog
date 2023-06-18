@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { PhoneData } from '../../types/phoneData';
-import { ProductCard } from '../ProductCard';
+import { ProductCard } from '../../components/ProductCard';
 import './Favourites.scss';
 import { getPhoneById } from '../../api/phones';
-import { Loader } from '../Loader';
-import { Breadcrumbs } from '../Breadcrumbs';
+import { Loader } from '../../components/Loader';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 interface Props {
   itemsCart: {id: string, count: number}[];

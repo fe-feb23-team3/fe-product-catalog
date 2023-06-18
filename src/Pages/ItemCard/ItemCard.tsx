@@ -11,15 +11,15 @@ import './ItemCard.scss';
 import classNames from 'classnames';
 import { PhoneColors } from '../../types/PhoneColors';
 
-import favourites from '../images/favourites.svg';
+import favourites from '../../images/favourites.svg';
 import { getItemCardDataById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
-import { RecomendModelsForItemCard } from '../RecomendModelsForItemCard';
-import { Loader } from '../Loader';
-import { Breadcrumbs } from '../Breadcrumbs';
+import { RecomendModelsForItemCard } from '../../PageSections/RecomendModels/RecomendModelsForItemCard';
+import { Loader } from '../../components/Loader';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Breadcrumb } from '../../types/breadcrumbs';
-import { BackLink } from '../BackLink';
-import { PageTitle } from '../PageTitle';
+import { BackLink } from '../../components/BackLink';
+import { PageTitle } from '../../components/PageTitle';
 
 interface Props {
   itemsCart: { id: string, count: number }[];
