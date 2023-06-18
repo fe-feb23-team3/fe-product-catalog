@@ -26,7 +26,9 @@ export const HomePage: React.FC<Props> = ({
 
   return (
     <div className="home-page">
-      <PageTitle title={homePageTitle} />
+      <div className="home-page__title">
+        <PageTitle title={homePageTitle} />
+      </div>
 
       <Slider />
 

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { PageTitle } from '../../components/PageTitle';
+import './AccessoriesCatalog.scss';
 import { Loader } from '../../components/Loader';
 
-export const TabletsCatalog: React.FC = () => {
+export const Accessories: React.FC = () => {
   const breadcrumbsPath = [
-    { text: 'Tablets', link: '' },
+    { text: 'Acccessories', link: '' },
   ];
 
   return (

@@ -8,9 +8,10 @@ import { Loader } from '../../components/Loader';
 
 import './PhoneCatalog.scss';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { PageTitle } from '../../components/PageTitle';
 
 interface Props {
-  itemsCart: {id: string, count: number}[];
+  itemsCart: { id: string, count: number }[];
   itemsFavourites: string[];
   onCart: (productId: string) => void;
   onFavourites: (productId: string) => void;
@@ -70,7 +71,9 @@ export const PhoneCatalog: React.FC<Props> = ({
     <section className="catalog">
       <Breadcrumbs path={breadcrumbsPath} />
 
-      <h1 className="catalog__title">Mobile phones</h1>
+      <div className="catalog__title">
+        <PageTitle title="Phones" />
+      </div>
 
       <div className="catalog__item-count">{`${phonesCount} models`}</div>
 

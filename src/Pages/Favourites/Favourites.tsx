@@ -5,6 +5,7 @@ import './Favourites.scss';
 import { getPhoneById } from '../../api/phones';
 import { Loader } from '../../components/Loader';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { PageTitle } from '../../components/PageTitle';
 
 interface Props {
   itemsCart: {id: string, count: number}[];
@@ -59,7 +60,9 @@ export const Favourites: React.FC<Props> = ({
     <section className="catalog">
       <Breadcrumbs path={breadcrumbsPath} />
 
-      <h1 className="catalog__title">Favourites</h1>
+      <h1 className="catalog__title">
+        <PageTitle title="Favourites" />
+      </h1>
 
       <div className="catalog__item-count">{`${phones.length} items`}</div>
 

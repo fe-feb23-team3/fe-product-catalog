@@ -2,10 +2,11 @@
 
 .catalog {
   &__title {
-    margin: 0;
-    margin-top: 40px;
-    font-weight: 800;
-    @include desktop-tablet-h1;
+    margin-top: 24px;
+
+    @include onTablet {
+      margin-top: 40px;
+    }
   }
 
   &__back {

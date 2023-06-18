@@ -6,7 +6,7 @@ import { PhoneCatalog } from './Pages/PhoneCatalog';
 import { Header } from './PageSections/Header';
 import { Footer } from './PageSections/Footer';
 import { TabletsCatalog } from './Pages/TabletsCatalog';
-import { Accessories } from './Pages/Accessories';
+import { Accessories } from './Pages/AccessoriesCatalog';
 import { Favourites } from './Pages/Favourites';
 import { Cart } from './Pages/Cart';
 import { NotFoundPage } from './Pages/NotFoundPage';
