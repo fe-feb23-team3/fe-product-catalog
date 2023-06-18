@@ -1,6 +1,6 @@
 import React from 'react';
-import arrowDarkLeft from '../images/arrow_dark_left.svg';
-import arrowDarkRight from '../images/arrow_dark_right.svg';
+import arrowDarkLeft from '../../images/arrow_dark_left.svg';
+import arrowDarkRight from '../../images/arrow_dark_right.svg';
 
 interface Props {
   isDisabled: boolean;

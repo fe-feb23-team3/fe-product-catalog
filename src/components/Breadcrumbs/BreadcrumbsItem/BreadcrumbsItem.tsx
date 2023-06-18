@@ -1,5 +1,5 @@
 import React from 'react';
-import arrowRight from '../../images/arrow_grey_right.svg';
+import arrowRight from '../../../images/arrow_grey_right.svg';
 import './BreadcrumbsItem.scss';
 
 interface Props {

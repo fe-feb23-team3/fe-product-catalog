@@ -1,11 +1,11 @@
 import React from 'react';
 import { PageTitle } from '../../components/PageTitle';
-import { ShopByCategory } from '../../components/ShopByCategory';
+import { ShopByCategory } from '../../PageSections/ShopByCategory';
 import { getNewestPhones, getByDiscountPhones } from '../../api/phones';
 
 import './HomePage.scss';
-import { RecomendModels } from '../../components/RecomendModels';
-import { Slider } from '../../components/Slider';
+import { RecomendModels } from '../../PageSections/RecomendModels/RecomendModelsForHomePage';
+import { Slider } from '../../PageSections/Slider';
 
 interface Props {
   itemsCart: {id: string, count: number}[];
@@ -26,7 +26,9 @@ export const HomePage: React.FC<Props> = ({
 
   return (
     <div className="home-page">
-      <PageTitle title={homePageTitle} />
+      <div className="home-page__title">
+        <PageTitle title={homePageTitle} />
+      </div>
 
       <Slider />
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BackLink.scss';
-import arrowDarkLeft from '../images/arrow_dark_left.svg';
+import arrowDarkLeft from '../../images/arrow_dark_left.svg';
 
 export const BackLink: React.FC = () => {
   const navigate = useNavigate();

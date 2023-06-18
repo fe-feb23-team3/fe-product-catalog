@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { PhoneData } from '../../types/phoneData';
+import './ProductCard.scss';
 
 interface Props {
   showDiscount?: boolean;
