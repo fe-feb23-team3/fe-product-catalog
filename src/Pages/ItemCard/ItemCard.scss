@@ -228,49 +228,25 @@
   display: flex;
   justify-content: space-between;
   text-align: center;
-
+  gap: 8px;
   margin-top: 16px;
 
   &__button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-right: 8px;
-
-    width: 100%;
+    width: 230px;
     height: 48px;
 
-    border-radius: 8px;
+    @include onTablet {
+      width: 180px;
+    }
 
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 21px;
-    text-align: center;
-    text-decoration: none;
-
-    outline: none;
-    border: 1px solid transparent;
-    color: $white-color;
-    background: $accent-color;
-
-    cursor: pointer;
+    @include onDesktop {
+      width: 263px;
+    }
   }
 
   &__favourites {
-    padding: 16px;
-
     width: 48px;
     height: 48px;
-
-    border-radius: 40px;
-
-    border: 1px solid $icons-color;
-
-    &:hover {
-      border: 1px solid $primary-color;
-      cursor: pointer;
-    }
   }
 }
 
