@@ -25,7 +25,7 @@ export const CardOfTotalPrice: React.FC<Props> = ({
 
     const allPrice = products
       .map((product) => {
-        const indexItem = itemsCart.find((item) => item.id === product.id);
+        const indexItem = itemsCart.find((item) => item.id === product.itemId);
 
         if (!indexItem) {
           return product.price;

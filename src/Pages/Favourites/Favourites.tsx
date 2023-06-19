@@ -40,10 +40,10 @@ export const Favourites: React.FC<Props> = ({
   };
 
   const handleOnFavourites = useCallback((productId) => {
-    const findPhoneById = phones.some((item) => item.id === productId);
+    const findPhoneById = phones.some((item) => item.itemId === productId);
 
     if (findPhoneById) {
-      const filteredPhones = phones.filter((phone) => phone.id !== productId);
+      const filteredPhones = phones.filter((phone) => phone.itemId !== productId);
 
       setPhones(filteredPhones);
     }

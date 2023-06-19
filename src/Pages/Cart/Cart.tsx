@@ -54,7 +54,7 @@ export const Cart: React.FC<Props> = ({
 
   useEffect(() => {
     const productsFiltered = products.filter(product => {
-      return itemsCart.some((item) => item.id === product.id);
+      return itemsCart.some((item) => item.id === product.itemId);
     });
 
     setProducts(productsFiltered);
