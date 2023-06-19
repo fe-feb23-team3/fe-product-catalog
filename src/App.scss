@@ -23,3 +23,8 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+::selection{
+  background-color: #f8670080;
+  color: $white-color;
+}

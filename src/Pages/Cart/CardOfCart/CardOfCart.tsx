@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { PhoneData } from '../../../types/phoneData';
 import './CardOfCart.scss';
@@ -19,7 +20,9 @@ export const CardOfCart: React.FC<Props> = ({
   onCart,
   onCountChange,
 }) => {
-  const { name, id, price } = product;
+  const {
+    name, id, price, itemId,
+  } = product;
   const [amount, setAmount] = useState(1);
 
   useEffect(() => {
@@ -29,14 +32,20 @@ export const CardOfCart: React.FC<Props> = ({
     setAmount(countOfItem);
   }, []);
 
-  const handleAddAmount = () => {
+  type ButtonEvent = { preventDefault: () => void; };
+
+  const handleAddAmount = (event: ButtonEvent) => {
+    event.preventDefault();
+
     const value = amount + 1;
 
     setAmount(() => value);
     onCountChange(id, true);
   };
 
-  const handleSubtractAmount = () => {
+  const handleSubtractAmount = (event: ButtonEvent) => {
+    event.preventDefault();
+
     if (amount > 1) {
       const value = amount - 1;
 
@@ -45,53 +54,58 @@ export const CardOfCart: React.FC<Props> = ({
     }
   };
 
+  const handleRemoveCard = (event: ButtonEvent) => {
+    event.preventDefault();
+    onCart(id);
+  };
+
   return (
-    <div className="cardOfCart">
-      <div className="cardOfCart__header">
-        <button
-          type="button"
-          className="cardOfCart__close"
-          onClick={() => {
-            onCart(id);
-          }}
-        >
-          <Close className="iconSvg" />
-        </button>
-
-        <img
-          src={`https://be-product-catalog.onrender.com/products/phones/${id}/image`}
-          alt={name}
-          className="cardOfCart__photo"
-        />
-
-        <p className="cardOfCart__title">{name}</p>
-      </div>
-
-      <div className="cardOfCart__footer">
-        <div className="counter">
+    <NavLink to={`/phoneCardData/${itemId}`} className="item__card__link">
+      <div className="cardOfCart">
+        <div className="cardOfCart__header">
           <button
             type="button"
-            className={cn('counter__button', {
-              'counter__button--active': amount > 1,
-            })}
-            onClick={handleSubtractAmount}
+            className="cardOfCart__close"
+            onClick={handleRemoveCard}
           >
-            <Minus className="iconSvg" />
+            <Close className="iconSvg" />
           </button>
 
-          <p className="counter__amount">{amount}</p>
+          <img
+            src={`https://be-product-catalog.onrender.com/products/phones/${id}/image`}
+            alt={name}
+            className="cardOfCart__photo"
+          />
 
-          <button
-            type="button"
-            className="counter__button counter__button--active"
-            onClick={handleAddAmount}
-          >
-            <Plus className="iconSvg" />
-          </button>
+          <p className="cardOfCart__title">{name}</p>
         </div>
 
-        <p className="cardOfCart__price">{`$${price * amount}`}</p>
+        <div className="cardOfCart__footer">
+          <div className="counter">
+            <button
+              type="button"
+              className={cn('counter__button', {
+                'counter__button--active': amount > 1,
+              })}
+              onClick={handleSubtractAmount}
+            >
+              <Minus className="iconSvg" />
+            </button>
+
+            <p className="counter__amount">{amount}</p>
+
+            <button
+              type="button"
+              className="counter__button counter__button--active"
+              onClick={handleAddAmount}
+            >
+              <Plus className="iconSvg" />
+            </button>
+          </div>
+
+          <p className="cardOfCart__price">{`$${price * amount}`}</p>
+        </div>
       </div>
-    </div>
+    </NavLink>
   );
 };
