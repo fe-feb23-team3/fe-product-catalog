@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { PageTitle } from '../../components/PageTitle';
 import './AccessoriesCatalog.scss';
-import { Loader } from '../../components/Loader';
+import { ImageContainer } from '../../components/ImageContainer';
 
 export const Accessories: React.FC = () => {
   const breadcrumbsPath = [
@@ -17,7 +17,7 @@ export const Accessories: React.FC = () => {
         <PageTitle title="Acccessories" />
       </div>
 
-      <Loader isLoading={!false} />
+      <ImageContainer />
     </div>
   );
 };
