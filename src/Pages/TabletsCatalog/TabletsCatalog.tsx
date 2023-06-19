@@ -1,7 +1,7 @@
 import React from 'react';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { PageTitle } from '../../components/PageTitle';
-import { Loader } from '../../components/Loader';
+import { ImageContainer } from '../../components/ImageContainer';
 
 export const TabletsCatalog: React.FC = () => {
   const breadcrumbsPath = [
@@ -13,10 +13,10 @@ export const TabletsCatalog: React.FC = () => {
       <Breadcrumbs path={breadcrumbsPath} />
 
       <div className="catalog__title">
-        <PageTitle title="Acccessories" />
+        <PageTitle title="Tablets" />
       </div>
 
-      <Loader isLoading={!false} />
+      <ImageContainer />
     </div>
   );
 };
