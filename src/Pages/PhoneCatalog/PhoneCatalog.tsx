@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getFilteredPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
 import { Pagination } from '../../components/Pagination';
@@ -31,6 +32,7 @@ export const PhoneCatalog: React.FC<Props> = ({
   const [sortBy, setSortBy] = useState('default');
   const [totalPages, setTotalPages] = useState(4);
   const [isLoading, setIsLoading] = useState(false);
+  const [, setSearchParams] = useSearchParams('');
 
   const breadcrumbsPath = [
     { text: 'Phones', link: '' },
@@ -52,19 +54,28 @@ export const PhoneCatalog: React.FC<Props> = ({
   }
 
   useEffect(() => {
+    if (sortBy === 'default') {
+      setSearchParams(`page=${currentPage}&size=${totalPhones}`);
+    } else {
+      setSearchParams(`page=${currentPage}&sort=${sortBy}&size=${totalPhones}`);
+    }
+
     loadPhonesByPage(`page=${currentPage}&sort=${sortBy}&size=${totalPhones}`);
   }, [totalPhones, sortBy, currentPage]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    setSearchParams({ page: String(page) });
   };
 
   const handleChangeTotalPages = (total: number) => {
     setTotalPhones(total);
+    setSearchParams({ size: String(total) });
   };
 
   const handleSortBy = (sort: string) => {
     setSortBy(sort);
+    setSearchParams({ sort });
   };
 
   return (
