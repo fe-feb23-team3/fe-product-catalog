@@ -20,6 +20,10 @@
     margin-right: 4px;
   }
 
+  &__text {
+    height: 18px;
+  }
+
   @include onTablet {
     margin-top: 40px;
   }
