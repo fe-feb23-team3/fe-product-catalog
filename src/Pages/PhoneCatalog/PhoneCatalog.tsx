@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { getFilteredPhones } from '../../api/phones';
 import { PhoneData } from '../../types/phoneData';
 import { Pagination } from '../../components/Pagination';
@@ -27,12 +27,15 @@ export const PhoneCatalog: React.FC<Props> = ({
   phonesCount,
 }) => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPhones, setTotalPhones] = useState(8);
-  const [sortBy, setSortBy] = useState('default');
   const [totalPages, setTotalPages] = useState(4);
   const [isLoading, setIsLoading] = useState(false);
-  const [, setSearchParams] = useSearchParams('');
+  const [searchParams, setSearchParams] = useSearchParams('');
+
+  const location = useLocation();
+
+  const currentPage = searchParams.get('page') || '1';
+  const totalPhones = searchParams.get('size') || '8';
+  const sortBy = searchParams.get('sort') || 'default';
 
   const breadcrumbsPath = [
     { text: 'Phones', link: '' },
@@ -49,33 +52,27 @@ export const PhoneCatalog: React.FC<Props> = ({
     setIsLoading(false);
   };
 
-  if (totalPages < currentPage) {
-    setCurrentPage(totalPages);
+  if (totalPages < Number(currentPage)) {
+    setSearchParams({ page: `${totalPages}` });
   }
 
   useEffect(() => {
-    if (sortBy === 'default') {
-      setSearchParams(`page=${currentPage}&size=${totalPhones}`);
-    } else {
-      setSearchParams(`page=${currentPage}&sort=${sortBy}&size=${totalPhones}`);
-    }
-
-    loadPhonesByPage(`page=${currentPage}&sort=${sortBy}&size=${totalPhones}`);
+    loadPhonesByPage(`${location.search}`);
   }, [totalPhones, sortBy, currentPage]);
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    setSearchParams({ page: String(page) });
+    searchParams.set('page', String(page));
+    setSearchParams(searchParams);
   };
 
   const handleChangeTotalPages = (total: number) => {
-    setTotalPhones(total);
-    setSearchParams({ size: String(total) });
+    searchParams.set('size', String(total));
+    setSearchParams(searchParams);
   };
 
   const handleSortBy = (sort: string) => {
-    setSortBy(sort);
-    setSearchParams({ sort });
+    searchParams.set('sort', sort);
+    setSearchParams(searchParams);
   };
 
   return (
@@ -101,12 +98,9 @@ export const PhoneCatalog: React.FC<Props> = ({
           <p className="catalog__filter-title">Sort by</p>
           <select
             className="catalog__filter-sort-by"
-            defaultValue="default"
+            value={sortBy}
             onChange={(e) => handleSortBy(e.target.value)}
           >
-            <option value="default" disabled>
-              Select
-            </option>
             <option value="year_desc">Newest</option>
             <option value="year_asc">Oldest</option>
             <option value="price_asc">Price Asc</option>
@@ -126,7 +120,7 @@ export const PhoneCatalog: React.FC<Props> = ({
           <p className="catalog__filter-title">Items on page</p>
           <select
             className="catalog__filter-sort-by"
-            defaultValue="10"
+            value={totalPhones}
             onChange={(e) => handleChangeTotalPages(Number(e.target.value))}
           >
             <option value="8">8</option>
@@ -153,7 +147,7 @@ export const PhoneCatalog: React.FC<Props> = ({
       </div>
 
       <Pagination
-        currentPage={currentPage}
+        currentPage={Number(currentPage)}
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
