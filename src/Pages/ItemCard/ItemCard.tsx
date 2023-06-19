@@ -101,6 +101,7 @@ export const ItemCard: React.FC<Props> = ({
             grid__item--tablet-1-7
             grid__item--phone-1-4"
             >
+              <div className="phone__photo-wraper--main" />
               <div
                 className="
               grid__item--desktop-3-10

@@ -1,10 +1,10 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface Props {
   images: string[];
 }
 
-export const RandomImage: React.FC<Props> = memo(({ images }) => {
+export const RandomImage: React.FC<Props> = ({ images }) => {
   const [randomImage, setRandomImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -18,4 +18,4 @@ export const RandomImage: React.FC<Props> = memo(({ images }) => {
   }
 
   return <img src={randomImage} alt="Random" />;
-});
+};

@@ -8,18 +8,17 @@ import image4 from '../../images/NoGoodsYet/10703788.png';
 import image5 from '../../images/NoGoodsYet/10703792.png';
 import image6 from '../../images/NoGoodsYet/10703796.png';
 import image7 from '../../images/NoGoodsYet/10703800.png';
-import image8 from '../../images/NoGoodsYet/10703803.png';
-import image9 from '../../images/NoGoodsYet/10703806.png';
-import image10 from '../../images/NoGoodsYet/10703809.png';
-import image11 from '../../images/NoGoodsYet/10703812.png';
-import image12 from '../../images/NoGoodsYet/10703814.png';
-import image13 from '../../images/NoGoodsYet/10703820.png';
-import image14 from '../../images/NoGoodsYet/10703823.png';
-import image15 from '../../images/NoGoodsYet/10703826.png';
-import image16 from '../../images/NoGoodsYet/10703829.png';
-import image17 from '../../images/NoGoodsYet/10703833.png';
-import image18 from '../../images/NoGoodsYet/10703835.png';
-import image19 from '../../images/NoGoodsYet/10703837.png';
+import image8 from '../../images/NoGoodsYet/10703806.png';
+import image9 from '../../images/NoGoodsYet/10703809.png';
+import image10 from '../../images/NoGoodsYet/10703812.png';
+import image11 from '../../images/NoGoodsYet/10703814.png';
+import image12 from '../../images/NoGoodsYet/10703820.png';
+import image13 from '../../images/NoGoodsYet/10703823.png';
+import image14 from '../../images/NoGoodsYet/10703826.png';
+import image15 from '../../images/NoGoodsYet/10703829.png';
+import image16 from '../../images/NoGoodsYet/10703833.png';
+import image17 from '../../images/NoGoodsYet/10703835.png';
+import image18 from '../../images/NoGoodsYet/10703837.png';
 
 export const ImageContainer: React.FC = () => {
   const images = [
@@ -41,7 +40,6 @@ export const ImageContainer: React.FC = () => {
     image16,
     image17,
     image18,
-    image19,
   ];
 
   return (
@@ -49,8 +47,7 @@ export const ImageContainer: React.FC = () => {
       <RandomImage images={images} />
 
       <p className="text">
-        Subscribe to our newsletter! New products coming soon to our website!
-        Be the first to get them!
+        Look into the future - soon new products in our assortment!
       </p>
     </div>
   );
