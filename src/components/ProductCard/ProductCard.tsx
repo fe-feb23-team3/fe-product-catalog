@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react';
-import classNames from 'classnames';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { PhoneData } from '../../types/phoneData';
 import './ProductCard.scss';
+import { ButtonAddToCart } from '../ButtonAddToCart';
+import { ButtonFavourites } from '../ButtonFavourites';
 
 interface Props {
   showDiscount?: boolean;
@@ -25,22 +26,6 @@ export const ProductCard: React.FC<Props> = ({
     name, screen, capacity, ram, fullPrice, price, itemId,
   } = phone;
 
-  const handleAddToCart = useCallback(
-    (event) => {
-      event.preventDefault();
-      onCart(itemId);
-    },
-    [itemId, onCart],
-  );
-
-  const handleAddToFavourites = useCallback(
-    (event) => {
-      event.preventDefault();
-      onFavourites(itemId);
-    },
-    [itemId, onFavourites],
-  );
-
   return (
     <NavLink to={`/phoneCardData/${itemId}`} className="item__card__link card">
       <div className="card__container">
@@ -48,7 +33,7 @@ export const ProductCard: React.FC<Props> = ({
           <div className="image__wrapper">
             <img
               src={`https://be-product-catalog.onrender.com/products/phones/${itemId}/image`}
-              alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+              alt={name}
               className="card__photo"
             />
           </div>
@@ -83,27 +68,13 @@ export const ProductCard: React.FC<Props> = ({
             </div>
 
             <div className="card__buttons">
-              <button
-                type="button"
-                onClick={handleAddToCart}
-                className={classNames('card__buttons-addToCart', {
-                  'card__buttons-addToCart-checked': itemsCart.some((item) => item.id === itemId),
-                })}
-              >
-                {itemsCart.some((item) => item.id === itemId) ? 'Added to cart' : 'Add to cart'}
-              </button>
+              <div className="card__buttons-cart">
+                <ButtonAddToCart items={itemsCart} itemId={itemId} onClick={onCart} />
+              </div>
 
-              <button
-                type="button"
-                onClick={handleAddToFavourites}
-                className={classNames('card__buttons-AddToFavourites', {
-                  'card__buttons-AddToFavourites-default':
-                    !itemsFavourites.includes(itemId),
-                  'card__buttons-AddToFavourites-checked':
-                    itemsFavourites.includes(itemId),
-                })}
-              >
-              </button>
+              <div className="card__buttons-favourites">
+                <ButtonFavourites items={itemsFavourites} itemId={itemId} onClick={onFavourites} />
+              </div>
             </div>
           </div>
         </div>
