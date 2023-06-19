@@ -52,12 +52,17 @@ export const PhoneCatalog: React.FC<Props> = ({
     setIsLoading(false);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   if (totalPages < Number(currentPage)) {
     setSearchParams({ page: `${totalPages}` });
   }
 
   useEffect(() => {
     loadPhonesByPage(`${location.search}`);
+    scrollToTop();
   }, [totalPhones, sortBy, currentPage]);
 
   const handlePageChange = (page: number) => {
@@ -72,6 +77,7 @@ export const PhoneCatalog: React.FC<Props> = ({
 
   const handleSortBy = (sort: string) => {
     searchParams.set('sort', sort);
+    searchParams.set('page', '1');
     setSearchParams(searchParams);
   };
 
