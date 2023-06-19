@@ -11,7 +11,7 @@ import './ItemCard.scss';
 import classNames from 'classnames';
 import { PhoneColors } from '../../types/PhoneColors';
 
-import favourites from '../../images/favourites.svg';
+// import favourites from '../../images/favourites.svg';
 import { getItemCardDataById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
 import { RecomendModelsForItemCard } from '../../PageSections/RecomendModels/RecomendModelsForItemCard';
@@ -20,6 +20,8 @@ import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Breadcrumb } from '../../types/breadcrumbs';
 import { BackLink } from '../../components/BackLink';
 import { PageTitle } from '../../components/PageTitle';
+import { ButtonAddToCart } from '../../components/ButtonAddToCart';
+import { ButtonFavourites } from '../../components/ButtonFavourites';
 
 interface Props {
   itemsCart: { id: string, count: number }[];
@@ -212,14 +214,16 @@ export const ItemCard: React.FC<Props> = ({
               </div>
 
               <div className="add-to-cart">
-                <button type="button" className="add-to-cart__button">
-                  Add to cart
-                </button>
-                <img
-                  src={favourites}
-                  alt="favourites"
-                  className="add-to-cart__favourites"
-                />
+                <div className="add-to-cart__button">
+                  <ButtonAddToCart items={itemsCart} itemId={cardData.id} onClick={onCart} />
+                </div>
+                <div className="add-to-cart__favourites">
+                  <ButtonFavourites
+                    items={itemsFavourites}
+                    itemId={cardData.id}
+                    onClick={onFavourites}
+                  />
+                </div>
               </div>
 
               <div className="characteristics">
