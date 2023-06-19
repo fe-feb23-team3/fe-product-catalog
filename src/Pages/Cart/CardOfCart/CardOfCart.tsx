@@ -19,11 +19,13 @@ export const CardOfCart: React.FC<Props> = ({
   onCart,
   onCountChange,
 }) => {
-  const { name, id, price } = product;
+  const {
+    name, price, itemId,
+  } = product;
   const [amount, setAmount] = useState(1);
 
   useEffect(() => {
-    const indexItem = itemsCart.findIndex(item => item.id === id);
+    const indexItem = itemsCart.findIndex(item => item.id === itemId);
     const countOfItem = itemsCart[indexItem].count;
 
     setAmount(countOfItem);
@@ -33,7 +35,7 @@ export const CardOfCart: React.FC<Props> = ({
     const value = amount + 1;
 
     setAmount(() => value);
-    onCountChange(id, true);
+    onCountChange(itemId, true);
   };
 
   const handleSubtractAmount = () => {
@@ -41,7 +43,7 @@ export const CardOfCart: React.FC<Props> = ({
       const value = amount - 1;
 
       setAmount(() => value);
-      onCountChange(id, false);
+      onCountChange(itemId, false);
     }
   };
 
@@ -52,14 +54,14 @@ export const CardOfCart: React.FC<Props> = ({
           type="button"
           className="cardOfCart__close"
           onClick={() => {
-            onCart(id);
+            onCart(itemId);
           }}
         >
           <Close className="iconSvg" />
         </button>
 
         <img
-          src={`https://be-product-catalog.onrender.com/products/phones/${id}/image`}
+          src={`https://be-product-catalog.onrender.com/products/phones/${itemId}/image`}
           alt={name}
           className="cardOfCart__photo"
         />

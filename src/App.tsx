@@ -44,8 +44,8 @@ export const App: React.FC = () => {
     setItemsCart([]);
   };
 
-  const handleChangeCountOfItemOfCart = (id: string, plusOrMinus: boolean) => {
-    const indexItem = itemsCart.findIndex(item => item.id === id);
+  const handleChangeCountOfItemOfCart = (itemId: string, plusOrMinus: boolean) => {
+    const indexItem = itemsCart.findIndex(item => item.id === itemId);
     const countOfItem = itemsCart[indexItem].count;
     const copyItemsCart = JSON.parse(JSON.stringify(itemsCart));
 

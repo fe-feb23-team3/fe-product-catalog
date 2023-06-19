@@ -22,23 +22,23 @@ export const ProductCard: React.FC<Props> = ({
   onFavourites,
 }) => {
   const {
-    id, name, screen, capacity, ram, fullPrice, price, itemId,
+    name, screen, capacity, ram, fullPrice, price, itemId,
   } = phone;
 
   const handleAddToCart = useCallback(
     (event) => {
       event.preventDefault();
-      onCart(id);
+      onCart(itemId);
     },
-    [id, onCart],
+    [itemId, onCart],
   );
 
   const handleAddToFavourites = useCallback(
     (event) => {
       event.preventDefault();
-      onFavourites(id);
+      onFavourites(itemId);
     },
-    [id, onFavourites],
+    [itemId, onFavourites],
   );
 
   return (
@@ -47,7 +47,7 @@ export const ProductCard: React.FC<Props> = ({
         <div className="card__top-wrapper">
           <div className="image__wrapper">
             <img
-              src={`https://be-product-catalog.onrender.com/products/phones/${id}/image`}
+              src={`https://be-product-catalog.onrender.com/products/phones/${itemId}/image`}
               alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
               className="card__photo"
             />
@@ -87,10 +87,10 @@ export const ProductCard: React.FC<Props> = ({
                 type="button"
                 onClick={handleAddToCart}
                 className={classNames('card__buttons-addToCart', {
-                  'card__buttons-addToCart-checked': itemsCart.some((item) => item.id === id),
+                  'card__buttons-addToCart-checked': itemsCart.some((item) => item.id === itemId),
                 })}
               >
-                {itemsCart.some((item) => item.id === id) ? 'Added to cart' : 'Add to cart'}
+                {itemsCart.some((item) => item.id === itemId) ? 'Added to cart' : 'Add to cart'}
               </button>
 
               <button
@@ -98,9 +98,9 @@ export const ProductCard: React.FC<Props> = ({
                 onClick={handleAddToFavourites}
                 className={classNames('card__buttons-AddToFavourites', {
                   'card__buttons-AddToFavourites-default':
-                    !itemsFavourites.includes(id),
+                    !itemsFavourites.includes(itemId),
                   'card__buttons-AddToFavourites-checked':
-                    itemsFavourites.includes(id),
+                    itemsFavourites.includes(itemId),
                 })}
               >
               </button>
