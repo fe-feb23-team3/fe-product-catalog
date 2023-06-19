@@ -10,8 +10,6 @@ import { v4 as uuid4 } from 'uuid';
 import './ItemCard.scss';
 import classNames from 'classnames';
 import { PhoneColors } from '../../types/PhoneColors';
-
-// import favourites from '../../images/favourites.svg';
 import { getItemCardDataById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
 import { RecomendModelsForItemCard } from '../../PageSections/RecomendModels/RecomendModelsForItemCard';
@@ -215,8 +213,13 @@ export const ItemCard: React.FC<Props> = ({
 
               <div className="add-to-cart">
                 <div className="add-to-cart__button">
-                  <ButtonAddToCart items={itemsCart} itemId={cardData.id} onClick={onCart} />
+                  <ButtonAddToCart
+                    items={itemsCart}
+                    itemId={cardData.id}
+                    onClick={onCart}
+                  />
                 </div>
+
                 <div className="add-to-cart__favourites">
                   <ButtonFavourites
                     items={itemsFavourites}
