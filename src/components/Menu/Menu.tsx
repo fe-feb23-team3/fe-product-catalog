@@ -100,7 +100,7 @@ export const Menu: React.FC<Props> = ({
           <NavLink
             to="/favourites"
             className={({ isActive }) => classNames('icons__favorite', {
-              'icons--active': isActive,
+              'is-active': isActive,
             })}
             onClick={handleClick}
           >

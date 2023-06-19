@@ -86,14 +86,24 @@ export const Header: React.FC<Props> = ({ itemsCount, itemsFavourites }) => {
 
       {!isMobile ? (
         <div className="icon-container">
-          <NavLink to="/favourites" className="icon">
-            <img src={favourites} alt="favourites" />
+          <NavLink
+            to="/favourites"
+            className={({ isActive }) => classNames('icon', {
+              'icon--active': isActive,
+            })}
+          >
+            <img src={favourites} alt="favourites" className="icon__image" />
             {itemsFavourites.length > 0 && (
               <Counter count={itemsFavourites.length} />
             )}
           </NavLink>
 
-          <NavLink to="/cart" className="icon">
+          <NavLink
+            to="/cart"
+            className={({ isActive }) => classNames('icon', {
+              'icon--active': isActive,
+            })}
+          >
             <img src={cart} alt="cart" />
             {itemsCount > 0 && <Counter count={itemsCount} />}
           </NavLink>
