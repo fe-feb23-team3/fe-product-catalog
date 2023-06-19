@@ -62,6 +62,7 @@
     color: $icons-color;
     background: none;
     border: none;
+    cursor: pointer;
   }
 
   &__button {
@@ -82,8 +83,8 @@
 
     &--icon {
       @include icon-wrapper-default;
-      cursor: pointer;
       background: none;
+      cursor: pointer;
 
       &:hover {
         border-color: $primary-color;

@@ -41,6 +41,7 @@ export const Pagination: React.FC<Props> = ({
               <button
                 key={page}
                 className={classNames('pagination__button', {
+                  'pagination__button--default': page !== currentPage,
                   'pagination__button--active': page === currentPage,
                 })}
                 type="button"
