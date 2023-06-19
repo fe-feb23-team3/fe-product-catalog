@@ -125,7 +125,24 @@
   }
 
   &-container {
+    position: relative;
     display: flex;
     align-items: center;
+  }
+
+  &--active {
+    color: $primary-color;
+
+    &::after {
+      display: block;
+      position: absolute;
+      content: '';
+      height: 4px;
+      width: 100%;
+      right: 0;
+      bottom: 0;
+      margin-bottom: 0;
+      background-color: $primary-color;
+    }
   }
 }

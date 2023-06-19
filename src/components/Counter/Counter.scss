@@ -15,11 +15,13 @@
     background-color: $secondary-accent-color;
 
     @include onTablet {
-      left: 32px;
+      top: 12px;
+      right: 9px;
     }
 
     @include onDesktop {
-      left: 32px;
+      top: 19px;
+      right: 17px;
     }
   }
 

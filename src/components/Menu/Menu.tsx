@@ -46,11 +46,11 @@ export const Menu: React.FC<Props> = ({
       <div className="menu__content">
         <nav className="menu__nav">
           <ul className="nav__list--burger">
-            <li>
+            <li className="nav__item">
               <NavLink
                 to="/"
                 className={({ isActive }) => classNames('nav__link--burger', {
-                  'is-active': isActive,
+                  'nav__link--active': isActive,
                 })}
                 onClick={handleClick}
               >
@@ -62,7 +62,7 @@ export const Menu: React.FC<Props> = ({
               <NavLink
                 to="/phones"
                 className={({ isActive }) => classNames('nav__link--burger', {
-                  'is-active': isActive,
+                  'nav__link--active': isActive,
                 })}
                 onClick={handleClick}
               >
@@ -74,7 +74,7 @@ export const Menu: React.FC<Props> = ({
               <NavLink
                 to="/tablets"
                 className={({ isActive }) => classNames('nav__link--burger', {
-                  'is-active': isActive,
+                  'nav__link--active': isActive,
                 })}
                 onClick={handleClick}
               >
@@ -86,7 +86,7 @@ export const Menu: React.FC<Props> = ({
               <NavLink
                 to="/accessories"
                 className={({ isActive }) => classNames('nav__link--burger', {
-                  'is-active': isActive,
+                  'nav__link--active': isActive,
                 })}
                 onClick={handleClick}
               >

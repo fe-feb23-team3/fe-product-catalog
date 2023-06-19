@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import './Header.scss';
+import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import cart from '../../images/cart.svg';
@@ -37,25 +38,45 @@ export const Header: React.FC<Props> = ({ itemsCount, itemsFavourites }) => {
         {!isMobile && (
           <ul className="nav-list">
             <li className="nav-item">
-              <NavLink to="/" className="nav-link">
+              <NavLink
+                to="/"
+                className={({ isActive }) => classNames('nav-link', {
+                  'nav-link--active': isActive,
+                })}
+              >
                 Home
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/phones" className="nav-link">
+              <NavLink
+                to="/phones"
+                className={({ isActive }) => classNames('nav-link', {
+                  'nav-link--active': isActive,
+                })}
+              >
                 Phones
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/tablets" className="nav-link">
+              <NavLink
+                to="/tablets"
+                className={({ isActive }) => classNames('nav-link', {
+                  'nav-link--active': isActive,
+                })}
+              >
                 Tablets
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/accessories" className="nav-link">
+              <NavLink
+                to="/accessories"
+                className={({ isActive }) => classNames('nav-link', {
+                  'nav-link--active': isActive,
+                })}
+              >
                 Accessories
               </NavLink>
             </li>
@@ -65,14 +86,24 @@ export const Header: React.FC<Props> = ({ itemsCount, itemsFavourites }) => {
 
       {!isMobile ? (
         <div className="icon-container">
-          <NavLink to="/favourites" className="icon">
-            <img src={favourites} alt="favourites" />
+          <NavLink
+            to="/favourites"
+            className={({ isActive }) => classNames('icon', {
+              'icon--active': isActive,
+            })}
+          >
+            <img src={favourites} alt="favourites" className="icon__image" />
             {itemsFavourites.length > 0 && (
               <Counter count={itemsFavourites.length} />
             )}
           </NavLink>
 
-          <NavLink to="/cart" className="icon">
+          <NavLink
+            to="/cart"
+            className={({ isActive }) => classNames('icon', {
+              'icon--active': isActive,
+            })}
+          >
             <img src={cart} alt="cart" />
             {itemsCount > 0 && <Counter count={itemsCount} />}
           </NavLink>
