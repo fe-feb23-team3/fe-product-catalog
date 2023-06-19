@@ -1,6 +1,8 @@
 @import '../../../App.scss';
 
 .cardOfCart {
+  $origin: #{&};
+
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -37,6 +39,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     width: 32px;
     height: 32px;
@@ -65,6 +68,8 @@
 
     object-position: center;
     object-fit: contain;
+
+    transition: 0.15s;
   }
 
   &__title {
@@ -88,6 +93,16 @@
     line-height: 140%;
     text-align: right;
   }
+  
+  transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+
+    #{$origin}__photo {
+      transform: scale(1.15);
+    }
+  }
 }
 
 .counter {
@@ -103,6 +118,7 @@
   }
 
   &__button {
+    cursor: not-allowed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,6 +130,7 @@
     transition: 0.15s;
 
     &--active {
+      cursor: pointer;
       border: 1px solid $icons-color;
 
       .iconSvg * {
