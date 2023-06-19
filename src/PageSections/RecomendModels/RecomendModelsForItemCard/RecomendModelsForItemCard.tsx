@@ -10,10 +10,8 @@ import { PhoneData } from '../../../types/phoneData';
 
 import './RecomendModelsForItemCard.scss';
 import { SectionTitle } from '../../../components/SectionTitle';
-
-import arrowDarkLeft from '../../../images/arrow_dark_left.svg';
-import arrowDarkRight from '../../../images/arrow_dark_right.svg';
 import { getRecommendedPhones } from '../../../api/phones';
+import { MoveButton } from '../../../components/MoveButton';
 
 interface Props {
   id: string;
@@ -77,21 +75,17 @@ export const RecomendModelsForItemCard: React.FC<Props> = ({
         <SectionTitle title={title} />
 
         <div className="recomend__title-buttons">
-          <button
-            type="button"
+          <MoveButton
             onClick={scrollLeft}
-            className="recomend__title-button"
-          >
-            <img src={arrowDarkLeft} alt="arrow-left" />
-          </button>
+            direction="left"
+            isDisabled={false}
+          />
 
-          <button
-            type="button"
+          <MoveButton
             onClick={scrollRight}
-            className="recomend__title-button"
-          >
-            <img src={arrowDarkRight} alt="arrow-right" />
-          </button>
+            direction="right"
+            isDisabled={false}
+          />
         </div>
       </div>
 

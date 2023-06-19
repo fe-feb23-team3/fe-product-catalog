@@ -54,7 +54,9 @@
   }
 
   &:hover .card__photo {
-    transform: scale(1.15);
+    @include onTablet {
+      transform: scale(1.1);
+    }
   }
 
   &__title {

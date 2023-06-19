@@ -27,24 +27,7 @@
     &-buttons {
       display: flex;
       flex-direction: row;
-      gap: 16px;
-      background-color: transparent;
-    }
-    &-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      transition: all 0.3s ease-in-out;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-
-      @include icon-wrapper-default;
+      gap: 8px;
     }
   }
 }
