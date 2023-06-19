@@ -26,7 +26,7 @@
   border-radius: 8px;
   margin: 0 auto;
   transition: box-shadow 0.3s ease-in-out;
-  
+
 
   &:hover {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
@@ -120,64 +120,14 @@
     justify-content: space-between;
     gap: 8px;
 
-    &-addToCart {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 0px;
+    &-cart {
       height: 40px;
       width: 175px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 21px;
-      text-align: center;
-      text-decoration: none;
-      outline: none;
-      border: 1px solid transparent;
-      color: $white-color;
-      background: $accent-color;
-
-      cursor: pointer;
-
-      @include onDesktop {
-        max-width: 160px;
-      }
-
-      &:hover {
-        box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
-      }
-
-      &-checked {
-        border: 1px solid #e2e6e9;
-        color: #f86800;
-        background: none;
-      }
     }
 
-    &-AddToFavourites {
-      border: 1px solid $icons-color;
-      border-radius: 48px;
-      width: 40px;
+    &-favourites {
       height: 40px;
-      margin: 0;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-color: transparent;
-
-      &:hover {
-        border: 1px solid $primary-color;
-        cursor: pointer;
-      }
-
-      &-default {
-        background-image: url(../../images/favourites_icon.svg);
-      }
-
-      &-checked {
-        background-image: url(../../images/favourites_icon_blue.svg);
-      }
+      width: 40px;
     }
   }
 }
