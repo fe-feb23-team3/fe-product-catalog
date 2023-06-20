@@ -10,7 +10,7 @@ type Info = {
 export const getPhones = () => client.get<PhoneData[]>('/products/phones');
 export const getPhoneById = (id: string) => client.get<PhoneData>(`/products/phones/${id}`);
 export const getFilteredPhones = (searchParams: string) => {
-  return client.get<Info>(`/products/phones/pagination?${searchParams}`);
+  return client.get<Info>(`/products/phones/pagination${searchParams}`);
 };
 
 export const getNewestPhones = () => client.get<PhoneData[]>('/products/phones/newest');
