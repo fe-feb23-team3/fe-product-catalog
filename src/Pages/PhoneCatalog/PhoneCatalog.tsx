@@ -10,6 +10,7 @@ import { Loader } from '../../components/Loader';
 import './PhoneCatalog.scss';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { PageTitle } from '../../components/PageTitle';
+import { Dropdown } from '../../components/DropDown';
 
 interface Props {
   itemsCart: { id: string, count: number }[];
@@ -30,6 +31,19 @@ export const PhoneCatalog: React.FC<Props> = ({
   const [totalPages, setTotalPages] = useState(4);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams('');
+
+  const dropdownOptionsSortBy = [
+    { id: 1, value: 'year_desc', title: 'Newest' },
+    { id: 2, value: 'year_asc', title: 'Oldest' },
+    { id: 3, value: 'price_asc', title: 'Price Asc' },
+    { id: 4, value: 'price_desc', title: 'Price Desc' },
+  ];
+
+  const dropdownOptionsItemsOnPage = [
+    { id: 1, value: '8', title: '8' },
+    { id: 2, value: '16', title: '16' },
+    { id: 3, value: '32', title: '32' },
+  ];
 
   const location = useLocation();
 
@@ -70,8 +84,8 @@ export const PhoneCatalog: React.FC<Props> = ({
     setSearchParams(searchParams);
   };
 
-  const handleChangeTotalPages = (total: number) => {
-    searchParams.set('size', String(total));
+  const handleChangeTotalPages = (total: string) => {
+    searchParams.set('size', total);
     setSearchParams(searchParams);
   };
 
@@ -102,16 +116,11 @@ export const PhoneCatalog: React.FC<Props> = ({
         "
         >
           <p className="catalog__filter-title">Sort by</p>
-          <select
-            className="catalog__filter-sort-by"
-            value={sortBy}
-            onChange={(e) => handleSortBy(e.target.value)}
-          >
-            <option value="year_desc">Newest</option>
-            <option value="year_asc">Oldest</option>
-            <option value="price_asc">Price Asc</option>
-            <option value="price_desc">Price Desc</option>
-          </select>
+          <Dropdown
+            currentItem={sortBy}
+            items={dropdownOptionsSortBy}
+            onSelect={handleSortBy}
+          />
         </div>
 
         <div
@@ -124,15 +133,11 @@ export const PhoneCatalog: React.FC<Props> = ({
         "
         >
           <p className="catalog__filter-title">Items on page</p>
-          <select
-            className="catalog__filter-sort-by"
-            value={totalPhones}
-            onChange={(e) => handleChangeTotalPages(Number(e.target.value))}
-          >
-            <option value="8">8</option>
-            <option value="16">16</option>
-            <option value="32">32</option>
-          </select>
+          <Dropdown
+            currentItem={totalPhones}
+            items={dropdownOptionsItemsOnPage}
+            onSelect={handleChangeTotalPages}
+          />
         </div>
       </div>
 
