@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DropDown.scss';
 import classNames from 'classnames';
 import arrowUp from '../../images/arrow_up.svg';
@@ -13,12 +13,14 @@ interface Props {
   onSelect: (sort: string) => void;
 }
 
-export const Dropdown: React.FC<Props> = ({ currentItem, items, onSelect }) => {
+export const Dropdown: React.FC<Props> = ({
+  currentItem,
+  items,
+  onSelect,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const title = items.find((item) => item.value === currentItem)?.title || 'Choose sort';
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -31,23 +33,6 @@ export const Dropdown: React.FC<Props> = ({ currentItem, items, onSelect }) => {
 
   useEffect(() => {
     setIsOpen(false);
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current
-        && dropdownRef.current
-        && !dropdownRef.current.contains(event.target as Node)
-        && !containerRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
   }, [currentItem]);
 
   return (
