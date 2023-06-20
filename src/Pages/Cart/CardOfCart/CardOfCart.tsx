@@ -8,7 +8,7 @@ import { ReactComponent as Plus } from '../../../images/Plus.svg';
 import { ReactComponent as Close } from '../../../images/Close.svg';
 
 interface Props {
-  itemsCart: {id: string, count: number}[],
+  itemsCart: { id: string; count: number }[];
   product: PhoneData;
   onCart: (productId: string) => void;
   onCountChange: (id: string, plusOrMinus: boolean) => void;
@@ -20,19 +20,17 @@ export const CardOfCart: React.FC<Props> = ({
   onCart,
   onCountChange,
 }) => {
-  const {
-    name, price, itemId,
-  } = product;
+  const { name, price, itemId } = product;
   const [amount, setAmount] = useState(1);
 
   useEffect(() => {
-    const indexItem = itemsCart.findIndex(item => item.id === itemId);
+    const indexItem = itemsCart.findIndex((item) => item.id === itemId);
     const countOfItem = itemsCart[indexItem].count;
 
     setAmount(countOfItem);
   }, []);
 
-  type ButtonEvent = { preventDefault: () => void; };
+  type ButtonEvent = { preventDefault: () => void };
 
   const handleAddAmount = (event: ButtonEvent) => {
     event.preventDefault();
@@ -68,7 +66,9 @@ export const CardOfCart: React.FC<Props> = ({
             className="cardOfCart__close"
             onClick={handleRemoveCard}
           >
-            <Close className="iconSvg" />
+            <div className="cardOfCart__close--border">
+              <Close className="iconSvg" />
+            </div>
           </button>
 
           <img

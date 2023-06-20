@@ -39,26 +39,46 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: nowrap;
     cursor: pointer;
 
     width: 32px;
-    height: 32px;
+    height: 74px;
 
+    border: none;
     background-color: Transparent;
-    border: 1px solid #ffffff00;
-    border-radius: 50%;
+
     transition: 0.15s;
 
-    &:hover {
-      border: 1px solid $icons-color;
+    &--border {
+      display: flex;
+      position: absolute;
+      justify-content: center;
+      align-items: center;
 
-      .iconSvg * {
-        fill: $primary-color;
-      }
+      width: 32px;
+      height: 32px;
+      border: 1px solid #ffffff00;
+
+      border-radius: 50%;
     }
 
-    &:active {
-      border: 1px solid $accent-color;
+    @include onTablet {
+      &:hover {
+        .cardOfCart__close--border {
+          border: 1px solid $icons-color;
+        }
+
+        .iconSvg * {
+          fill: $primary-color;
+        }
+      }
+
+      &:active {
+        .cardOfCart__close--border {
+          border: 1px solid $accent-color;
+        }
+      }
     }
   }
 
@@ -93,14 +113,16 @@
     line-height: 140%;
     text-align: right;
   }
-  
+
   transition: box-shadow 0.3s ease-in-out;
 
-  &:hover {
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  @include onTablet {
+    &:hover {
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
 
-    #{$origin}__photo {
-      transform: scale(1.15);
+      #{$origin}__photo {
+        transform: scale(1.15);
+      }
     }
   }
 }
@@ -112,7 +134,7 @@
   &__amount {
     width: 32px;
     height: 32px;
-    
+
     color: $primary-color;
     text-align: center;
     line-height: 32px;
@@ -133,20 +155,21 @@
     &--active {
       cursor: pointer;
       border: 1px solid $icons-color;
-
       .iconSvg * {
         fill: $primary-color;
         transition: 0.15s;
       }
 
-      &:hover {
-        border: 1px solid $primary-color;
-      }
+      @include onTablet {
+        &:hover {
+          border: 1px solid $primary-color;
+        }
 
-      &:active {
-        .iconSvg * {
-          fill: $accent-color;
-          transition: 0.15s;
+        &:active {
+          .iconSvg * {
+            fill: $accent-color;
+            transition: 0.15s;
+          }
         }
       }
     }

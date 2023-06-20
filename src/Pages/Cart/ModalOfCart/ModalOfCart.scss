@@ -71,15 +71,17 @@
     text-align: center;
     transition: 0.15s;
 
-    &:hover {
-      box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
-    }
+    @include onTablet {
+      &:hover {
+        box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+      }
 
-    &:active {
-      color: $accent-color;
-      border: 1px solid $elements-color;
-      background-color: transparent;
-      box-shadow: none;
+      &:active {
+        color: $accent-color;
+        border: 1px solid $elements-color;
+        background-color: transparent;
+        box-shadow: none;
+      }
     }
 
     &--cancel {
@@ -87,13 +89,15 @@
       background: $white-color;
       border: 1px solid $elements-color;
 
-      &:hover {
-        border: 1px solid $accent-color;
-      }
+      @include onTablet {
+        &:hover {
+          border: 1px solid $accent-color;
+        }
 
-      &:active {
-        color: $accent-color;
-        border: 1px solid $elements-color;
+        &:active {
+          color: $accent-color;
+          border: 1px solid $elements-color;
+        }
       }
     }
 
@@ -112,16 +116,18 @@
       border-radius: 8px;
       transition: 0.15s;
 
-      &:hover {
-        border: 1px solid $icons-color;
+      @include onTablet {
+        &:hover {
+          border: 1px solid $icons-color;
 
-        .iconSvg * {
-          fill: $primary-color;
+          .iconSvg * {
+            fill: $primary-color;
+          }
         }
-      }
 
-      &:active {
-        border: 1px solid $accent-color;
+        &:active {
+          border: 1px solid $accent-color;
+        }
       }
     }
 
