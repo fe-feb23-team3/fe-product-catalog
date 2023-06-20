@@ -1,0 +1,118 @@
+@import '../../../App.scss';
+
+$size: 64px;
+$height: 182px;
+
+.game {
+  border: 2px solid $elements-color;
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.scene {
+  overflow: hidden;
+  height: 256px;
+  margin: auto;
+  image-rendering: pixelated;
+
+  &::after {
+    content: attr(data-width);
+    display: inline-block;
+    width: auto;
+  }
+}
+
+.terrain {
+  width: 100%;
+  position: relative;
+  top: $height + $size;
+  border-bottom: 2px solid $primary-color;
+}
+
+.bober {
+  width: $size;
+  height: $size;
+  background-image: url('./img/bober.png');
+  background-repeat: no-repeat;
+  background-size: $size $size;
+  position: relative;
+
+  animation: boberRun 0.2s infinite steps(1, end);
+}
+
+.boberPos {
+  display: inline-block;
+  position: relative;
+  top: $height;
+  left: 16px;
+}
+
+@keyframes boberRun {
+  0% {
+    background-image: url('./img/bober2.png');
+    left: 0;
+  }
+  50% {
+    background-image: url('./img/bober1.png');
+    left: 3px;
+  }
+  75% {
+    background-image: url('./img/bober3.png');
+    left: 1px;
+  }
+  100% {
+    background-image: url('./img/bober2.png');
+    left: 0;
+  }
+}
+
+.cactus {
+  width: $size;
+  height: $size;
+  background-image: url('./img/cactus1.png');
+  background-repeat: no-repeat;
+  background-size: $size $size;
+  position: relative;
+  top: $height - $size;
+  left: 1000px;
+  animation: cactusMov 3s infinite linear;
+}
+
+@keyframes cactusMov {
+  0% {
+    left: 1000px;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    left: -$size;
+    opacity: 0;
+  }
+}
+
+
+.jump {
+  animation: jump 0.5s linear;
+}
+
+@keyframes jump {
+  0% {
+    top: $height;
+  }
+  50% {
+    top: $height - ($size * 2);
+  }
+  100% {
+    top: $height;
+  }
+}
+
+.gameOver {
+  animation-play-state: paused;
+}

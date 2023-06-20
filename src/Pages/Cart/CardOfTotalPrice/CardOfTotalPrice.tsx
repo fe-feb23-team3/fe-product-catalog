@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import './CardOfTotalPrice.scss';
 import { PhoneData } from '../../../types/phoneData';
 
@@ -48,7 +49,9 @@ export const CardOfTotalPrice: React.FC<Props> = ({
 
       <button
         type="button"
-        className="totalPrice__button"
+        className={classNames('totalPrice__button', {
+          'totalPrice__button--disabled': totalCount === 0,
+        })}
         onClick={openModal}
         disabled={totalCount === 0}
       >
