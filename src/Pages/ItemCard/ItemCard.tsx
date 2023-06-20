@@ -2,14 +2,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useCallback } from 'react';
 import {
-  Link,
   useLocation,
   useNavigate,
 } from 'react-router-dom';
 import { v4 as uuid4 } from 'uuid';
 import './ItemCard.scss';
 import classNames from 'classnames';
-import { PhoneColors } from '../../types/PhoneColors';
 import { getItemCardDataById } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
 import { RecomendModelsForItemCard } from '../../PageSections/RecomendModels/RecomendModelsForItemCard';
@@ -20,6 +18,8 @@ import { BackLink } from '../../components/BackLink';
 import { PageTitle } from '../../components/PageTitle';
 import { ButtonAddToCart } from '../../components/ButtonAddToCart';
 import { ButtonFavourites } from '../../components/ButtonFavourites';
+import { AvailableColors } from '../../components/AvailableColors';
+import { AvailableCapacity } from '../../components/AvailableCapacity';
 
 interface Props {
   itemsCart: { id: string, count: number }[];
@@ -152,60 +152,16 @@ export const ItemCard: React.FC<Props> = ({
             grid__item--phone-1-4"
             >
               <div className="controllers">
-                <div className="colors">
-                  <div className="controllers__title">
-                    <p>Available colors</p>
-                    <p>{`ID: ${cardData.namespaceId}`}</p>
-                  </div>
-
-                  <div className="colors__circle-container">
-                    {cardData.colorsAvailable.map(color => (
-                      <Link
-                        to={`/phoneCardData/${cardData.namespaceId}-${cardData.capacity.toLowerCase()}-${color}`}
-                        key={color}
-                      >
-                        <div className="colors__circle">
-                          <div
-                            className={
-                              classNames('colors__circle-item', {
-                                'colors__circle-item--active': color === cardData.color,
-                              })
-                            }
-                            style={{
-                              backgroundColor: PhoneColors[color as keyof typeof PhoneColors],
-                            }}
-                            onClick={() => handleSelectOptions('', color)}
-                          />
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+                <AvailableColors
+                  data={cardData}
+                  onSelectOption={handleSelectOptions}
+                />
               </div>
 
-              <div className="capacity">
-                <p>Select capacity</p>
-                <div className="capacity__container">
-                  {cardData.capacityAvailable.map((capacity) => (
-                    <Link
-                      to={`/phoneCardData/${cardData.namespaceId}-${capacity.toLowerCase()}-${cardData.color}`}
-                      key={cardData.id}
-                      className="capacity__link"
-                    >
-                      <div
-                        className={
-                          classNames('capacity__button', {
-                            'capacity__button--active': capacity === cardData.capacity,
-                          })
-                        }
-                        onClick={() => handleSelectOptions(capacity, '')}
-                      >
-                        {capacity}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+              <AvailableCapacity
+                data={cardData}
+                onSelectOption={handleSelectOptions}
+              />
 
               <div className="price">
                 <span className="price__new">{`$${cardData.priceDiscount}`}</span>
