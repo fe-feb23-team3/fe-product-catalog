@@ -6,12 +6,13 @@ import { PhoneData } from '../../types/phoneData';
 import './Cart.scss';
 import { Loader } from '../../components/Loader';
 import { CartIsEmpty } from './CartIsEmpty/CartIsEmpty';
+import { CartGame } from './CartGame/CartGame';
 import { ModalOfCart } from './ModalOfCart/ModalOfCart';
 import { BackLink } from '../../components/BackLink';
 import { PageTitle } from '../../components/PageTitle';
 
 interface Props {
-  itemsCart: { id: string, count: number }[],
+  itemsCart: { id: string; count: number }[];
   onCart: (productId: string) => void;
   onClear: () => void;
   onCountChange: (id: string, plusOrMinus: boolean) => void;
@@ -26,6 +27,11 @@ export const Cart: React.FC<Props> = ({
   const [products, setProducts] = useState<PhoneData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openGame, setOpenGame] = useState(false);
+
+  const handleOpenGame = () => {
+    setOpenGame(!openGame);
+  };
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -53,7 +59,7 @@ export const Cart: React.FC<Props> = ({
   }, []);
 
   useEffect(() => {
-    const productsFiltered = products.filter(product => {
+    const productsFiltered = products.filter((product) => {
       return itemsCart.some((item) => item.id === product.itemId);
     });
 
@@ -68,7 +74,8 @@ export const Cart: React.FC<Props> = ({
         <PageTitle title="Cart" />
       </div>
 
-      <div className="
+      <div
+        className="
           cart-Page__content
           grid
           grid--desktop
@@ -83,7 +90,11 @@ export const Cart: React.FC<Props> = ({
           <>
             {isLoading && <Loader isLoading={isLoading} />}
 
-            {!products.length && !isLoading && <CartIsEmpty />}
+            {!products.length && !isLoading && (
+              <CartIsEmpty isPlay={openGame} onGame={handleOpenGame} />
+            )}
+
+            {openGame && <CartGame />}
 
             {products.map((product) => (
               <CardOfCart
