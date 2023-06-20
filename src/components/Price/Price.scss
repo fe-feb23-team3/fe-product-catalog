@@ -1,0 +1,25 @@
+.price {
+  margin-top: 32px;
+
+  &__new {
+    margin-right: 8px;
+
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+
+    color: #0f0f11;
+  }
+
+  &__old {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 28px;
+
+    color: #89939a;
+
+    text-decoration: line-through;
+  }
+}

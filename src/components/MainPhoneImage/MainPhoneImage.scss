@@ -1,0 +1,19 @@
+@import '../../App.scss';
+
+.phone__image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &--main {
+    max-height: 288px;
+
+    @include onTablet {
+      max-height: 288px;
+    }
+
+    @include onDesktop {
+      max-height: 464px;
+    }
+  }
+}
