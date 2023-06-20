@@ -21,13 +21,18 @@
     @include onTablet {
       display: flex;
       flex-direction: row-reverse;
-      justify-content: space-evenly;
+      justify-content: space-between;
     }
 
     @include onDesktop {
       display: flex;
       flex-direction: row-reverse;
-      justify-content: space-evenly;
+      justify-content: space-between;
+    }
+
+    &--main {
+      display: flex;
+      justify-content: center;
     }
   }
 
