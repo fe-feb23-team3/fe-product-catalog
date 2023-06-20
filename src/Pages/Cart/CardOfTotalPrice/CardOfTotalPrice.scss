@@ -53,15 +53,17 @@
     text-align: center;
     transition: 0.15s;
 
-    &:hover {
-      box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
-    }
+    @include onTablet {
+      &:hover {
+        box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+      }
 
-    &:active {
-      color: $accent-color;
-      border: 1px solid $elements-color;
-      background-color: transparent;
-      box-shadow: none;
+      &:active {
+        color: $accent-color;
+        border: 1px solid $elements-color;
+        background-color: transparent;
+        box-shadow: none;
+      }
     }
 
     &--disabled {
@@ -71,20 +73,22 @@
       color: $elements-color;
       background-color: $white-color;
 
-      &:active {
-        cursor: not-allowed;
-        box-shadow: none;
-        border: 1px solid $elements-color;
-        color: $elements-color;
-        background-color: $white-color;
-      }
+      @include onTablet {
+        &:active {
+          cursor: not-allowed;
+          box-shadow: none;
+          border: 1px solid $elements-color;
+          color: $elements-color;
+          background-color: $white-color;
+        }
 
-      &:hover {
-        cursor: not-allowed;
-        box-shadow: none;
-        border: 1px solid $elements-color;
-        color: $elements-color;
-        background-color: $white-color;
+        &:hover {
+          cursor: not-allowed;
+          box-shadow: none;
+          border: 1px solid $elements-color;
+          color: $elements-color;
+          background-color: $white-color;
+        }
       }
     }
   }
