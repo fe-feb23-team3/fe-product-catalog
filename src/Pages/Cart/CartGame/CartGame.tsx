@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useRef, useEffect, useState } from 'react';
 import cn from 'classnames';
 import './CartGame.scss';
 
 export const CartGame: React.FC = () => {
-  const boberPosition = useRef(null);
-  const cactusPosition = useRef(null);
+  const boberPosition = useRef<HTMLDivElement>(null!);
+  const cactusPosition = useRef<HTMLDivElement>(null!);
   const [isJump, setIsJump] = useState(false);
   const [gameOver, setGameOver] = useState(false);
 
