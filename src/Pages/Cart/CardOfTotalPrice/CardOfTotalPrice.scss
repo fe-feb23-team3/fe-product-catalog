@@ -63,5 +63,29 @@
       background-color: transparent;
       box-shadow: none;
     }
+
+    &--disabled {
+      cursor: not-allowed;
+      box-shadow: none;
+      border: 1px solid $elements-color;
+      color: $elements-color;
+      background-color: $white-color;
+
+      &:active {
+        cursor: not-allowed;
+        box-shadow: none;
+        border: 1px solid $elements-color;
+        color: $elements-color;
+        background-color: $white-color;
+      }
+
+      &:hover {
+        cursor: not-allowed;
+        box-shadow: none;
+        border: 1px solid $elements-color;
+        color: $elements-color;
+        background-color: $white-color;
+      }
+    }
   }
 }

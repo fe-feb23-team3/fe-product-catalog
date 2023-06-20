@@ -5,4 +5,21 @@
   border: 1px solid $elements-color;
   border-radius: 16px;
   padding: 16px;
+
+  display: flex;
+  justify-content: space-between;
+
+  &__button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 32px;
+    height: 32px;
+    
+    border: 1px solid $elements-color;
+    border-radius: 50%;
+    background-color: Transparent;
+  }
 }
