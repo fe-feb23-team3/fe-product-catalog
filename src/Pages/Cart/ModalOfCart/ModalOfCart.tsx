@@ -27,8 +27,7 @@ export const ModalOfCart: React.FC<Props> = ({ closeModal, onClear }) => {
 
           <div className="modal__body">
             <p>
-              The next page is awesome! You should move forward, you will enjoy
-              it.
+              After clicking button ‘Buy’ your order will be proceed
             </p>
           </div>
 
