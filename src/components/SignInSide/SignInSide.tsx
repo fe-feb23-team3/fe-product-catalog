@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,6 +15,8 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { User } from '../../types/User';
+import { getAllUsers } from '../../api/phones';
 
 function Copyright(props: any) {
   return (
@@ -34,14 +36,62 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export function SignInSide() {
+  const [usersArray, setUsersArray] = React.useState<User[]>([]);
+  const navigate = useNavigate();
+
+  const loadUsers = async () => {
+    try {
+      const users = await getAllUsers();
+
+      setUsersArray(users);
+
+      return users;
+    } catch (error) {
+      console.log(error);
+
+      return [];
+    }
+  };
+
+  React.useEffect(() => {
+    loadUsers();
+  }, []);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
+    const email = data.get('email');
+    const password = data.get('password');
+
+    console.log('email', email);
+
+    if (!email || !password) {
+      console.log('Email and password are required');
+
+      return;
+    }
+
+    if (email) {
+      const user = usersArray.find((u) => u.email === email);
+
+      if (!user) {
+        console.log('User not found. Please sign up first.');
+
+        return;
+      }
+
+      if (user.password !== password) {
+        console.log('Incorrect password');
+
+        return;
+      }
+    }
 
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+    navigate('/');
   };
 
   return (
@@ -102,16 +152,14 @@ export function SignInSide() {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              <NavLink to="/cart">
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Sign In
-                </Button>
-              </NavLink>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
               <Grid container>
                 <Grid item xs>
                   <Link href="/" variant="body2">
@@ -119,7 +167,7 @@ export function SignInSide() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <NavLink to="/signUp">
+                  <NavLink to="/register">
                     Don&apos;t have an account? Sign Up
                   </NavLink>
                 </Grid>

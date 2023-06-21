@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -14,6 +15,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createUser, getAllUsers } from '../../api/phones';
+import { User } from '../../types/User';
 
 function Copyright(props: any) {
   return (
@@ -33,9 +36,56 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export function SignUp() {
+  const [usersArray, setUsersArray] = React.useState<User[]>([]);
+  const loadUsers = async () => {
+    try {
+      const users = await getAllUsers();
+
+      setUsersArray(users);
+
+      return users;
+    } catch (error) {
+      console.log(error);
+
+      return [];
+    }
+  };
+
+  React.useEffect(() => {
+    loadUsers();
+  }, []);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const email = data.get('email');
+    const password = data.get('password');
+
+    console.log('email', email);
+
+    if (!email || !password) {
+      console.log('Email and password are required');
+
+      return;
+    }
+
+    if (!email.toString().includes('@')) {
+      console.log('Email is not valid');
+
+      return;
+    }
+
+    if (usersArray.some((user) => user.email === email.toString())) {
+      console.log('User already exists');
+
+      return;
+    }
+
+    if (password.toString().length < 8) {
+      console.log('Password must be at least 8 characters');
+    }
+
+    createUser(email.toString(), password.toString());
 
     // eslint-disable-next-line no-console
     console.log({
@@ -123,7 +173,7 @@ export function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <NavLink to="/signIn">
+                <NavLink to="/login">
                   Already have an account? Sign in
                 </NavLink>
               </Grid>
