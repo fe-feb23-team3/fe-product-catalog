@@ -1,7 +1,8 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useState } from 'react';
+
+import React, { useEffect, useRef, useState } from 'react';
 import './DropDown.scss';
 import classNames from 'classnames';
 import arrowUp from '../../images/arrow_up.svg';
@@ -19,6 +20,7 @@ export const Dropdown: React.FC<Props> = ({
   onSelect,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const title = items.find((item) => item.value === currentItem)?.title || 'Choose sort';
 
@@ -32,11 +34,21 @@ export const Dropdown: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [currentItem]);
+    const handler = (event: MouseEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mouseup', handler);
+
+    return () => {
+      document.removeEventListener('mouseup', handler);
+    };
+  }, [isOpen]);
 
   return (
-    <div className={classNames('dropdown', { 'dropdown--open': isOpen })}>
+    <div className={classNames('dropdown', { 'dropdown--open': isOpen })} ref={menuRef}>
       <div
         className="dropdown__toggle"
         onClick={toggleDropdown}
