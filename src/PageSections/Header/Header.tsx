@@ -7,6 +7,7 @@ import logo from '../../images/logo.svg';
 import cart from '../../images/cart.svg';
 import menu from '../../images/burger-menu.svg';
 import favourites from '../../images/favourites.svg';
+import signIn from '../../images/sing_in.svg';
 import { Counter } from '../../components/Counter';
 import { Menu } from '../../components/Menu';
 
@@ -106,6 +107,15 @@ export const Header: React.FC<Props> = ({ itemsCount, itemsFavourites }) => {
           >
             <img src={cart} alt="cart" />
             {itemsCount > 0 && <Counter count={itemsCount} />}
+          </NavLink>
+
+          <NavLink
+            to="/signIn"
+            className={({ isActive }) => classNames('icon', {
+              'icon--active': isActive,
+            })}
+          >
+            <img src={signIn} alt="user" className="icon-sign-in" />
           </NavLink>
         </div>
       ) : (
