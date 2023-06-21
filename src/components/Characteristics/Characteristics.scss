@@ -1,0 +1,30 @@
+.characteristics {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 32px;
+
+  &__title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  &__description {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: right;
+  }
+
+  &__item {
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+}

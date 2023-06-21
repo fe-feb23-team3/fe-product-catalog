@@ -1,0 +1,80 @@
+@import '../../App.scss';
+
+.phone__image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    @include onTablet {
+      flex-direction: column;
+      margin-top: 0px;
+    }
+
+    @include onDesktop {
+      flex-direction: column;
+      margin-top: 0px;
+    }
+  }
+
+  &-container {
+    margin-top: 16px;
+
+    &--active {
+      border-color: #313237;
+    }
+
+    @include onTablet {
+      margin-top: 0px;
+    }
+
+    @include onDesktop {
+      margin-top: 0px;
+    }
+  }
+
+  &--small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 52px;
+    height: 52px;
+
+    padding: 4px 0px;
+
+    object-fit: contain;
+
+    border: 1px solid #C4C4C4;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid #0F0F11;
+    }
+
+    &--active {
+      border: 1px solid #0F0F11;
+    }
+
+    @include onTablet {
+      width: 80px;
+      height: 80px;
+
+      margin-bottom: 8px;
+    }
+
+    @include onDesktop {
+      width: 80px;
+      height: 80px;
+
+      margin-bottom: 16px;
+    }
+  }
+}

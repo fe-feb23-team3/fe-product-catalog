@@ -1,0 +1,63 @@
+@import '../../App.scss';
+
+.about {
+  display: grid;
+  margin-top: 56px;
+
+  &__title {
+    padding-bottom: 16px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+
+    color: #0f0f11;
+
+    border-bottom: 1px solid #e2e6e9;
+
+    @include onTablet {
+      font-weight: 800;
+      font-size: 22px;
+      line-height: 30px;
+    }
+
+    @include onDesktop {
+      font-weight: 800;
+      font-size: 22px;
+      line-height: 30px;
+    }
+  }
+
+  &__paragraph-title {
+    margin-top: 32px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+
+    color: #0f0f11;
+
+    @include onTablet {
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+    @include onDesktop {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+
+  &__text {
+    margin-top: 16px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+
+    color: #89939a;
+  }
+}

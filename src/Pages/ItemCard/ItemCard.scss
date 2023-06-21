@@ -10,223 +10,24 @@
   }
 }
 
-.phone__photo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.phone__image-wraper {
+  margin-top: 40px;
 
-  &-wraper {
-    margin-top: 40px;
-
-    @include onTablet {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-between;
-    }
-
-    @include onDesktop {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-between;
-    }
-
-    &--main {
-      display: flex;
-      justify-content: center;
-    }
-  }
-
-  &-mapping {
+  @include onTablet {
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-
-    @include onTablet {
-      flex-direction: column;
-      margin-top: 0px;
-    }
-
-    @include onDesktop {
-      flex-direction: column;
-      margin-top: 0px;
-    }
+    flex-direction: row-reverse;
+    justify-content: space-between;
   }
 
-  &-container {
-    margin-top: 16px;
-
-    &--active {
-      border-color: #313237;
-    }
-
-    @include onTablet {
-      margin-top: 0px;
-    }
-
-    @include onDesktop {
-      margin-top: 0px;
-    }
-  }
-
-  &--main {
-    max-height: 288px;
-
-    @include onTablet {
-      max-height: 288px;
-    }
-
-    @include onDesktop {
-      max-height: 464px;
-    }
-  }
-
-  &--small {
+  @include onDesktop {
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 52px;
-    height: 52px;
-
-    padding: 4px 0px;
-
-    object-fit: contain;
-
-    border: 1px solid #C4C4C4;
-
-    border-radius: 4px;
-
-    cursor: pointer;
-
-    &:hover {
-      border: 1px solid #0F0F11;
-    }
-
-    &--active {
-      border: 1px solid #0F0F11;
-    }
-
-    @include onTablet {
-      width: 80px;
-      height: 80px;
-
-      margin-bottom: 8px;
-    }
-
-    @include onDesktop {
-      width: 80px;
-      height: 80px;
-
-      margin-bottom: 16px;
-    }
+    flex-direction: row-reverse;
+    justify-content: space-between;
   }
 }
 
 .controllers {
   margin-top: 40px;
-
-  &__title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-
-.colors {
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e2e6e9;
-
-  &__circle {
-    margin-right: 8px;
-
-    &-item {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 2px solid #fff;
-      cursor: pointer;
-      padding: 1px;
-
-      box-shadow: 0px 0px 0px 1px #e2e6e9;
-
-      &:hover {
-        box-shadow: 0px 0px 0px 1px #B4BDC3;
-      }
-
-      &--active {
-        box-shadow: 0px 0px 0px 1px black;
-      }
-    }
-
-    &-container {
-      display: flex;
-      align-items: center;
-
-      margin-top: 8px;
-    }
-  }
-}
-
-.capacity {
-  margin-top: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e2e6e9;
-
-  &__container {
-    display: flex;
-    align-items: center;
-  }
-
-  &__link {
-    text-decoration: none;
-    color: #0F0F11;
-  }
-
-  &__button {
-    margin: 8px 8px 0 0;
-    padding: 4px 8px;
-
-    text-decoration: none;
-
-    border: 1px solid #B4BDC3;
-    border-radius: 4px;
-
-    &:hover {
-      cursor: pointer;
-      border: 1px solid #0F0F11;
-    }
-
-    &--active {
-      color: #fff;
-      background-color: #0F0F11;
-    }
-  }
-}
-
-.price {
-  margin-top: 32px;
-
-  &__new {
-    margin-right: 8px;
-
-    font-style: normal;
-    font-weight: 800;
-    font-size: 32px;
-    line-height: 41px;
-
-    color: #0f0f11;
-  }
-
-  &__old {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 28px;
-
-    color: #89939a;
-
-    text-decoration: line-through;
-  }
 }
 
 .add-to-cart {
@@ -255,149 +56,8 @@
   }
 }
 
-.characteristics {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-top: 32px;
-
-  &__title {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-  }
-
-  &__description {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: right;
-  }
-
-  &__item {
-    margin-bottom: 8px;
-
-    &:last-child {
-      margin-bottom: 0px;
-    }
-  }
-}
-
-.about {
-  display: grid;
-  margin-top: 56px;
-
-  &__title {
-    padding-bottom: 16px;
-
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 26px;
-
-    color: #0f0f11;
-
-    border-bottom: 1px solid #e2e6e9;
-
-    @include onTablet {
-      font-weight: 800;
-      font-size: 22px;
-      line-height: 30px;
-    }
-
-    @include onDesktop {
-      font-weight: 800;
-      font-size: 22px;
-      line-height: 30px;
-    }
-  }
-
-  &__paragraph-title {
-    margin-top: 32px;
-
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 20px;
-
-    color: #0f0f11;
-
-    @include onTablet {
-      font-size: 20px;
-      line-height: 26px;
-    }
-
-    @include onDesktop {
-      font-size: 20px;
-      line-height: 26px;
-    }
-  }
-
-  &__text {
-    margin-top: 16px;
-
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
-
-    color: #89939a;
-  }
-}
-
-.tech-specs {
-  margin-top: 56px;
-
-  &__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-top: 32px;
-  }
-
-  &__title {
-    padding-bottom: 16px;
-
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 26px;
-
-    color: #0f0f11;
-
-    border-bottom: 1px solid #e2e6e9;
-  }
-
-  &__name {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 23px;
-  }
-
-  &__description {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 23px;
-    text-align: right;
-  }
-
-  &__item {
-    margin-bottom: 8px;
-
-    &:last-child {
-      margin-bottom: 0px;
-    }
-  }
-}
-
 .recomended {
-  margin-top: 56px;
+  margin: 56px 0px;
 
   &__title {
     font-style: normal;
@@ -406,12 +66,14 @@
     line-height: 140%;
 
     @include onTablet {
+      margin: 64px 0px;
       font-size: 32px;
       line-height: 41px;
       letter-spacing: -0.01em;
     }
 
     @include onDesktop {
+      margin: 80px 0px;
       font-size: 32px;
       line-height: 41px;
       letter-spacing: -0.01em;
@@ -422,35 +84,5 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-}
-
-.arrow {
-  &-icon {
-    padding: 8px;
-    margin-right: 16px;
-
-    width: 32px;
-    height: 32px;
-
-    border-radius: 40px;
-
-    border: 1px solid $icons-color;
-
-    &:last-child {
-      margin: 0;
-    }
-  }
-}
-
-.recomended {
-  margin: 56px 0px;
-
-  @include onTablet {
-    margin: 64px 0px;
-  }
-
-  @include onDesktop {
-    margin: 80px 0px;
   }
 }
