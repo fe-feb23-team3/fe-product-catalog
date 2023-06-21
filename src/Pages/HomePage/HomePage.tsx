@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PageTitle } from '../../components/PageTitle';
 import { ShopByCategory } from '../../PageSections/ShopByCategory';
 import { getNewestPhones, getByDiscountPhones } from '../../api/phones';
 
 import './HomePage.scss';
-import { RecomendModels } from '../../PageSections/RecomendModels/RecomendModelsForHomePage';
+import { RecommendModels } from '../../PageSections/RecomendModels/RecomendModelsForHomePage';
 import { Slider } from '../../PageSections/Slider';
+import { PhoneData } from '../../types/phoneData';
 
 interface Props {
   itemsCart: {id: string, count: number}[];
@@ -23,6 +24,27 @@ export const HomePage: React.FC<Props> = ({
   phonesCount,
 }) => {
   const homePageTitle = 'Welcome to Nice Gadgets store!';
+  const [newPhones, setNewPhones] = React.useState<PhoneData[]>([]);
+  const [discountPhones, setDiscountPhones] = React.useState<PhoneData[]>([]);
+
+  const loadNewPhones = async () => {
+    const loadPhones = await getNewestPhones();
+    const visiblePhonesFromServer = loadPhones;
+
+    setNewPhones(visiblePhonesFromServer);
+  };
+
+  const loadDiscountPhones = async () => {
+    const loadPhones = await getByDiscountPhones();
+    const visiblePhonesFromServer = loadPhones;
+
+    setDiscountPhones(visiblePhonesFromServer);
+  };
+
+  useEffect(() => {
+    loadNewPhones();
+    loadDiscountPhones();
+  }, []);
 
   return (
     <div className="home-page">
@@ -32,9 +54,9 @@ export const HomePage: React.FC<Props> = ({
 
       <Slider />
 
-      <RecomendModels
+      <RecommendModels
         title="Brand new models"
-        getPhones={getNewestPhones}
+        phones={newPhones}
         showDiscount={!false}
         onCart={onCart}
         onFavourites={onFavourites}
@@ -48,9 +70,9 @@ export const HomePage: React.FC<Props> = ({
         totalOfAccessories={100}
       />
 
-      <RecomendModels
+      <RecommendModels
         title="Hot prices"
-        getPhones={getByDiscountPhones}
+        phones={discountPhones}
         onCart={onCart}
         onFavourites={onFavourites}
         itemsCart={itemsCart}

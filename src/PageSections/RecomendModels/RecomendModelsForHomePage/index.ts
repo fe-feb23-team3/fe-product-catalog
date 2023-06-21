@@ -1,1 +1,1 @@
-export * from './RecomendModelsForHomePage';
+export * from './RecommendModels';

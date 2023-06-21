@@ -8,19 +8,19 @@ import { PhoneColors } from '../../types/PhoneColors';
 import { ItemCardData } from '../../types/itemCardData';
 
 interface Props {
-  data: ItemCardData;
+  product: ItemCardData;
   onSelectOption: (
     chosenCapacity: string,
     chosenColor: string,
   ) => void;
 }
 
-export const AvailableColors: React.FC<Props> = ({ data, onSelectOption }) => {
+export const AvailableColors: React.FC<Props> = ({ product, onSelectOption }) => {
   const {
     namespaceId,
     colorsAvailable,
     capacity,
-  } = data;
+  } = product;
 
   return (
     <div className="colors">
@@ -39,13 +39,13 @@ export const AvailableColors: React.FC<Props> = ({ data, onSelectOption }) => {
               <div
                 className={
                   classNames('colors__circle-item', {
-                    'colors__circle-item--active': color === data.color,
+                    'colors__circle-item--active': color === product.color,
                   })
                 }
                 style={{
                   backgroundColor: PhoneColors[color as keyof typeof PhoneColors],
                 }}
-                onClick={() => onSelectOption('', color)}
+                onClick={() => onSelectOption(capacity, color)}
               />
             </div>
           </Link>
