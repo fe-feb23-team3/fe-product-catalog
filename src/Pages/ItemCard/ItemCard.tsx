@@ -35,6 +35,7 @@ export const ItemCard: React.FC<Props> = ({
 }) => {
   const { pathname } = useLocation();
 
+  const [products] = useState<ItemCardData[]>([]);
   const [cardData, setCardData] = useState<ItemCardData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [mainImage, setMainImage] = useState(0);
@@ -58,22 +59,19 @@ export const ItemCard: React.FC<Props> = ({
 
   const handleSelectImage = useCallback((imageIndex: number) => setMainImage(imageIndex), []);
 
-  const handleSelectOptions = (
-    chosenCapacity: string,
-    chosenColor: string,
-  ) => {
-    if (chosenColor) {
-      const urlWithColor = `/phoneCardData/${cardData?.namespaceId}-${chosenCapacity}-${chosenColor}`;
+  const handleSelectOptions = useCallback(
+    (newColor: string, newCapacity: string) => {
+      const newCurrentProd = products.find(
+        ({ color, capacity }) => color === newColor && capacity === newCapacity,
+      );
 
-      navigate(urlWithColor);
-    }
+      if (newCurrentProd) {
+        setCardData(newCurrentProd);
 
-    if (chosenCapacity) {
-      const urlWithCapacity = `/phoneCardData/${cardData?.namespaceId}-${chosenCapacity}-${chosenColor}`;
-
-      navigate(urlWithCapacity);
-    }
-  };
+        navigate(`/phones/${newCurrentProd.id}`);
+      }
+    }, [],
+  );
 
   useEffect(() => {
     loadPhoneData();
@@ -135,12 +133,12 @@ export const ItemCard: React.FC<Props> = ({
             >
               <div className="controllers">
                 <AvailableColors
-                  data={cardData}
+                  product={cardData}
                   onSelectOption={handleSelectOptions}
                 />
 
                 <AvailableCapacity
-                  data={cardData}
+                  product={cardData}
                   onSelectOption={handleSelectOptions}
                 />
 

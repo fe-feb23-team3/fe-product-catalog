@@ -7,13 +7,16 @@
 
   &--main {
     max-height: 288px;
+    max-width: 228px;
 
     @include onTablet {
-      max-height: 288px;
+      max-height: 440px;
+      max-width: 288px;
     }
 
     @include onDesktop {
       max-height: 464px;
+      max-width: 376px;
     }
   }
 }
