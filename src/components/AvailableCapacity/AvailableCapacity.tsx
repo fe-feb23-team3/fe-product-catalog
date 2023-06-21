@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { ItemCardData } from '../../types/itemCardData';
 
 interface Props {
-  data: ItemCardData;
+  product: ItemCardData;
   onSelectOption: (
     chosenCapacity: string,
     chosenColor: string,
@@ -15,15 +15,14 @@ interface Props {
 }
 
 export const AvailableCapacity: React.FC<Props> = ({
-  data,
+  product,
   onSelectOption,
 }) => {
   const {
     capacityAvailable,
     namespaceId,
-    id,
     color,
-  } = data;
+  } = product;
 
   return (
     <div className="capacity">
@@ -32,16 +31,16 @@ export const AvailableCapacity: React.FC<Props> = ({
         {capacityAvailable.map((capacity) => (
           <Link
             to={`/phoneCardData/${namespaceId}-${capacity.toLowerCase()}-${color}`}
-            key={id}
+            key={capacity}
             className="capacity__link"
           >
             <div
               className={
                 classNames('capacity__button', {
-                  'capacity__button--active': capacity === data.capacity,
+                  'capacity__button--active': capacity === product.capacity,
                 })
               }
-              onClick={() => onSelectOption(capacity, '')}
+              onClick={() => onSelectOption(capacity, color)}
             >
               {capacity}
             </div>
