@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
