@@ -1,0 +1,17 @@
+@import '../../App.scss';
+
+.contacts{
+  &-catalog {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+
+    @include onTablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include onDesktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
