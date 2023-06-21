@@ -130,6 +130,11 @@
     align-items: center;
   }
 
+  &-sign-in {
+    width: 16px;
+    height: 16px;
+  }
+
   &--active {
     color: $primary-color;
 

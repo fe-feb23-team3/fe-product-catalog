@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.scss';
+import classNames from 'classnames';
 import { HomePage } from './Pages/HomePage';
 import { PhoneCatalog } from './Pages/PhoneCatalog';
 import { Header } from './PageSections/Header';
@@ -13,11 +14,15 @@ import { NotFoundPage } from './Pages/NotFoundPage';
 import { ItemCard } from './Pages/ItemCard';
 import { getPhones } from './api/phones';
 import { useLocalStorage } from './utils/useLocalStorage';
+import { SignInSide } from './components/SignInSide';
+import { SignUp } from './components/SignUp';
 
 export const App: React.FC = () => {
   const [itemsCart, setItemsCart] = useLocalStorage<{id: string, count: number}[]>('itemsCart', []);
   const [itemsFavourites, setItemsFavourites] = useLocalStorage<string[]>('idsFavourites', []);
   const [phonesLength, setPhonesLength] = useState(0);
+
+  const { pathname } = useLocation();
 
   const allCountOfItemsInCart = itemsCart.map(item => item.count).reduce((p, c) => p + c, 0);
 
@@ -81,7 +86,10 @@ export const App: React.FC = () => {
         <Header itemsCount={allCountOfItemsInCart} itemsFavourites={itemsFavourites} />
 
         <main className="main">
-          <div className="container">
+          <div className={classNames('container', {
+            'container-for-sign': pathname === '/signIn',
+          })}
+          >
             <Routes>
               <Route
                 path="/"
@@ -159,6 +167,14 @@ export const App: React.FC = () => {
                     />
                   )}
                 />
+              </Route>
+
+              <Route path="/signIn">
+                <Route index element={<SignInSide />} />
+              </Route>
+
+              <Route path="/signUp">
+                <Route index element={<SignUp />} />
               </Route>
 
               <Route path="*" element={<NotFoundPage />} />
