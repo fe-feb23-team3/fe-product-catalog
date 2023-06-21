@@ -13,6 +13,7 @@ import { NotFoundPage } from './Pages/NotFoundPage';
 import { ItemCard } from './Pages/ItemCard';
 import { getPhones } from './api/phones';
 import { useLocalStorage } from './utils/useLocalStorage';
+import { Contacts } from './Pages/Contacts';
 
 export const App: React.FC = () => {
   const [itemsCart, setItemsCart] = useLocalStorage<{id: string, count: number}[]>('itemsCart', []);
@@ -162,6 +163,9 @@ export const App: React.FC = () => {
               </Route>
 
               <Route path="*" element={<NotFoundPage />} />
+              <Route path="/contacts">
+                <Route index element={<Contacts />} />
+              </Route>
             </Routes>
           </div>
         </main>
