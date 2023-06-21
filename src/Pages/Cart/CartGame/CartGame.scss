@@ -1,7 +1,7 @@
 @import '../../../App.scss';
 
 $size: 64px;
-$height: 182px;
+$height: 152px;
 
 .game {
   border: 2px solid $elements-color;
@@ -33,7 +33,7 @@ $height: 182px;
 .bober {
   width: $size;
   height: $size;
-  background-image: url('./img/bober.png');
+  background-image: url('./img/bober/bober_Idle.png');
   background-repeat: no-repeat;
   background-size: $size $size;
   position: relative;
@@ -50,33 +50,38 @@ $height: 182px;
 
 @keyframes boberRun {
   0% {
-    background-image: url('./img/bober2.png');
+    background-image: url('./img/bober/bober_Run2.png');
     left: 0;
   }
   50% {
-    background-image: url('./img/bober1.png');
+    background-image: url('./img/bober/bober_Run1.png');
     left: 3px;
   }
   75% {
-    background-image: url('./img/bober3.png');
+    background-image: url('./img/bober/bober_Run3.png');
     left: 1px;
   }
   100% {
-    background-image: url('./img/bober2.png');
+    background-image: url('./img/bober/bober_Run2.png');
     left: 0;
   }
 }
 
 .cactus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: $size;
   height: $size;
-  background-image: url('./img/cactus1.png');
-  background-repeat: no-repeat;
-  background-size: $size $size;
   position: relative;
   top: $height - $size;
   left: 1000px;
   animation: cactusMov 3s infinite linear;
+
+  &__img {
+    width: 100%;
+  }
 }
 
 @keyframes cactusMov {
@@ -96,7 +101,6 @@ $height: 182px;
   }
 }
 
-
 .jump {
   animation: jump 0.5s linear;
 }
@@ -115,4 +119,12 @@ $height: 182px;
 
 .gameOver {
   animation-play-state: paused;
+}
+
+.score {
+  // position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: end;
 }
