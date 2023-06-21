@@ -1,6 +1,7 @@
 import { ItemCardData } from '../types/itemCardData';
 import { PhoneData } from '../types/phoneData';
 import { client } from '../utils/fetchClient';
+import { User } from '../types/User';
 
 type Info = {
   pages: number;
@@ -20,3 +21,7 @@ export const getRecommendedPhones = (id: string) => client.get<PhoneData[]>(`/ph
 export const getItemCardDataById = (id: string) => client.get<ItemCardData>(`/phoneCardData/${id}`);
 
 export const getImagesById = (id: string) => client.get<ItemCardData>(`/phoneCardData/${id}/images`);
+
+export const createUser = (email: string, password: string) => client.post('/register', { email, password });
+
+export const getAllUsers = () => client.get<User[]>('/users');

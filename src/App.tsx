@@ -88,7 +88,7 @@ export const App: React.FC = () => {
 
         <main className="main">
           <div className={classNames('container', {
-            'container-for-sign': pathname === '/signIn',
+            'container-for-sign': pathname === '/login' || pathname === '/register',
           })}
           >
             <Routes>
@@ -170,11 +170,11 @@ export const App: React.FC = () => {
                 />
               </Route>
 
-              <Route path="/signIn">
+              <Route path="/login">
                 <Route index element={<SignInSide />} />
               </Route>
 
-              <Route path="/signUp">
+              <Route path="/register">
                 <Route index element={<SignUp />} />
               </Route>
 

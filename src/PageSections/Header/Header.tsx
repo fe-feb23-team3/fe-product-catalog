@@ -110,7 +110,7 @@ export const Header: React.FC<Props> = ({ itemsCount, itemsFavourites }) => {
           </NavLink>
 
           <NavLink
-            to="/signIn"
+            to="/login"
             className={({ isActive }) => classNames('icon', {
               'icon--active': isActive,
             })}
