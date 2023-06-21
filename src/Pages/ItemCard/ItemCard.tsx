@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './ItemCard.scss';
-import { getItemCardDataById } from '../../api/phones';
+import { getItemCardDataById, getRecommendedPhones } from '../../api/phones';
 import { ItemCardData } from '../../types/itemCardData';
-import { RecomendModelsForItemCard } from '../../PageSections/RecomendModels/RecomendModelsForItemCard';
+import { RecommendModels } from '../../PageSections/RecomendModels/RecomendModelsForHomePage';
 import { Loader } from '../../components/Loader';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Breadcrumb } from '../../types/breadcrumbs';
@@ -19,6 +19,7 @@ import { Characteristics } from '../../components/Characteristics';
 import { About } from '../../components/About';
 import { MainPhoneImage } from '../../components/MainPhoneImage';
 import { SecondaryPhoneImage } from '../../components/SecondaryPhoneImage';
+import { PhoneData } from '../../types/phoneData';
 
 interface Props {
   itemsCart: { id: string, count: number }[];
@@ -39,6 +40,7 @@ export const ItemCard: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [mainImage, setMainImage] = useState(0);
   const [breadcrumbsPath, setBreadcrumbsPath] = useState<Breadcrumb[]>([]);
+  const [phones, setPhones] = useState<PhoneData[]>([]);
 
   const navigate = useNavigate();
 
@@ -54,6 +56,13 @@ export const ItemCard: React.FC<Props> = ({
     setBreadcrumbsPath(updatedBreadcrumbsPath);
     setCardData(desiredPhone);
     setIsLoading(false);
+  };
+
+  const loadRecommendedPhones = async () => {
+    const loadPhones = await getRecommendedPhones(itemName);
+    const visiblePhonesFromServer = loadPhones;
+
+    setPhones(visiblePhonesFromServer);
   };
 
   const handleSelectImage = useCallback((imageIndex: number) => setMainImage(imageIndex), []);
@@ -77,6 +86,7 @@ export const ItemCard: React.FC<Props> = ({
 
   useEffect(() => {
     loadPhoneData();
+    loadRecommendedPhones();
   }, [pathname]);
 
   return (
@@ -191,9 +201,9 @@ export const ItemCard: React.FC<Props> = ({
 
           <div className="recomended">
             {cardData && (
-              <RecomendModelsForItemCard
-                id={cardData.id}
+              <RecommendModels
                 title="You may also like"
+                phones={phones}
                 onCart={onCart}
                 onFavourites={onFavourites}
                 itemsCart={itemsCart}

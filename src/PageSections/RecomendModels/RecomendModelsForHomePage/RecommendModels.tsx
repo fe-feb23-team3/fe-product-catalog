@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import { Loader } from '../../../components/Loader';
 import { ProductCard } from '../../../components/ProductCard';
 import { PhoneData } from '../../../types/phoneData';
 
-import './RecomendModelsForHomePage.scss';
+import './RecommendModels.scss';
 import { SectionTitle } from '../../../components/SectionTitle';
 import { MoveButton } from '../../../components/MoveButton';
 
 interface Props {
   title: string;
-  getPhones: () => Promise<PhoneData[]>;
+  phones: PhoneData[];
   showDiscount?: boolean;
   itemsCart: { id: string, count: number }[];
   itemsFavourites: string[];
@@ -19,53 +19,20 @@ interface Props {
   onFavourites: (productId: string) => void;
 }
 
-export const RecomendModels: React.FC<Props> = ({
+export const RecommendModels: React.FC<Props> = ({
   title,
-  getPhones,
+  phones,
   showDiscount,
   itemsCart,
   itemsFavourites,
   onCart,
   onFavourites,
 }) => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [phones, setPhones] = useState<PhoneData[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const loadPhonesByPage = async () => {
-    setIsLoading(true);
-    const loadPhones = await getPhones();
-    const visiblePhonesFromServer = loadPhones;
-
-    setPhones(visiblePhonesFromServer);
-    setIsLoading(false);
-  };
-
-  const scrollLeft = () => {
-    const scrollContainer = scrollContainerRef.current;
-
-    if (scrollContainer) {
-      scrollContainer.scrollTo({
-        left: scrollContainer.scrollLeft - 430,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const scrollRight = () => {
-    const scrollContainer = scrollContainerRef.current;
-
-    if (scrollContainer) {
-      scrollContainer.scrollTo({
-        left: scrollContainer.scrollLeft + 430,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const [isLoading, setIsLoading] = React.useState(true);
 
   useEffect(() => {
-    loadPhonesByPage();
-  }, []);
+    setIsLoading(phones.length === 0);
+  }, [phones]);
 
   return (
     <div className="recomend">
@@ -73,16 +40,14 @@ export const RecomendModels: React.FC<Props> = ({
         <SectionTitle title={title} />
 
         <div className="recomend__title-buttons">
-          <div className=".swiper-button-prev">
+          <div className="swiper-button-left">
             <MoveButton
-              onClick={scrollLeft}
               direction="left"
               isDisabled={false}
             />
           </div>
-          <div className=".swiper-button-next">
+          <div className="swiper-button-right">
             <MoveButton
-              onClick={scrollRight}
               direction="right"
               isDisabled={false}
             />
@@ -95,10 +60,11 @@ export const RecomendModels: React.FC<Props> = ({
       <Swiper
         modules={[Navigation]}
         slidesPerView={4}
-        // spaceBetween={16}
+        spaceBetween={16}
+        loop
         navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          nextEl: '.swiper-button-right',
+          prevEl: '.swiper-button-left',
         }}
         breakpoints={{
           1199: {
@@ -122,9 +88,9 @@ export const RecomendModels: React.FC<Props> = ({
           },
         }}
       >
-        <div className="recomend-models" ref={scrollContainerRef}>
+        <div className="product-slider__content">
           {!isLoading && phones.map((phone) => (
-            <SwiperSlide key={phone.name}>
+            <SwiperSlide key={phone.name} className="product-slider__content__card">
               <ProductCard
                 showDiscount={showDiscount}
                 phone={phone}
@@ -143,6 +109,6 @@ export const RecomendModels: React.FC<Props> = ({
   );
 };
 
-RecomendModels.defaultProps = {
+RecommendModels.defaultProps = {
   showDiscount: false,
 };

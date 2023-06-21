@@ -7,7 +7,7 @@ import arrowRight from '../../images/arrow_right.svg';
 
 interface Props {
   isDisabled: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   direction: 'left' | 'right';
 }
 
@@ -34,4 +34,8 @@ export const MoveButton: React.FC<Props> = ({
       )}
     </button>
   );
+};
+
+MoveButton.defaultProps = {
+  onClick: () => {},
 };
