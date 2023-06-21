@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
 import { Loader } from '../../../components/Loader';
 import { ProductCard } from '../../../components/ProductCard';
 import { PhoneData } from '../../../types/phoneData';
@@ -71,36 +73,72 @@ export const RecomendModels: React.FC<Props> = ({
         <SectionTitle title={title} />
 
         <div className="recomend__title-buttons">
-          <MoveButton
-            onClick={scrollLeft}
-            direction="left"
-            isDisabled={false}
-          />
-
-          <MoveButton
-            onClick={scrollRight}
-            direction="right"
-            isDisabled={false}
-          />
+          <div className=".swiper-button-prev">
+            <MoveButton
+              onClick={scrollLeft}
+              direction="left"
+              isDisabled={false}
+            />
+          </div>
+          <div className=".swiper-button-next">
+            <MoveButton
+              onClick={scrollRight}
+              direction="right"
+              isDisabled={false}
+            />
+          </div>
         </div>
       </div>
 
       <Loader isLoading={isLoading} />
 
-      <div className="recomend-models" ref={scrollContainerRef}>
-        {!isLoading
-          && phones.map((phone) => (
-            <ProductCard
-              showDiscount={showDiscount}
-              phone={phone}
-              key={phone.name}
-              itemsCart={itemsCart}
-              onCart={onCart}
-              itemsFavourites={itemsFavourites}
-              onFavourites={onFavourites}
-            />
+      <Swiper
+        modules={[Navigation]}
+        slidesPerView={4}
+        // spaceBetween={16}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }}
+        breakpoints={{
+          1199: {
+            slidesPerView: 4,
+            initialSlide: 0,
+          },
+          1050: {
+            slidesPerView: 4,
+          },
+          778: {
+            slidesPerView: 3,
+          },
+          600: {
+            slidesPerView: 2,
+          },
+          422: {
+            slidesPerView: 2,
+          },
+          0: {
+            slidesPerView: 1,
+          },
+        }}
+      >
+        <div className="recomend-models" ref={scrollContainerRef}>
+          {!isLoading && phones.map((phone) => (
+            <SwiperSlide key={phone.name}>
+              <ProductCard
+                showDiscount={showDiscount}
+                phone={phone}
+                key={phone.name}
+                itemsCart={itemsCart}
+                onCart={onCart}
+                itemsFavourites={itemsFavourites}
+                onFavourites={onFavourites}
+              />
+            </SwiperSlide>
           ))}
-      </div>
+        </div>
+
+      </Swiper>
     </div>
   );
 };
