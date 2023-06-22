@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
             github
           </NavLink>
 
-          <NavLink to="https://w.forfun.com/fetch/b0/b0ebdaa1402892e90d28fad4e3190d22.jpeg" target="_blank" className="footer__link">
+          <NavLink to="contacts" className="footer__link">
             contacts
           </NavLink>
 

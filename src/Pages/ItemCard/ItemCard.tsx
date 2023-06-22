@@ -43,6 +43,9 @@ export const ItemCard: React.FC<Props> = ({
   const [breadcrumbsPath, setBreadcrumbsPath] = useState<Breadcrumb[]>([]);
   const [phones, setPhones] = useState<PhoneData[]>([]);
 
+  // eslint-disable-next-line no-console
+  console.log(mainImage);
+
   const navigate = useNavigate();
 
   const url = window.location.hash;
@@ -85,6 +88,7 @@ export const ItemCard: React.FC<Props> = ({
   useEffect(() => {
     loadPhoneData();
     loadRecommendedPhones();
+    setMainImage(0);
   }, [pathname]);
 
   return (
