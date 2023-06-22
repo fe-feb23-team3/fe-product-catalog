@@ -62,7 +62,7 @@ export const CartGame: React.FC = () => {
       const boberTop = parseInt(top, 10);
       const cactusLeft = parseInt(left, 10);
 
-      if (cactusLeft > 0 && cactusLeft < 64 && boberTop >= 90) {
+      if (cactusLeft > 0 && cactusLeft < 64 && boberTop >= 100) {
         // Game over!
         clearInterval(intervalId);
         setGameOver(true);
