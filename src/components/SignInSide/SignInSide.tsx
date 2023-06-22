@@ -21,13 +21,6 @@ import { getAllUsers } from '../../api/phones';
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <NavLink to="/contacts" color="inherit">
-        Cyber Beavers Team
-      </NavLink>
-      {' '}
-      {new Date().getFullYear()}
-      .
     </Typography>
   );
 }

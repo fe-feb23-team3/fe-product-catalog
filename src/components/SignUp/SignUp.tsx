@@ -82,6 +82,8 @@ export function SignUp() {
 
     if (password.toString().length < 8) {
       console.log('Password must be at least 8 characters');
+
+      return;
     }
 
     createUser(email.toString(), password.toString());
