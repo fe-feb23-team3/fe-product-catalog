@@ -63,8 +63,6 @@ export function SignInSide() {
     const email = data.get('email');
     const password = data.get('password');
 
-    console.log('email', email);
-
     if (!email || !password) {
       console.log('Email and password are required');
 
@@ -87,10 +85,6 @@ export function SignInSide() {
       }
     }
 
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
     navigate('/');
   };
 

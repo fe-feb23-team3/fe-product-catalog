@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -37,6 +37,7 @@ const defaultTheme = createTheme();
 
 export function SignUp() {
   const [usersArray, setUsersArray] = React.useState<User[]>([]);
+  const navigate = useNavigate();
   const loadUsers = async () => {
     try {
       const users = await getAllUsers();
@@ -60,8 +61,6 @@ export function SignUp() {
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
-
-    console.log('email', email);
 
     if (!email || !password) {
       console.log('Email and password are required');
@@ -87,11 +86,7 @@ export function SignUp() {
 
     createUser(email.toString(), password.toString());
 
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    navigate('/');
   };
 
   return (
