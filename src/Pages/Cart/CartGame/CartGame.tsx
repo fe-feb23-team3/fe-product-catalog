@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, {
-  useRef,
-  useEffect,
-  useState,
-  useCallback,
+  useRef, useEffect, useState, useCallback,
 } from 'react';
 import cn from 'classnames';
 import './CartGame.scss';
@@ -65,7 +62,7 @@ export const CartGame: React.FC = () => {
       const boberTop = parseInt(top, 10);
       const cactusLeft = parseInt(left, 10);
 
-      if (cactusLeft < 50 && cactusLeft > 0 && boberTop >= 140) {
+      if (cactusLeft > 0 && cactusLeft < 64 && boberTop >= 100) {
         // Game over!
         clearInterval(intervalId);
         setGameOver(true);
@@ -78,14 +75,22 @@ export const CartGame: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = () => {
+    const handleMouseDown = () => {
       setIsJump(true);
     };
 
-    document.addEventListener('mousedown', handleKeyDown);
+    const handleKeyDown = (event: { keyCode: number }) => {
+      if (event.keyCode === 32) {
+        setIsJump(true);
+      }
+    };
+
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener('mousedown', handleKeyDown);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.addEventListener('keydown', handleKeyDown);
     };
   }, []);
 
