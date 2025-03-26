@@ -3,7 +3,7 @@ export const devContacts = [
     name: 'Nikita Zadorozhnyi',
     position: 'Full stack developer',
     photo: 'https://ca.slack-edge.com/T0PE08HSR-U04NA7SV9ED-13e5f40d2174-512',
-    phone: '00000',
+    phone: '-',
     email: 'nikita.zadorozhnyi@nure.ua',
     linkedIn: 'https://www.linkedin.com/in/nikita-zadorozhnyi-a7ab38278',
     github: 'https://github.com/Zad0rnik',
